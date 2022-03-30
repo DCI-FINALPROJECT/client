@@ -6,14 +6,15 @@ import Carrousel2 from '../public/Carrousel2';
 import Footer from '../public/Footer';
 import Header from '../public/Header';
 import LoginPage from './LoginPage';
+import PaymentPage from './PaymentPage';
 import RegisterPage from './RegisterPage';
 
 function Homepage() {
   return (
     <div>
       <Header />
-
       <br/><br/>
+
       <BannerCategories />
       <br/><br/>
       <Carrousel1 />
@@ -23,9 +24,7 @@ function Homepage() {
       <Carrousel2 />
       <br/><br/>
 
-    
       <Footer/>  
-      
      </div>
   )
 }
