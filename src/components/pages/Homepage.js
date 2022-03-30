@@ -23,7 +23,6 @@ function Homepage() {
       <Carrousel2 />
       <br/><br/>
 
-    
       <Footer/>  
       
      </div>
