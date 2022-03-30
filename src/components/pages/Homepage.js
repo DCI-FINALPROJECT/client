@@ -23,8 +23,7 @@ function Homepage() {
       <Carrousel2 />
       <br/><br/>
 
-    <RegisterPage/>
-      <LoginPage/>
+    
       <Footer/>  
       
      </div>
