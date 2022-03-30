@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.img-banner {
+  background-image: url(/public/images/banners/banner9.jpg);
+}
