@@ -7,12 +7,12 @@ import Footer from '../public/Footer';
 import Header from '../public/Header';
 
 
-
 function Homepage() {
   return (
     <div>
       <Header />
       <br/><br/>
+     
 
       <BannerCategories />
       <br/><br/>
