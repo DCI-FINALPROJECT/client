@@ -10,8 +10,6 @@ import PaymentConfirmPage from "./components/pages/PaymentPageConfirmation";
 import { DataStore } from "./DataStore";
 import {Routes, Route} from "react-router-dom"
 
-
-
 function App() {
   return (
     <div className="App">
