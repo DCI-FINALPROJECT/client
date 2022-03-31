@@ -12,8 +12,6 @@ function Homepage() {
     <div>
       <Header />
       <br/><br/>
-     
-
       <BannerCategories />
       <br/><br/>
       <Carrousel1 />
