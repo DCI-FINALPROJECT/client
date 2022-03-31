@@ -1,5 +1,5 @@
 import React from 'react'
-import Product_template from '../Product_template'
+import Product_template from '../public/Product_template'
 import Footer from '../public/Footer'
 import Header from '../public/Header'
 
