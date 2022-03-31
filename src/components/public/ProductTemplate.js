@@ -6,13 +6,14 @@ import ProductReview from "./ProductReview";
 export default function ProductTemplate() {
   return (
     <div>
-      
-      <ProductCard/>
+      <ProductCard />
+      <div className="container pt-5">
+        
+          <ProductDescription />
 
-      <ProductDescription/>
-
-      <ProductReview/>
-      
+          <ProductReview />
+        
+      </div>
     </div>
   );
 }

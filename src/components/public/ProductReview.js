@@ -4,42 +4,45 @@ export default function ProductReview() {
   return (
     <div>
       {/* Reviews */}
-      <div style={{ maxWidth: "50rem" }}>
-        <div class="card mb-4" bis_skin_checked="1">
-          <div class="card-body" bis_skin_checked="1">
-            <h5 class="card-title">Reviews </h5> <hr />
-            <blockquote class="border-bottom">
-              <div class="float-lg-end d-flex mb-3" bis_skin_checked="1">
-                <div class="btn-group d-inline-flex me-2" bis_skin_checked="1">
+      <div className="">
+        <div className="card mb-4" bis_skin_checked="1">
+          <div className="card-body" bis_skin_checked="1">
+            <h5 className="card-title">Reviews </h5> <hr />
+            <blockquote className="border-bottom">
+              <div className="float-lg-end d-flex mb-3" bis_skin_checked="1">
+                <div
+                  className="btn-group d-inline-flex me-2"
+                  bis_skin_checked="1"
+                >
                   <button
-                    class="btn btn-light btn-sm float-end"
+                    className="btn btn-light btn-sm float-end"
                     data-bs-toggle="tooltip"
                     data-bs-title="Like"
                   >
-                    <i class="fa fa-thumbs-up"></i>
+                    <i className="fa fa-thumbs-up"></i>
                   </button>
                   <button
-                    class="btn btn-light btn-sm float-end"
+                    className="btn btn-light btn-sm float-end"
                     data-bs-toggle="tooltip"
                     data-bs-title="Dislike"
                   >
-                    <i class="fa fa-thumbs-down"></i>
+                    <i className="fa fa-thumbs-down"></i>
                   </button>
                 </div>
-                <button class="btn btn-light btn-sm float-end ">
-                  <i class="fa fa-ellipsis-v"></i>
+                <button className="btn btn-light btn-sm float-end ">
+                  <i className="fa fa-ellipsis-v"></i>
                 </button>
               </div>
-              <div class="icontext" bis_skin_checked="1">
+              <div className="icontext" bis_skin_checked="1">
                 <img
                   src="images/avatars/avatar2.jpg"
-                  class="img-xs icon rounded-circle"
+                  className="img-xs icon rounded-circle"
                 />
-                <div class="text" bis_skin_checked="1">
-                  <h6 class="mb-0"> Michael Jonathan </h6>
-                  <div class="rating-wrap" bis_skin_checked="1">
-                    <ul class="rating-stars">
-                      <li style={{ width: "80%" }} class="stars-active">
+                <div className="text" bis_skin_checked="1">
+                  <h6 className="mb-0"> Michael Jonathan </h6>
+                  <div className="rating-wrap" bis_skin_checked="1">
+                    <ul className="rating-stars">
+                      <li style={{ width: "80%" }} className="stars-active">
                         <img src="images/misc/stars-active.svg" alt="" />
                       </li>
                       <li>
@@ -49,14 +52,14 @@ export default function ProductReview() {
                         />
                       </li>
                     </ul>
-                    <b class="dot"></b>
-                    <small class="label-rating text-muted">
+                    <b className="dot"></b>
+                    <small className="label-rating text-muted">
                       Purchased on Wed, May 12
                     </small>
                   </div>
                 </div>
               </div>
-              <div class="mt-3" bis_skin_checked="1">
+              <div className="mt-3" bis_skin_checked="1">
                 <p>
                   It used to be great, finding almost every song, but now i dont
                   know what happened (they might be hacked even) that it can not
@@ -68,38 +71,41 @@ export default function ProductReview() {
                 </p>
               </div>
             </blockquote>
-            <blockquote class="border-bottom">
-              <div class="float-lg-end d-flex mb-3" bis_skin_checked="1">
-                <div class="btn-group d-inline-flex me-2" bis_skin_checked="1">
+            <blockquote className="border-bottom">
+              <div className="float-lg-end d-flex mb-3" bis_skin_checked="1">
+                <div
+                  className="btn-group d-inline-flex me-2"
+                  bis_skin_checked="1"
+                >
                   <button
-                    class="btn btn-light btn-sm float-end"
+                    className="btn btn-light btn-sm float-end"
                     data-bs-toggle="tooltip"
                     data-bs-title="Like"
                   >
-                    <i class="fa fa-thumbs-up"></i>
+                    <i className="fa fa-thumbs-up"></i>
                   </button>
                   <button
-                    class="btn btn-light btn-sm float-end"
+                    className="btn btn-light btn-sm float-end"
                     data-bs-toggle="tooltip"
                     data-bs-title="Dislike"
                   >
-                    <i class="fa fa-thumbs-down"></i>
+                    <i className="fa fa-thumbs-down"></i>
                   </button>
                 </div>
-                <button class="btn btn-light btn-sm float-end ">
-                  <i class="fa fa-ellipsis-v"></i>
+                <button className="btn btn-light btn-sm float-end ">
+                  <i className="fa fa-ellipsis-v"></i>
                 </button>
               </div>
-              <div class="icontext" bis_skin_checked="1">
+              <div className="icontext" bis_skin_checked="1">
                 <img
                   src="images/avatars/avatar1.jpg"
-                  class="img-xs icon rounded-circle"
+                  className="img-xs icon rounded-circle"
                 />
-                <div class="text" bis_skin_checked="1">
-                  <h6 class="mb-0"> Michael Jonathan </h6>
-                  <div class="rating-wrap" bis_skin_checked="1">
-                    <ul class="rating-stars">
-                      <li style={{ width: "80%" }} class="stars-active">
+                <div className="text" bis_skin_checked="1">
+                  <h6 className="mb-0"> Michael Jonathan </h6>
+                  <div className="rating-wrap" bis_skin_checked="1">
+                    <ul className="rating-stars">
+                      <li style={{ width: "80%" }} className="stars-active">
                         <img
                           src="bootstrap5-ecommerce/images/misc/stars-active.svg"
                           alt=""
@@ -109,14 +115,14 @@ export default function ProductReview() {
                         <img src="images/misc/starts-disable.svg" alt="" />
                       </li>
                     </ul>
-                    <b class="dot"></b>
-                    <small class="label-rating text-muted">
+                    <b className="dot"></b>
+                    <small className="label-rating text-muted">
                       Purchased on Wed, May 12
                     </small>
                   </div>
                 </div>
               </div>
-              <div class="mt-3" bis_skin_checked="1">
+              <div className="mt-3" bis_skin_checked="1">
                 <p>
                   It used to be great, finding almost every song, but now i dont
                   know what happened (they might be hacked even) that it can not
@@ -126,38 +132,41 @@ export default function ProductReview() {
                 </p>
               </div>
             </blockquote>
-            <blockquote class="border-bottom">
-              <div class="float-lg-end d-flex mb-3" bis_skin_checked="1">
-                <div class="btn-group d-inline-flex me-2" bis_skin_checked="1">
+            <blockquote className="border-bottom">
+              <div className="float-lg-end d-flex mb-3" bis_skin_checked="1">
+                <div
+                  className="btn-group d-inline-flex me-2"
+                  bis_skin_checked="1"
+                >
                   <button
-                    class="btn btn-light btn-sm float-end"
+                    className="btn btn-light btn-sm float-end"
                     data-bs-toggle="tooltip"
                     data-bs-title="Like"
                   >
-                    <i class="fa fa-thumbs-up"></i>
+                    <i className="fa fa-thumbs-up"></i>
                   </button>
                   <button
-                    class="btn btn-light btn-sm float-end"
+                    className="btn btn-light btn-sm float-end"
                     data-bs-toggle="tooltip"
                     data-bs-title="Dislike"
                   >
-                    <i class="fa fa-thumbs-down"></i>
+                    <i className="fa fa-thumbs-down"></i>
                   </button>
                 </div>
-                <button class="btn btn-light btn-sm float-end ">
-                  <i class="fa fa-ellipsis-v"></i>
+                <button className="btn btn-light btn-sm float-end ">
+                  <i className="fa fa-ellipsis-v"></i>
                 </button>
               </div>
-              <div class="icontext" bis_skin_checked="1">
+              <div className="icontext" bis_skin_checked="1">
                 <img
                   src="images/avatars/avatar3.jpg"
-                  class="img-xs icon rounded-circle"
+                  className="img-xs icon rounded-circle"
                 />
-                <div class="text" bis_skin_checked="1">
-                  <h6 class="mb-0"> John Alex </h6>
-                  <div class="rating-wrap" bis_skin_checked="1">
-                    <ul class="rating-stars">
-                      <li style={{ width: "80%" }} class="stars-active">
+                <div className="text" bis_skin_checked="1">
+                  <h6 className="mb-0"> John Alex </h6>
+                  <div className="rating-wrap" bis_skin_checked="1">
+                    <ul className="rating-stars">
+                      <li style={{ width: "80%" }} className="stars-active">
                         <img
                           src="bootstrap5-ecommerce/images/misc/stars-active.svg"
                           alt=""
@@ -170,14 +179,14 @@ export default function ProductReview() {
                         />
                       </li>
                     </ul>
-                    <b class="dot"></b>
-                    <small class="label-rating text-muted">
+                    <b className="dot"></b>
+                    <small className="label-rating text-muted">
                       Purchased on Wed, Apr 30
                     </small>
                   </div>
                 </div>
               </div>
-              <div class="mt-3" bis_skin_checked="1">
+              <div className="mt-3" bis_skin_checked="1">
                 <p>
                   It used to be great, finding almost every song, but now i dont
                   know what happened (they might be hacked even) that it can not
