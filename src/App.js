@@ -18,7 +18,6 @@ function App() {
       <DataStore.Provider>
 
         <Routes>
-
           <Route exact path="/" element={<Homepage />} />
           <Route  path="/register" element={<RegisterPage/>} />
           <Route  path="/login" element={<LoginPage/>} />
