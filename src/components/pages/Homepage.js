@@ -5,9 +5,8 @@ import Carrousel1 from '../public/Carrousel1';
 import Carrousel2 from '../public/Carrousel2';
 import Footer from '../public/Footer';
 import Header from '../public/Header';
-import LoginPage from './LoginPage';
-import PaymentPage from './PaymentPage';
-import RegisterPage from './RegisterPage';
+
+
 
 function Homepage() {
   return (
