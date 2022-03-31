@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import ProductDescription from "./ProductDescription";
 import ProductReview from "./ProductReview";
 
-export default function Product_template() {
+export default function ProductTemplate() {
   return (
     <div>
       
