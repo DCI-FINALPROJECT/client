@@ -11,7 +11,7 @@ function Login_template() {
               <img class="me-2" src="" height="20" width="20" />
               Facebook
             </a>
-            <a href="#" class="d-flex align-items-center btn btn-light w-100">
+            <a href="/auth/google" class="d-flex align-items-center btn btn-light w-100">
               <img class="me-2" src="" height="20" width="20" />
               Google{" "}
             </a>

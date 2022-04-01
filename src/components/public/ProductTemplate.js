@@ -6,13 +6,9 @@ import ProductReview from "./ProductReview";
 export default function ProductTemplate() {
   return (
     <div>
-      
-      <ProductCard/>
-
-      <ProductDescription/>
-
-      <ProductReview/>
-      
+      <ProductCard />
+      <ProductDescription />
+      <ProductReview />
     </div>
   );
 }
