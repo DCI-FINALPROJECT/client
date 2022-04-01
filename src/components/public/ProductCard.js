@@ -1,6 +1,17 @@
 import React from 'react'
+import {useContext,useState} from "react";
+import { DataStore } from '../../DataStore';
 
 function ProductCard() {
+
+  // ProductById is for ProductCard come from App.js via useContext
+  const {productById} = useContext(DataStore);
+
+
+  // This state is for selected image.
+  const [image,setImage] = useState(0)
+
+
   return (
     <div>
 
@@ -13,18 +24,18 @@ function ProductCard() {
                 <article class="gallery-wrap">
                   <div class="img-big-wrap img-thumbnail" bis_skin_checked="1">
                     <a href="/">
-                      <img src="images/items/11.jpg" />
+                      <img src={productById.images[image]} />
                     </a>
                   </div>
                   <div class="thumbs-wrap" bis_skin_checked="1">
-                    <a href="/" class="item-thumb">
-                      <img src="images/items/11.jpg" />
+                    <a  class="item-thumb">
+                      <img onClick={()=>setImage(1)} src={productById.images[1]} />
                     </a>
-                    <a href="/" class="item-thumb">
-                      <img src="images/items/11.jpg" />
+                    <a href="#" class="item-thumb">
+                      <img onClick={()=>setImage(2)} src={productById.images[2]} />
                     </a>
-                    <a href="/" class="item-thumb">
-                      <img src="images/items/11.jpg" />
+                    <a href="#" class="item-thumb">
+                      <img onClick={()=>setImage(3)} src={productById.images[3]} />
                     </a>
                   </div>
                 </article>
@@ -32,8 +43,7 @@ function ProductCard() {
               <div class="col-lg-6" bis_skin_checked="1">
                 <article class="ps-lg-3">
                   <h4 class="title text-dark">
-                    Sweater Men New Arrival Casual Pullover <br /> Men Long
-                    Sleeve
+                    {productById.productName}
                   </h4>
                   <div class="rating-wrap my-3" bis_skin_checked="1">
                     <ul class="rating-stars">
@@ -48,7 +58,7 @@ function ProductCard() {
                         />
                       </li>
                     </ul>
-                    <b class="label-rating text-warning"> 4.5</b>
+                    <b class="label-rating text-warning"> {productById.stars}</b>
                     <i class="dot"></i>
                     <span class="label-rating text-muted">
                       <i class="fa fa-shopping-basket"></i> 154 orders
@@ -57,19 +67,16 @@ function ProductCard() {
                     <span class="label-rating text-success">Verified</span>
                   </div>
                   <div class="mb-3" bis_skin_checked="1">
-                    <var class="price h5">$815.00</var>
-                    <span class="text-muted">/per kg</span>
+                    <var class="price h5">{productById.price}</var>
+                    <span class="text-muted"> €</span>
                   </div>
                   <p>
-                    Made of pure cotton Off-White is a streetwear-inspired
-                    collection that continues to break away from the conventions
-                    of divstream fashion. Made in Italy, these black and brown
-                    Odsy-1000 low-top sneakers.
+                    {productById.description}
                   </p>
                   <dl class="row">
-                    <dt class="col-3">Model/</dt>
-                    <dd class="col-9">Hugo Boss</dd>
-                    <dt class="col-3">Color</dt> <dd class="col-9">Brown</dd>
+                    <dt class="col-3">Model</dt>
+                    <dd class="col-9">{productById.productName}</dd>
+                    <dt class="col-3">Color</dt> <dd class="col-9">{}</dd>
                     <dt class="col-3">Material</dt>
                     <dd class="col-9">Cotton, Jeans </dd>
                     <dt class="col-3">Delivery</dt>
