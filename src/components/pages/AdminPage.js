@@ -1,5 +1,5 @@
 import React from 'react'
-import AdminTemplate from '../AdminTemplate'
+import AdminTemplate from '../public/AdminTemplate'
 import Footer from '../public/Footer'
 import Header from '../public/Header'
 
