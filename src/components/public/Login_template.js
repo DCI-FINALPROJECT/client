@@ -34,25 +34,40 @@ function Login_template() {
           <div class="mb-3">
             <label class="form-check">
               {" "}
+
               <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                checked=""
+                type="password"
+                class="form-control"
+                placeholder="Password"
               />
-              <span class="form-check-label"> Remember </span>
-            </label>
-          </div>
-          <div class="mb-4">
-            <button class="btn w-100 btn-primary" type="button">
-              {" "}
-              Sign in{" "}
-            </button>
-          </div>
-          <p class="mb-1 text-center">
-            Don’t have an account? <a href="#">Sign Up</a>
-          </p>
-        </form>
+              <button type="button" class="btn btn-light">
+                {" "}
+                <i class="text-muted fa fa-eye"></i>{" "}
+              </button>
+            </div>
+            <div class="mb-3">
+              <label class="form-check">
+                {" "}
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  checked=""
+                />
+                <span class="form-check-label"> Remember </span>
+              </label>
+            </div>
+            <div class="mb-4">
+              <button class="btn w-100 btn-primary" type="button">
+                {" "}
+                Sign in{" "}
+              </button>
+            </div>
+            <p class="mb-1 text-center">
+              Don’t have an account? <a href="#">Sign Up</a>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

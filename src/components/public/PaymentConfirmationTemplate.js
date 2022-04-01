@@ -2,7 +2,7 @@ import React from "react";
 
 function PaymentConfirmationTemplate() {
   return (
-    <div class="container">
+    <div class="container pt-5 pb-5">
       <div class="row">
         <div class="col-lg-8">
           <div class="card-body">
