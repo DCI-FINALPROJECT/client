@@ -8,7 +8,7 @@ function Header() {
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-3 col-4 col-sm-4">
-                <a href="http://bootstrap-ecommerce.com" class="brand-wrap">
+                <a href="/" class="brand-wrap">
                   <img class="logo" src="../images/logo.png"/>
                 </a>
               </div>
