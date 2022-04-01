@@ -44,6 +44,7 @@ function Login_template() {
                 {" "}
                 <i class="text-muted fa fa-eye"></i>{" "}
               </button>
+              </label>
             </div>
             <div class="mb-3">
               <label class="form-check">
@@ -69,7 +70,6 @@ function Login_template() {
           </form>
         </div>
       </div>
-    </div>
   );
 }
 
