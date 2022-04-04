@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Register_template() {
-  const [errMessage, setErrMessage] = useState("");
+  const [errMessage, setErrMessage] = useState(""); // With this state, we can show to user which error has the app.
 
   const registerANewUser = async (e) => {
     e.preventDefault();
@@ -15,32 +15,37 @@ function Register_template() {
       const password1Input = document.querySelector("#password1").value;
       const password2Input = document.querySelector("#password2").value;
 
-      
       if (password1Input === password2Input) {
-        const newUser = {firstName,lastName,address,email,phone,password:password1Input};
+        const newUser = {
+          firstName,
+          lastName,
+          address,
+          email,
+          phone,
+          password: password1Input,
+        };
 
-        const response = await fetch("http://localhost:5000/newUser",{
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json"
+        const response = await fetch("http://localhost:5000/newUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-          body:JSON.stringify(newUser)
+          body: JSON.stringify(newUser),
         });
 
-        // .then(data=>data.json()).then(data=>data.errors).then(data=>data[0].msg).then(data=>setErrMessage("*"+ data)
-
-        const result = response; 
+        const result = response;
 
         console.log(result);
 
-        if(result.status===200){
+        if (result.status === 200) {
           setErrMessage("");
-        }else{
-          response.json().then(data=>data.errors).then(data=>data[0].msg).then(data=>setErrMessage("*"+ data))
+        } else {
+          response
+            .json()
+            .then((data) => data.errors)
+            .then((data) => data[0].msg)
+            .then((data) => setErrMessage("*" + data));
         }
-
-        
-
       } else {
         setErrMessage("*Passwords do not match");
         throw new Error("*Passwords do not match");
