@@ -1,11 +1,11 @@
 import React from "react";
 
-function ProductCardCarrousel() {
+function ProductCardCarrousel({product}) {
   return (
     <div>
       <div className="card card-product-grid">
         <div className="img-wrap">
-          <img src="../images/items/13.jpg" />
+          <img src={product.images[0]} />
         </div>
         <div className="info-wrap border-top">
           <div className="price-wrap">

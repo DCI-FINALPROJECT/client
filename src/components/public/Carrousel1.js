@@ -1,10 +1,30 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import ProductCardCarrousel from './ProductCardCarrousel';
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 function Carrousel1() {
+
+  const [allProducts,setAllProducts] = useState([]);
+
+  console.log(allProducts);
+
+
+  const getAllProducts = async ()=>{
+
+
+    fetch("http://localhost:5000/products/all").then(data=>data.json()).then(data=>setAllProducts(data)) 
+
+  }
+
+  useEffect(()=>{
+
+    getAllProducts();
+
+  },[])
+
+
  
   const sliderSettings = {
     dots:true,
@@ -34,8 +54,21 @@ function Carrousel1() {
       <div className=''>
         <h6 className="home-title">Neu und Bestseller</h6>
       <Slider {...sliderSettings}>
+
+      {
+        allProducts.map(product=>{
+          return(
+           <ProductCardCarrousel
+           
+           key={product._id}
+           product={product}
+
+            />
+
+          )
+        })
+      }
         
-           <ProductCardCarrousel />
        
       </Slider>
         
