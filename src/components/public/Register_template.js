@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Register_template() {
   const [errMessage, setErrMessage] = useState(""); // With this state, we can show to user which error has the app.
@@ -160,7 +161,7 @@ function Register_template() {
           </form>
           <hr />
           <p className="mb-0">
-            Already have an account? <a href="#">Sign in</a>
+            Already have an account? <Link to="/login">Sign in</Link>
           </p>
         </article>
       </div>
