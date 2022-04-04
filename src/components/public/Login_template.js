@@ -1,20 +1,28 @@
 import React from "react";
 
 function Login_template() {
+
+
+  const google = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
+  };
+
+
+
   return (
     <div className="card">
       <div className="card-body">
         <h4 className="mb-4">Sign in</h4>
-        <form>
+        <div>
           <div className="d-flex gap-2">
             <a href="#" className="d-flex align-items-center btn btn-light w-100">
               <img className="me-2" src="" height="20" width="20" />
               Facebook
             </a>
-            <a href="/auth/google" className="d-flex align-items-center btn btn-light w-100">
+            <div onClick={google} className="d-flex align-items-center btn btn-light w-100">
               <img className="me-2" src="" height="20" width="20" />
               Google
-            </a>
+            </div>
           </div>
           <p className="text-divider my-4"> Or login with username </p>
           <div className="mb-3">
@@ -53,7 +61,7 @@ function Login_template() {
             <p className="mb-1 text-center">
               Don’t have an account? <a href="#">Sign Up</a>
             </p>
-          </form>
+          </div>
         </div>
       </div>
   );
