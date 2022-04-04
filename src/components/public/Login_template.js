@@ -13,7 +13,7 @@ function Login_template() {
             </a>
             <a href="/auth/google" className="d-flex align-items-center btn btn-light w-100">
               <img className="me-2" src="" height="20" width="20" />
-              Google{" "}
+              Google
             </a>
           </div>
           <p className="text-divider my-4"> Or login with username </p>
@@ -27,28 +27,14 @@ function Login_template() {
               placeholder="Password"
             />
             <button type="button" className="btn btn-light">
-              {" "}
-              <i className="text-muted fa fa-eye"></i>{" "}
+              
+              <i className="text-muted fa fa-eye"></i>
             </button>
           </div>
-          <div className="mb-3">
-            <label className="form-check">
-              {" "}
-
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-              />
-              <button type="button" className="btn btn-light">
-                {" "}
-                <i className="text-muted fa fa-eye"></i>{" "}
-              </button>
-              </label>
-            </div>
+        
             <div className="mb-3">
               <label className="form-check">
-                {" "}
+                
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -60,8 +46,8 @@ function Login_template() {
             </div>
             <div className="mb-4">
               <button className="btn w-100 btn-primary" type="button">
-                {" "}
-                Sign in{" "}
+                
+                Sign in
               </button>
             </div>
             <p className="mb-1 text-center">

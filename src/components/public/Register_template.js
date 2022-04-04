@@ -39,7 +39,7 @@ function Register_template() {
         console.log(result);
 
         if (result.status === 200) {
-          setErrMessage("");
+          setErrMessage("You are successfully registered!");
         } else {
           response
             .json()
@@ -157,7 +157,7 @@ function Register_template() {
                 </label>
               </div>
             </div>
-            <div className="text-danger">{errMessage}</div>
+            <div className={errMessage === "You are successfully registered!" ? "text-success" : "text-danger"}>{errMessage}</div>
           </form>
           <hr />
           <p className="mb-0">
