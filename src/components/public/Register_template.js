@@ -17,55 +17,8 @@ function Register_template() {
                 <input type="text" className="form-control" placeholder="" />
               </div>
             </div>
-            <div className="row">
-              <div className="col-auto mb-3">
-                <label className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="choose_a"
-                    checked=""
-                  />
-                  <span className="form-check-label"> Buyer </span>
-                </label>
-              </div>
-              <div className="col-auto mb-3">
-                <label className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="choose_a"
-                  />
-                  <span className="form-check-label"> Seller </span>
-                </label>
-              </div>
-              <div className="col-auto mb-3">
-                <label className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="choose_a"
-                  />
-                  <span className="form-check-label"> Both </span>
-                </label>
-              </div>
-            </div>
-            <div className="row gx-3">
-              <div className="col mb-3">
-                <label className="form-label">City</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col mb-3">
-                <label className="form-label">Country</label>
-                <select className="form-select">
-                  <option value="none">Choose...</option>
-                  <option value="uz">Uzbekistan</option>
-                  <option value="ru">Russia</option>
-                  <option selected="">United States</option>
-                  <option value="in">India</option>
-                  <option value="af">Afganistan</option>
-                </select>
-              </div>
+            <div className="row gx-3">            
+             
               <div className="col-12 mb-3">
                 <label className="form-label">Address</label>
                 <input type="text" className="form-control" placeholder="" />
@@ -79,6 +32,7 @@ function Register_template() {
                 <label className="form-label">Phone</label>
                 <div className="input-group">
                   <select className="form-select" style={{ maxWidth: "120px" }}>
+                    <option value="us">DE +49 </option>
                     <option value="us">US +1 </option>
                     <option value="uz">UZ +998</option>
                     <option value="ru">RU +72 </option>
