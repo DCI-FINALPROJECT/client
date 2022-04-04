@@ -2,7 +2,9 @@ import React from "react";
 
 function UserPageTemplate() {
   return (
-    <div className="container mb-5 mt-5 card">
+    <div className="bg">
+    <div className="container pb-5 pt-5">
+      <div className="card">
       <div className="card-body">
         <div className="itemside p-2">
           <div className="aside">
@@ -253,6 +255,8 @@ function UserPageTemplate() {
           </li>
         </ul>
       </div>
+    </div>
+    </div>
     </div>
   );
 }

@@ -58,6 +58,7 @@ function Register_template() {
   };
 
   return (
+    <div className="bg">
     <div className="container pt-5 pb-5">
       <div className="card mb-4 col-md-8 m-auto">
         <article className="card-body">
@@ -165,6 +166,7 @@ function Register_template() {
           </p>
         </article>
       </div>
+    </div>
     </div>
   );
 }
