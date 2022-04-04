@@ -1,29 +1,34 @@
-import React from 'react'
-import Banner from '../public/Banner';
-import BannerCategories from '../public/BannerCategories';
-import Carrousel1 from '../public/Carrousel1';
-import Carrousel2 from '../public/Carrousel2';
-import Footer from '../public/Footer';
-import Header from '../public/Header';
-
+import React from "react";
+import Banner from "../public/Banner";
+import BannerCategories from "../public/BannerCategories";
+import Carrousel1 from "../public/Carrousel1";
+import Carrousel2 from "../public/Carrousel2";
+import Footer from "../public/Footer";
+import Header from "../public/Header";
 
 function Homepage() {
   return (
     <div>
       <Header />
-      <br/><br/>
-      <BannerCategories />
-      <br/><br/>
-      <Carrousel1 />
-      <br/><br/>
-      <Banner />
-      <br/><br/>
-      <Carrousel2 />
-      <br/><br/>
-
-      <Footer/>  
-     </div>
-  )
+      <div className="bg">
+        <br />
+        <br />
+        <BannerCategories />
+        <br />
+        <br />
+        <Carrousel1 />
+        <br />
+        <br />
+        <Banner />
+        <br />
+        <br />
+        <Carrousel2 />
+        <br />
+        <br />
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
 export default Homepage;

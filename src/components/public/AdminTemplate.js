@@ -2,6 +2,7 @@ import React from "react";
 
 function AdminTemplate() {
   return (
+    <div className="bg">
     <div className="container pt-5 pb-5">
       <div className="row">
       <div className="card m-auto">
@@ -172,6 +173,7 @@ function AdminTemplate() {
         </article>
       </div>
       </div>
+    </div>
     </div>
   );
 }

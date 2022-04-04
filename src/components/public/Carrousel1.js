@@ -28,8 +28,8 @@ function Carrousel1() {
  
   const sliderSettings = {
     dots:true,
-    slidesToShow: 4,
-    slidesToScroll:4,
+    slidesToShow: 5,
+    slidesToScroll:5,
     infinite: true,
     responsive: [
       {
@@ -51,8 +51,8 @@ function Carrousel1() {
   }
   
   return (
-      <div className=''>
-        <h6 className="home-title">Neu und Bestseller</h6>
+      <div className='container'>
+        <h6 className="home-title"></h6>
       <Slider {...sliderSettings}>
 
       {

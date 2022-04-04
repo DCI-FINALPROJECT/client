@@ -2,7 +2,9 @@ import React from "react";
 
 function Login_template() {
   return (
-    <div className="card">
+    <div className="container mt-5 mb-5">
+      <div className="row"></div>
+    <div className="card col-md-4 m-auto">
       <div className="card-body">
         <h4 className="mb-4">Sign in</h4>
         <form>
@@ -69,6 +71,7 @@ function Login_template() {
             </p>
           </form>
         </div>
+      </div>
       </div>
   );
 }

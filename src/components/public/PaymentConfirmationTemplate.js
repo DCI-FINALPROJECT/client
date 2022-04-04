@@ -2,6 +2,7 @@ import React from "react";
 
 function PaymentConfirmationTemplate() {
   return (
+    <div className="bg">
     <div className="container pt-5 pb-5">
       <div className="row">
         <div className="col-lg-8">
@@ -81,6 +82,7 @@ function PaymentConfirmationTemplate() {
           </article>
         </aside>
       </div>
+    </div>
     </div>
   );
 }
