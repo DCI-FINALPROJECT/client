@@ -2,69 +2,69 @@ import React from "react";
 
 function Login_template() {
   return (
-    <div class="card">
-      <div class="card-body">
-        <h4 class="mb-4">Sign in</h4>
+    <div className="card">
+      <div className="card-body">
+        <h4 className="mb-4">Sign in</h4>
         <form>
-          <div class="d-flex gap-2">
-            <a href="#" class="d-flex align-items-center btn btn-light w-100">
-              <img class="me-2" src="" height="20" width="20" />
+          <div className="d-flex gap-2">
+            <a href="#" className="d-flex align-items-center btn btn-light w-100">
+              <img className="me-2" src="" height="20" width="20" />
               Facebook
             </a>
-            <a href="/auth/google" class="d-flex align-items-center btn btn-light w-100">
-              <img class="me-2" src="" height="20" width="20" />
+            <a href="/auth/google" className="d-flex align-items-center btn btn-light w-100">
+              <img className="me-2" src="" height="20" width="20" />
               Google{" "}
             </a>
           </div>
-          <p class="text-divider my-4"> Or login with username </p>
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Username" />
+          <p className="text-divider my-4"> Or login with username </p>
+          <div className="mb-3">
+            <input type="text" className="form-control" placeholder="Username" />
           </div>
-          <div class="mb-3 input-group">
+          <div className="mb-3 input-group">
             <input
               type="password"
-              class="form-control"
+              className="form-control"
               placeholder="Password"
             />
-            <button type="button" class="btn btn-light">
+            <button type="button" className="btn btn-light">
               {" "}
-              <i class="text-muted fa fa-eye"></i>{" "}
+              <i className="text-muted fa fa-eye"></i>{" "}
             </button>
           </div>
-          <div class="mb-3">
-            <label class="form-check">
+          <div className="mb-3">
+            <label className="form-check">
               {" "}
 
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 placeholder="Password"
               />
-              <button type="button" class="btn btn-light">
+              <button type="button" className="btn btn-light">
                 {" "}
-                <i class="text-muted fa fa-eye"></i>{" "}
+                <i className="text-muted fa fa-eye"></i>{" "}
               </button>
               </label>
             </div>
-            <div class="mb-3">
-              <label class="form-check">
+            <div className="mb-3">
+              <label className="form-check">
                 {" "}
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
                   value=""
                   checked=""
                 />
-                <span class="form-check-label"> Remember </span>
+                <span className="form-check-label"> Remember </span>
               </label>
             </div>
-            <div class="mb-4">
-              <button class="btn w-100 btn-primary" type="button">
+            <div className="mb-4">
+              <button className="btn w-100 btn-primary" type="button">
                 {" "}
                 Sign in{" "}
               </button>
             </div>
-            <p class="mb-1 text-center">
+            <p className="mb-1 text-center">
               Don’t have an account? <a href="#">Sign Up</a>
             </p>
           </form>

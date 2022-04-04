@@ -2,15 +2,15 @@ import React from "react";
 
 function PaymentConfirmationTemplate() {
   return (
-    <div class="container pt-5 pb-5">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="card-body">
-            <div class="mt-4 mx-auto text-center" style={{ maxWidth: "600px" }}>
-              <span class="icon icon-confirm">
-                <i class="fa fa-check"></i>
+    <div className="container pt-5 pb-5">
+      <div className="row">
+        <div className="col-lg-8">
+          <div className="card-body">
+            <div className="mt-4 mx-auto text-center" style={{ maxWidth: "600px" }}>
+              <span className="icon icon-confirm">
+                <i className="fa fa-check"></i>
               </span>
-              <div class="my-3 mt-5">
+              <div className="my-3 mt-5">
                 <h4>Thank you for order</h4>
               </div>
             </div>
@@ -19,62 +19,62 @@ function PaymentConfirmationTemplate() {
               enter into any new area of science, you almost always find
               yourself
             </p>
-            <div class="tracking-wrap">
-              <div class="step active">
-                <span class="icon">
+            <div className="tracking-wrap">
+              <div className="step active">
+                <span className="icon">
                 
-                  <i class="fa fa-check"></i>
+                  <i className="fa fa-check"></i>
                 </span>
-                <span class="text">Order received</span>
+                <span className="text">Order received</span>
               </div>
-              <div class="step active">
-                <span class="icon">
+              <div className="step active">
+                <span className="icon">
                   
-                  <i class="fa fa-user"></i>
+                  <i className="fa fa-user"></i>
                 </span>
-                <span class="text"> Confirmation</span>
+                <span className="text"> Confirmation</span>
               </div>
-              <div class="step">
-                <span class="icon">
+              <div className="step">
+                <span className="icon">
                   
-                  <i class="fa fa-truck"></i>
+                  <i className="fa fa-truck"></i>
                 </span>
-                <span class="text">Delivery </span>
+                <span className="text">Delivery </span>
               </div>
             </div>
             <br />
           </div>
-          <article class="card"> </article>
+          <article className="card"> </article>
         </div>
-        <aside class="col-lg-4">
-          <article class="card">
-            <div class="card-body">
-              <h5 class="card-title"> Receipe </h5>
-              <div class="itemside mb-3">
-                <div class="aside">
-                  <span class="icon-sm text-primary bg-primary-light rounded">
-                    <i class="fab fa-lg fa-paypal"></i>
+        <aside className="col-lg-4">
+          <article className="card">
+            <div className="card-body">
+              <h5 className="card-title"> Receipe </h5>
+              <div className="itemside mb-3">
+                <div className="aside">
+                  <span className="icon-sm text-primary bg-primary-light rounded">
+                    <i className="fab fa-lg fa-paypal"></i>
                   </span>
                 </div>
-                <div class="info lh-sm">
+                <div className="info lh-sm">
                   <strong>Order ID: 2313440</strong> <br />
-                  <span class="text-muted">Wed, Sept 13, 2021</span>
+                  <span className="text-muted">Wed, Sept 13, 2021</span>
                 </div>
               </div>
-              <dl class="dlist-align">
+              <dl className="dlist-align">
                 <dt>Method:</dt> <dd>Visa - - - - 9902</dd>
               </dl>
-              <dl class="dlist-align">
+              <dl className="dlist-align">
                 <dt>Billed to:</dt> <dd>Akhmed Khasan</dd>
               </dl>
-              <dl class="dlist-align">
+              <dl className="dlist-align">
                 <dt>Fee:</dt> <dd>$2.00</dd>
               </dl>
-              <dl class="dlist-align">
+              <dl className="dlist-align">
                 <dt>Paid:</dt> <dd>$135.00</dd>
               </dl>
               <hr />
-              <a href="#" class="btn btn-light">
+              <a href="#" className="btn btn-light">
                 Download invoice
               </a>
             </div>
