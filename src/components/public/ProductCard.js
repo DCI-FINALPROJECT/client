@@ -17,37 +17,37 @@ function ProductCard() {
 
         {/* product */}
       <div>
-        <section class="padding-y bg-white shadow-sm">
-          <div class="container" bis_skin_checked="1">
-            <div class="row" bis_skin_checked="1">
-              <aside class="col-lg-6">
-                <article class="gallery-wrap">
-                  <div class="img-big-wrap img-thumbnail" bis_skin_checked="1">
+        <section className="padding-y bg-white shadow-sm">
+          <div className="container" bis_skin_checked="1">
+            <div className="row" bis_skin_checked="1">
+              <aside className="col-lg-6">
+                <article className="gallery-wrap">
+                  <div className="img-big-wrap img-thumbnail" bis_skin_checked="1">
                     <a href="/">
                       <img src={productById.images[image]} />
                     </a>
                   </div>
-                  <div class="thumbs-wrap" bis_skin_checked="1">
-                    <a  class="item-thumb">
+                  <div className="thumbs-wrap" bis_skin_checked="1">
+                    <a  className="item-thumb">
                       <img onClick={()=>setImage(1)} src={productById.images[1]} />
                     </a>
-                    <a href="#" class="item-thumb">
+                    <a href="#" className="item-thumb">
                       <img onClick={()=>setImage(2)} src={productById.images[2]} />
                     </a>
-                    <a href="#" class="item-thumb">
+                    <a href="#" className="item-thumb">
                       <img onClick={()=>setImage(3)} src={productById.images[3]} />
                     </a>
                   </div>
                 </article>
               </aside>
-              <div class="col-lg-6" bis_skin_checked="1">
-                <article class="ps-lg-3">
-                  <h4 class="title text-dark">
+              <div className="col-lg-6" bis_skin_checked="1">
+                <article className="ps-lg-3">
+                  <h4 className="title text-dark">
                     {productById.productName}
                   </h4>
-                  <div class="rating-wrap my-3" bis_skin_checked="1">
-                    <ul class="rating-stars">
-                      <li style={{ width: "80%" }} class="stars-active">
+                  <div className="rating-wrap my-3" bis_skin_checked="1">
+                    <ul className="rating-stars">
+                      <li style={{ width: "80%" }} className="stars-active">
                         <img src="images/misc/stars-active.svg" alt="" />
                       </li>
                       <li>
@@ -58,79 +58,79 @@ function ProductCard() {
                         />
                       </li>
                     </ul>
-                    <b class="label-rating text-warning"> {productById.stars}</b>
-                    <i class="dot"></i>
-                    <span class="label-rating text-muted">
-                      <i class="fa fa-shopping-basket"></i> 154 orders
+                    <b className="label-rating text-warning"> {productById.stars}</b>
+                    <i className="dot"></i>
+                    <span className="label-rating text-muted">
+                      <i className="fa fa-shopping-basket"></i> 154 orders
                     </span>
-                    <i class="dot"></i>
-                    <span class="label-rating text-success">Verified</span>
+                    <i className="dot"></i>
+                    <span className="label-rating text-success">Verified</span>
                   </div>
-                  <div class="mb-3" bis_skin_checked="1">
-                    <var class="price h5">{productById.price}</var>
-                    <span class="text-muted"> €</span>
+                  <div className="mb-3" bis_skin_checked="1">
+                    <var className="price h5">{productById.price}</var>
+                    <span className="text-muted"> €</span>
                   </div>
                   <p>
                     {productById.description}
                   </p>
-                  <dl class="row">
-                    <dt class="col-3">Model</dt>
-                    <dd class="col-9">{productById.productName}</dd>
-                    <dt class="col-3">Color</dt> <dd class="col-9">{}</dd>
-                    <dt class="col-3">Material</dt>
-                    <dd class="col-9">Cotton, Jeans </dd>
-                    <dt class="col-3">Delivery</dt>
-                    <dd class="col-9">Russia, USA, and Europe </dd>
+                  <dl className="row">
+                    <dt className="col-3">Model</dt>
+                    <dd className="col-9">{productById.productName}</dd>
+                    <dt className="col-3">Color</dt> <dd className="col-9">{}</dd>
+                    <dt className="col-3">Material</dt>
+                    <dd className="col-9">Cotton, Jeans </dd>
+                    <dt className="col-3">Delivery</dt>
+                    <dd className="col-9">Russia, USA, and Europe </dd>
                   </dl>
                   <hr />
-                  <div class="row" bis_skin_checked="1">
-                    <div class="col-md-3 mb-3" bis_skin_checked="1">
-                      <select class="form-select">
+                  <div className="row" bis_skin_checked="1">
+                    <div className="col-md-3 mb-3" bis_skin_checked="1">
+                      <select className="form-select">
                         <option selected="">Select size</option>
                         <option>Small</option> <option>Medium</option>
                         <option>Large</option>
                       </select>
                     </div>
-                    <div class="col-md mb-3" bis_skin_checked="1">
-                      <div class="mt-2" bis_skin_checked="1">
-                        <label class="form-check form-check-inline">
+                    <div className="col-md mb-3" bis_skin_checked="1">
+                      <div className="mt-2" bis_skin_checked="1">
+                        <label className="form-check form-check-inline">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="radio"
                             name="choose_11"
                             value="option1"
                           />
-                          <span class="form-check-label">Red</span>
+                          <span className="form-check-label">Red</span>
                         </label>
-                        <label class="form-check form-check-inline">
+                        <label className="form-check form-check-inline">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="radio"
                             name="choose_11"
                             value="option1"
                           />
-                          <span class="form-check-label">Green</span>
+                          <span className="form-check-label">Green</span>
                         </label>
-                        <label class="form-check form-check-inline">
+                        <label className="form-check form-check-inline">
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="radio"
                             name="choose_11"
                             value="option1"
                           />
-                          <span class="form-check-label">Blue</span>
+                          <span className="form-check-label">Blue</span>
                         </label>
                       </div>
                     </div>
                   </div>
-                  <a href="/" class="btn btn-warning">
+                  <a href="/" className="btn btn-warning">
                     Buy now
                   </a>
-                  <a href="/" class="btn btn-primary">
-                    <i class="me-2 fa fa-shopping-basket"></i> Add to cart
+                  <a href="/" className="btn btn-primary">
+                    <i className="me-2 fa fa-shopping-basket"></i> Add to cart
                   </a>
-                  <a href="/" class="btn btn-light">
-                    <i class="me-2 fa fa-heart"></i> Save
+                  <a href="/" className="btn btn-light">
+                    <i className="me-2 fa fa-heart"></i> Save
                   </a>
                 </article>
               </div>
