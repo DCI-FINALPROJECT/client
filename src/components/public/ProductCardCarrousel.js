@@ -1,8 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function ProductCardCarrousel({product}) {
+
+  
+
   return (
     <div>
+    <Link to={`/product/${product._id}`}>
       <div className="card card-product-grid mx-2">
         <div className="img-wrap">
           <img src={product.images[0]} />
@@ -27,6 +32,7 @@ function ProductCardCarrousel({product}) {
           </div>
         </div>
       </div>
+      </Link>
     </div>
   );
 }
