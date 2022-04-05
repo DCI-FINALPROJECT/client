@@ -9,11 +9,20 @@ import PaymentPage from "./components/pages/PaymentPage";
 import PaymentConfirmPage from "./components/pages/PaymentPageConfirmation";
 import { DataStore } from "./DataStore";
 import { Routes, Route } from "react-router-dom";
-import react,{useState,useEffect} from "react";
+import react, { useState, useEffect } from "react";
 
 function App() {
-
-  const [productById,setProductById] = useState({productName:"",category:"",brand:"",price:"",describtion:"",images:[],reviews:"",stars:"",quantities:[]});
+  const [productById, setProductById] = useState({
+    productName: "",
+    category: "",
+    brand: "",
+    price: "",
+    describtion: "",
+    images: [],
+    reviews: "",
+    stars: "",
+    quantities: [],
+  });
 
   const [user, setUser] = useState(null);
 
@@ -22,7 +31,7 @@ function App() {
       console.log("Hello");
       fetch("http://localhost:5000/auth/login/success", {
         method: "GET",
-        credentials:"include",
+        credentials: "include",
         headers: {
           Accept: "application/json",
           "Content-Type": "text/plain",
@@ -33,6 +42,8 @@ function App() {
           throw new Error("Authentication has been failed!");
         })
         .then((resObject) => {
+          localStorage.setItem("userToken", resObject.token);  // With this statement, we can create our token via passportjs/google login
+
           setUser(resObject.user);
         })
         .catch((err) => {
@@ -44,10 +55,9 @@ function App() {
 
   console.log(user);
 
-
   return (
     <div className="App">
-      <DataStore.Provider value={{productById,setProductById,user}}>
+      <DataStore.Provider value={{ productById, setProductById, user }}>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />
