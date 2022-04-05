@@ -1,6 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { Link } from "react-router-dom";
+import { DataStore } from "../../DataStore";
 
 function Header() {
+
+  const{searchState, setSearchState}= useContext(DataStore)
   return (
     <div>
       <header className="section-header">
@@ -13,13 +17,16 @@ function Header() {
                 </a>
               </div>
               <div className="col-lg-6 col-sm-8 col-8">
-                <form action="#" className="search">
+                <form action="#" className="search" onSubmit={(e) => {e.preventDefault() }}>
                   <div className="input-group">
-                    <input type="text" className="form-control" placeholder="Search"/>
+                    <input type="text" className="form-control" placeholder="Search" onChange={(e) => setSearchState(e.target.value)}/>
                     <div class ="input-group-append">
-                    <button class ="btn btn-primary" type ="submit">
-                    <i class ="fa fa-search"></i>
-                    </button>
+                    <Link to={`/product/${searchState}`} className="d-flex">
+
+                      <button class ="btn btn-primary" type ="submit"  >
+                      <i class ="fa fa-search"></i>
+                      </button>
+                    </Link>
                     </div>
                   </div>
                 </form>
