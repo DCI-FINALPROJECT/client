@@ -9,7 +9,7 @@ import Header from "../public/Header";
 function Homepage() {
   return (
     <div>
-      <Header />
+      <Header  />
       <div className="bg">
         <br />
         <br />
