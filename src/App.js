@@ -17,23 +17,28 @@ function App() {
 
   const [user, setUser] = useState(null);
 
-  const getUser = () => {
-    fetch("http://localhost:5000/auth/login/success", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => {
-        if (response.status === 200) return response.json();
-        throw new Error("Authentication has been failed!");
-      })
-      .then((resObject) => {
-        setUser(resObject.user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   useEffect(() => {
+    const getUser = () => {
+      console.log("Hello");
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials:"include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "text/plain",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("Authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
     getUser();
   }, []);
 
@@ -42,7 +47,7 @@ function App() {
 
   return (
     <div className="App">
-      <DataStore.Provider value={{productById,setProductById}}>
+      <DataStore.Provider value={{productById,setProductById,user}}>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />

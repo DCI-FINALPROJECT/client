@@ -4,9 +4,27 @@ import { DataStore } from "../../DataStore";
 
 function Header() {
 
-  const{searchState, setSearchState}= useContext(DataStore)
+  const google = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
+  };
+
+  const logout = () =>{
+
+    window.open("http://localhost:5000/auth/logout", "_self");
+  }
+
+  const{searchState, setSearchState,user}= useContext(DataStore)
+
+  console.log(user);
+
   return (
     <div>
+
+    
+
+    {
+      user ? `${user.displayName} ${user.emails[0].value}` : ""
+    }
       <header className="section-header">
         <section className="header-main border-bottom">
           <div className="container">
@@ -44,6 +62,7 @@ function Header() {
                   </div>
                   <div className="widget-header dropdown">
                     <a href="#" className="ml-3 icontext" data-toggle="dropdown" data-offset="20,10">
+                    
                       <div className="icon"><i className="fa fa-lg fa-user-circle"></i></div>
                       <div className="text">
                         <small className="text-muted">Sign In / Join</small> <br/>
@@ -62,11 +81,13 @@ function Header() {
                         </div>
                         <button type="submit" className="btn btn-primary">Sign in</button>
                       </form>
+                        <button onClick={google} type='submit' className='btn btn-success m-2' >Join with Google</button>
                       <hr className="dropdown-divider"/>
-                      <a class ="dropdown-item" href="#">Have account?Sign up</a>
+                      <Link to="/register" class ="dropdown-item" href="#">Have account? Sign up</Link>
                       <a class ="dropdown-item" href="#">Forgot password?</a>
                     </div>
                   </div>
+                    <button className='btn btn-danger border rounded' onClick={logout}>Log out</button>
                 </div>
               </div>
             </div>
