@@ -17,8 +17,6 @@ function App() {
 
   const [user, setUser] = useState(null);
 
-  const [searchState, setSearchState] = useState("");
-
   useEffect(() => {
     const getUser = () => {
       fetch("http://localhost:5000/auth/login/success", {
@@ -49,7 +47,7 @@ function App() {
 
   return (
     <div className="App">
-      <DataStore.Provider value={{productById,setProductById, searchState, setSearchState}}>
+      <DataStore.Provider value={{productById,setProductById}}>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />
