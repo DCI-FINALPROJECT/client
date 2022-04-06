@@ -66,18 +66,15 @@ function Header() {
                   }}
                 >
                   <div className="input-group">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Search"
-                      onChange={(e) => setSearchState(e.target.value)}
-                    />
-                    <div class="input-group-append">
-                      <Link to={`/product/${searchState}`} className="d-flex">
-                        <button class="btn btn-primary" type="submit">
-                          <i class="fa fa-search"></i>
-                        </button>
-                      </Link>
+
+                    <input type="text" className="form-control" placeholder="Search" onChange={(e) => setSearchState(e.target.value)}/>
+                    <div class ="input-group-append">
+                    <Link to={`/search/${searchState}`} className="d-flex">
+
+                      <button class ="btn btn-primary" type ="submit"  >
+                      <i class ="fa fa-search"></i>
+                      </button>
+                    </Link>
                     </div>
                   </div>
                 </form>
