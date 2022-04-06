@@ -20,8 +20,7 @@ function App() {
 
   const [searchState, setSearchState] = useState("");
 
-
-  const [productByName, setProductByName] = useState({productName:"",category:"",brand:"",price:"",describtion:"",images:[],reviews:"",stars:"",quantities:[]});
+const [allProducts, setAllProducts] = useState([]) 
 
   useEffect(() => {
     const getUser = () => {
@@ -53,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      <DataStore.Provider value={{productById,setProductById, searchState, setSearchState, productByName, setProductByName}}>
+      <DataStore.Provider value={{productById,setProductById, searchState, setSearchState, allProducts, setAllProducts}}>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />
