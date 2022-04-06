@@ -65,7 +65,8 @@ const [allProducts, setAllProducts] = useState([])
   return (
     <div className="App">
 
-      <DataStore.Provider value={{productById,setProductById, searchState, setSearchState, allProducts, setAllProducts}}>
+      <DataStore.Provider value={{productById,setProductById, searchState, setSearchState, allProducts, setAllProducts,user,setUser}}>
+
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />
