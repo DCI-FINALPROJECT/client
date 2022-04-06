@@ -1,10 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function SearchTemplate({ product }) {
   return (
-
-    
-    <div className="m-5" style={{width: "15rem"}}>
+    <div className="m-5" style={{ width: "15rem" }}>
+      <Link to={`/product/${product._id}`}>
         <div className="card card-product-grid mx-2">
           <div className="img-wrap">
             <img src={product.images[0]} />
@@ -27,6 +27,7 @@ function SearchTemplate({ product }) {
             </div>
           </div>
         </div>
+      </Link>
     </div>
   );
 }
