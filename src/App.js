@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div className="App">
-      <DataStore.Provider value={{ productById, setProductById, user }}>
+      <DataStore.Provider value={{ productById, setProductById, user,setUser }}>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />
