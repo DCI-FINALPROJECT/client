@@ -51,6 +51,8 @@ const [allProducts, setAllProducts] = useState([])
         .then((resObject) => {
           localStorage.setItem("userToken", resObject.token);  // With this statement, we can create our token via passportjs/google login
 
+          
+
           setUser(resObject.user);
         })
         .catch((err) => {
