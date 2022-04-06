@@ -9,7 +9,9 @@ import PaymentPage from "./components/pages/PaymentPage";
 import PaymentConfirmPage from "./components/pages/PaymentPageConfirmation";
 import { DataStore } from "./DataStore";
 import { Routes, Route } from "react-router-dom";
-import react, { useState, useEffect } from "react";
+import react,{useState,useEffect} from "react";
+import SearchPage from "./components/pages/SearchPage";
+
 
 function App() {
   const [productById, setProductById] = useState({
@@ -24,7 +26,12 @@ function App() {
     quantities: [],
   });
 
-  const [user, setUser] = useState(null);
+const [user, setUser] = useState(null);
+
+const [searchState, setSearchState] = useState("");
+
+const [allProducts, setAllProducts] = useState([]) 
+
 
   useEffect(() => {
     const getUser = () => {
@@ -57,7 +64,8 @@ function App() {
 
   return (
     <div className="App">
-      <DataStore.Provider value={{ productById, setProductById, user }}>
+
+      <DataStore.Provider value={{productById,setProductById, searchState, setSearchState, allProducts, setAllProducts}}>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -67,6 +75,7 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
+          <Route path="/search/:productName" element={<SearchPage />} />
         </Routes>
       </DataStore.Provider>
     </div>
