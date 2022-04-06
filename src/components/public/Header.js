@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import { Link } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 
 function Header() {
+
+
+  const [loginMessage,setLoginMessage] = useState("");
 
   const { searchState, setSearchState, user, setUser } = useContext(DataStore);
 
@@ -31,23 +34,29 @@ function Header() {
       body: JSON.stringify({ email, password }),
     }).then(data=>data.json()).then((data)=>{
       
-      console.log(data)
+      console.log("DATATATA",data)
+      setLoginMessage(data.message);
       setUser(data.userInformation);
       localStorage.setItem("userToken",data.userToken)
     
-    }).catch((err)=>err);
+    }).catch((err)=>
+    err
+    
+    );
+
   };
 
 
 
   console.log(user);
+  console.log(loginMessage);
 
   return (
     <div>
     {
       console.log(user)
     }
-      {user ? `${user.displayName || user.firstName} ${user.email || user.emails[0].value}` : ""}
+      {user ? `${user.firstName} ${user.email}` : ""}
       <header className="section-header">
         <section className="header-main border-bottom">
           <div className="container">
@@ -137,6 +146,7 @@ function Header() {
                         >
                           Sign in
                         </button>
+                        <div>{loginMessage}</div>
                       </form>
                       <button
                         onClick={google}
