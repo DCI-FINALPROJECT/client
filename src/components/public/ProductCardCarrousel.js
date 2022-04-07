@@ -8,11 +8,11 @@ function ProductCardCarrousel({product}) {
   return (
     <div>
     <Link to={`/product/${product._id}`}>
-      <div className="card card-product-grid mx-2">
+      <div className=" card-product-grid mx-2">
         <div className="img-wrap">
           <img src={product.images[0]} />
         </div>
-        <div className="info-wrap border-top">
+        <div className="info-wrap">
           <div className="price-wrap">
             <strong className="price">$ {product.price}</strong>
           </div>
@@ -23,10 +23,10 @@ function ProductCardCarrousel({product}) {
           </p>
           </div>
           <div className="d-flex justify-content-around">
-          <a href="#" className="btn btn-primary">
+          <a href="#" className="btn btn-yellow">
             Add to cart
           </a>
-          <a href="#" className="btn btn-outline-primary btn-icon">
+          <a href="#" className="btn btn-outline-dark btn-icon">
             <i className="fa fa-heart"></i>
           </a>
           </div>
