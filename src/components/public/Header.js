@@ -61,19 +61,13 @@ function Header() {
         <section className="header-main border-bottom">
           <div className="container">
             <div className="row align-items-center">
-              <div className="col-lg-3 col-4 col-sm-4">
-                <a href="/" className="brand-wrap">
-                  <img className="logo" src="../images/logo.png" />
+              <div className="col-md-4">
+                <a href="/" className="">
+                  <img className="logo" src="../images/logo.svg"/>
                 </a>
               </div>
-              <div className="col-lg-6 col-sm-8 col-8">
-                <form
-                  action="#"
-                  className="search"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                  }}
-                >
+              <div className="col-md-4">
+                <form action="#" className="search" onSubmit={(e) => {e.preventDefault() }}>
                   <div className="input-group">
 
                     <input type="text" className="form-control" placeholder="Search" onChange={(e) => setSearchState(e.target.value)}/>
@@ -88,7 +82,7 @@ function Header() {
                   </div>
                 </form>
               </div>
-              <div className="col-lg-3 col-12 col-sm-12">
+              <div className="col-md-4">
                 <div className="widgets-wrap d-flex justify-content-end">
                   <div className="widget-header">
                     <a href="#" className="icontext">
