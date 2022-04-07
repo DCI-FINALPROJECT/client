@@ -11,6 +11,7 @@ import { DataStore } from "./DataStore";
 import { Routes, Route } from "react-router-dom";
 import react, { useState, useEffect } from "react";
 import SearchPage from "./components/pages/SearchPage";
+import CategoryPage from "./components/pages/CategoryPage";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -31,6 +32,34 @@ function App() {
 
   const [allProducts, setAllProducts] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+
+// get allProducts in frontend
+  const loadProducts = async () => {
+    const response = await fetch(`http://localhost:5000/products/all`);
+    const productsResponse = await response.json();
+    setAllProducts(productsResponse);
+  };
+
+  useEffect(() => {
+    (async () => {
+      await loadProducts();
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+//Add all categories in categoryArray
+  const categoryArray = [];
+  allProducts.forEach((product) => {
+    if (!categoryArray.includes(product.category)) {
+      categoryArray.push(product.category);
+    }
+  });
+
+  useEffect(() => {
+    setCategories(categoryArray);
+  }, [allProducts]);
+//category finish
 
   // This useEffect controls whether there are already any token (user) in browser.
   useEffect(() => {
@@ -89,6 +118,8 @@ function App() {
           setAllProducts,
           user,
           setUser,
+          categories,
+          setCategories
         }}
       >
         <Routes>
@@ -101,6 +132,7 @@ function App() {
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
           <Route path="/search/:productName" element={<SearchPage />} />
+          <Route path="/category/:category" element={<CategoryPage />} />
         </Routes>
       </DataStore.Provider>
     </div>

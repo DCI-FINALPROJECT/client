@@ -13,18 +13,7 @@ function SearchPage() {
   const productName = params.productName;
 
 
-  const loadProducts = async () => {
-    const response = await fetch(`http://localhost:5000/products/all`);
-    const productsResponse = await response.json();
-    setAllProducts(productsResponse);
-  };
 
-  useEffect(() => {
-    (async () => {
-      await loadProducts();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
 
   let searchedProducts = allProducts.filter((product) => {
