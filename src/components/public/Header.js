@@ -1,14 +1,18 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 
 function Header() {
+  const [loginMessage, setLoginMessage] = useState("");
 
-
-  const [loginMessage,setLoginMessage] = useState("");
-
-  const { searchState, setSearchState, user, setUser } = useContext(DataStore);
-
+  const {
+    searchState,
+    setSearchState,
+    user,
+    setUser,
+    categories,
+    setCategories,
+  } = useContext(DataStore);
 
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");
@@ -32,56 +36,92 @@ function Header() {
       },
 
       body: JSON.stringify({ email, password }),
-    }).then(data=>data.json()).then((data)=>{
-      
-      console.log("DATATATA",data)
-      setLoginMessage(data.message);
-      setUser(data.userInformation);
-      localStorage.setItem("userToken",data.userToken)
-    
-    }).catch((err)=>
-    err
-    
-    );
-
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log("DATATATA", data);
+        setLoginMessage(data.message);
+        setUser(data.userInformation);
+        localStorage.setItem("userToken", data.userToken);
+      })
+      .catch((err) => err);
   };
-
-
 
   console.log(user);
   console.log(loginMessage);
 
   return (
     <div>
-    {
-      console.log(user)
-    }
+      {console.log(user)}
       {user ? `${user.firstName} ${user.email}` : ""}
       <header className="section-header">
         <section className="header-main border-bottom">
           <div className="container">
-            <div className="row align-items-center">
-              <div className="col-md-4">
+            <div className="row align-items-center ">
+              {/* LOGO */}
+              <div className="col-md-3">
                 <a href="/" className="">
-                  <img className="logo" src="../images/logo.svg"/>
+                  <img className="logo" src="../images/logo.svg" />
                 </a>
               </div>
-              <div className="col-md-4">
-                <form action="#" className="search" onSubmit={(e) => {e.preventDefault() }}>
+              {/* CATEGORY */}
+              <div className="col-md-2">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-lg  dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    All Category
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    {categories.map((category, index) => {
+                      return (
+                        <Link key={index} to={`/category/${category}`}>
+                          <li>
+                            <div className="dropdown-item" href="#">
+                              {category.toUpperCase()}
+                            </div>
+                          </li>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              {/* SEARCH */}
+              <div className="col-md-3">
+                <form
+                  action="#"
+                  className="search"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
                   <div className="input-group">
-
-                    <input type="text" className="form-control" placeholder="Search" onChange={(e) => setSearchState(e.target.value)}/>
-                    <div class ="input-group-append">
-                    <Link to={`/search/${searchState}`} className="d-flex">
-
-                      <button class ="btn btn-primary" type ="submit"  >
-                      <i class ="fa fa-search"></i>
-                      </button>
-                    </Link>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Search"
+                      onChange={(e) => setSearchState(e.target.value)}
+                    />
+                    <div class="input-group-append">
+                      <Link to={`/search/${searchState}`} className="d-flex">
+                        <button class="btn btn-primary" type="submit">
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </form>
               </div>
+              {/* LOGIN AND CART */}
               <div className="col-md-4">
                 <div className="widgets-wrap d-flex justify-content-end">
                   <div className="widget-header">
@@ -169,85 +209,6 @@ function Header() {
             </div>
           </div>
         </section>
-
-        <nav className="navbar navbar-expand-lg navbar-main border-bottom">
-          <div className="container">
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#main_nav7"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="main_nav7">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link pl-0" href="#">
-                    {" "}
-                    <strong>All category</strong>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Fashion
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Supermarket
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Electronics
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Baby &amp Toys
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Fitness sport
-                  </a>
-                </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="http://example.com"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    More
-                  </a>
-                  <div className="dropdown-menu">
-                    <a className="dropdown-item" href="#">
-                      Foods and Drink
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Home interior
-                    </a>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#">
-                      Category 1
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Category 2
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Category 3
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
       </header>
     </div>
   );
