@@ -10,6 +10,7 @@ import PaymentConfirmPage from "./components/pages/PaymentPageConfirmation";
 import { DataStore } from "./DataStore";
 import { Routes, Route } from "react-router-dom";
 import react, { useState, useEffect } from "react";
+import SearchPage from "./components/pages/SearchPage";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -24,10 +25,31 @@ function App() {
     quantities: [],
   });
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
+
+  const [searchState, setSearchState] = useState("");
+
+  const [allProducts, setAllProducts] = useState([]);
+
+
+  // This useEffect controls whether there are already any token (user) in browser.
+  useEffect(() => {
+    const resp = fetch("http://localhost:5000/finduser", {
+      method: "GET",
+      Accept: "application/json",
+      headers: {
+        Authorization: `Bearer ${localStorage.userToken}`,
+      },
+    })
+      .then((data) => data.json())
+      .then((data) => setUser(data.user));
+  }, []);
+
+
+  
 
   useEffect(() => {
-    const getUser = () => {
+    const getUserWithPassportJs = () => {
       console.log("Hello");
       fetch("http://localhost:5000/auth/login/success", {
         method: "GET",
@@ -42,7 +64,7 @@ function App() {
           throw new Error("Authentication has been failed!");
         })
         .then((resObject) => {
-          localStorage.setItem("userToken", resObject.token);  // With this statement, we can create our token via passportjs/google login
+          localStorage.setItem("userToken", resObject.token); // With this statement, we can create our token via passportjs/google login
 
           setUser(resObject.user);
         })
@@ -50,14 +72,25 @@ function App() {
           console.log(err);
         });
     };
-    getUser();
+    getUserWithPassportJs();
   }, []);
 
   console.log(user);
 
   return (
     <div className="App">
-      <DataStore.Provider value={{ productById, setProductById, user }}>
+      <DataStore.Provider
+        value={{
+          productById,
+          setProductById,
+          searchState,
+          setSearchState,
+          allProducts,
+          setAllProducts,
+          user,
+          setUser,
+        }}
+      >
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -67,6 +100,7 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
+          <Route path="/search/:productName" element={<SearchPage />} />
         </Routes>
       </DataStore.Provider>
     </div>
