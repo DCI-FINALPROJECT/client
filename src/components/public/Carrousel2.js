@@ -42,7 +42,7 @@ function Carrousel2() {
       {
         breakpoint: 600,
         settings: {
-         arrows: false,
+         dots: false,
          slidesToShow: 1,
          slidesToScroll:1,
         }
@@ -51,7 +51,7 @@ function Carrousel2() {
   }
   
   return (
-      <div className='container'>
+      <div className='container px-5'>
         <h6 className="home-title"></h6>
       <Slider {...sliderSettings}>
 

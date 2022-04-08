@@ -4,7 +4,7 @@ function BannerCategories() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-4 mb-3">
           <div
             className="card-banner align-items-end img-apple"
             style={{ height: "250px" }}
@@ -18,7 +18,7 @@ function BannerCategories() {
             </article>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 mb-3">
           <div
             className="card-banner align-items-end img-google"
             style={{ height: "250px" }}
