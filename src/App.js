@@ -106,7 +106,7 @@ function App() {
     getUserWithPassportJs();
   }, []);
 
-  console.log(user);
+  console.log("Product", productById);
 
   return (
     <div className="App">
@@ -126,6 +126,8 @@ function App() {
           setClicked
         }}
       >
+
+      
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="/register" element={<RegisterPage />} />

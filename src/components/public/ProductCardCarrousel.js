@@ -1,40 +1,41 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 
-function ProductCardCarrousel({product}) {
-
-  const {setClicked } = useContext(DataStore);
-  
+function ProductCardCarrousel({ product }) {
+  const { setClicked, setProductById } = useContext(DataStore);
 
   return (
     <div>
-    
-    <Link onClick={()=>{setClicked(product._id)}} to={`/product/${product._id}`}>
-      <div className=" card-product-grid mx-2">
-        <div className="img-wrap">
-          <img src={product.images[0]} />
+      <Link
+        onClick={() => {
+          setClicked(product._id);
+          setProductById(product);
+        }}
+        to={`/product/${product._id}`}
+      >
+        <div className=" card-product-grid mx-2">
+          <div className="img-wrap">
+            <img src={product.images[0]} />
+          </div>
+          <div className="info-wrap">
+            <div className="price-wrap">
+              <strong className="price">$ {product.price}</strong>
+            </div>
+            <div className="" style={{ height: "100px" }}>
+              <h6 className="">{product.productName}</h6>
+              <p className="title mb-2">{product.description}</p>
+            </div>
+            <div className="d-flex justify-content-around">
+              <a href="#" className="btn btn-yellow">
+                Add to cart
+              </a>
+              <a href="#" className="btn btn-outline-dark btn-icon">
+                <i className="fa fa-heart"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="info-wrap">
-          <div className="price-wrap">
-            <strong className="price">$ {product.price}</strong>
-          </div>
-          <div className="" style={{height: "100px"}}>
-          <h6 className="">{product.productName}</h6>
-          <p className="title mb-2">
-           {product.description}
-          </p>
-          </div>
-          <div className="d-flex justify-content-around">
-          <a href="#" className="btn btn-yellow">
-            Add to cart
-          </a>
-          <a href="#" className="btn btn-outline-dark btn-icon">
-            <i className="fa fa-heart"></i>
-          </a>
-          </div>
-        </div>
-      </div>
       </Link>
     </div>
   );

@@ -13,11 +13,6 @@ export default function ProductPage() {
   const params = useParams();
 
   const id = params.id;
-
-  console.log(productById);
-
-  
-
  
 
   function getProductById() {
@@ -35,7 +30,7 @@ export default function ProductPage() {
     <div>
       <Header />
       <ProductInfo product={productById} />
-      <ProductTemplate />
+      <ProductTemplate product={productById} />
       <Footer />
     </div>
   );
