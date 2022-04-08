@@ -34,6 +34,8 @@ function App() {
 
   const [categories, setCategories] = useState([]);
 
+  const [clicked,setClicked] = useState(""); // With this state we can control amendment of selected product.
+
 // get allProducts in frontend
   const loadProducts = async () => {
     const response = await fetch(`http://localhost:5000/products/all`);
@@ -119,7 +121,9 @@ function App() {
           user,
           setUser,
           categories,
-          setCategories
+          setCategories,
+          clicked,
+          setClicked
         }}
       >
         <Routes>

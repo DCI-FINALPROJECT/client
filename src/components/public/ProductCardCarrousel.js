@@ -1,13 +1,16 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Link } from "react-router-dom";
+import { DataStore } from "../../DataStore";
 
 function ProductCardCarrousel({product}) {
 
+  const {setClicked } = useContext(DataStore);
   
 
   return (
     <div>
-    <Link to={`/product/${product._id}`}>
+    
+    <Link onClick={()=>{setClicked(product._id)}} to={`/product/${product._id}`}>
       <div className=" card-product-grid mx-2">
         <div className="img-wrap">
           <img src={product.images[0]} />
