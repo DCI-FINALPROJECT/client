@@ -17,7 +17,7 @@ function SimilarProducts() {
   const [selectedCategoryProducts,setSelectedCategoryProducts] = useState([]);
 
  
-  const getSimilarProducts = async ()=>{
+  const getProductById = async ()=>{
 
     await fetch(`http://localhost:5000/product/${id}`)
     .then((data) => data.json())
@@ -34,7 +34,7 @@ function SimilarProducts() {
 
   useEffect(()=>{
 
-   getSimilarProducts();  
+    getProductById();  
 
   },[clicked])
 
