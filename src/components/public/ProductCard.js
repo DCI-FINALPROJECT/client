@@ -1,52 +1,50 @@
-import React from 'react'
-import {useContext,useState} from "react";
-import { DataStore } from '../../DataStore';
+import React from "react";
+import { useContext, useState } from "react";
+import { DataStore } from "../../DataStore";
 
 function ProductCard() {
-
   // ProductById is for ProductCard come from App.js via useContext
-  const {productById} = useContext(DataStore);
-
+  const { productById } = useContext(DataStore);
 
   // This state is for selected image.
-  const [image,setImage] = useState(0)
+  const [image, setImage] = useState(0);
 
-  console.log("PRODUCT_CARD:",productById, image);
-
+  console.log("PRODUCT_CARD:", productById, image);
 
   return (
     <div>
-
-        {/* product */}
+      {/* product */}
       <div>
         <section className="padding-y bg-white shadow-sm">
           <div className="container" bis_skin_checked="1">
             <div className="row" bis_skin_checked="1">
               <aside className="col-lg-6">
                 <article className="gallery-wrap">
-                  <div className="img-big-wrap img-thumbnail" bis_skin_checked="1">
+                  <div
+                    className="img-big-wrap img-thumbnail"
+                    bis_skin_checked="1"
+                  >
                     <span href="">
                       <img src={productById.images[image]} />
                     </span>
                   </div>
                   <div className="thumbs-wrap" bis_skin_checked="1">
-                    <span className="item-thumb">
-                      <img onClick={()=>setImage(1)} src={productById.images[1]} />
-                    </span>
-                    <span href="#" className="item-thumb">
-                      <img onClick={()=>setImage(2)} src={productById.images[2]} />
-                    </span>
-                    <span href="#" className="item-thumb">
-                      <img onClick={()=>setImage(0)} src={productById.images[0]} />
-                    </span>
+                    {productById.images.map((image, index) => {
+                      return (
+                        <span className="item-thumb">
+                          <img
+                            onClick={() => setImage(index)}
+                            src={productById.images[index]}
+                          />
+                        </span>
+                      );
+                    })}
                   </div>
                 </article>
               </aside>
               <div className="col-lg-6" bis_skin_checked="1">
                 <article className="ps-lg-3">
-                  <h4 className="title text-dark">
-                    {productById.productName}
-                  </h4>
+                  <h4 className="title text-dark">{productById.productName}</h4>
                   <div className="rating-wrap my-3" bis_skin_checked="1">
                     <ul className="rating-stars">
                       <li style={{ width: "80%" }} className="stars-active">
@@ -60,7 +58,10 @@ function ProductCard() {
                         />
                       </li>
                     </ul>
-                    <b className="label-rating text-warning"> {productById.stars}</b>
+                    <b className="label-rating text-warning">
+                      {" "}
+                      {productById.stars}
+                    </b>
                     <i className="dot"></i>
                     <span className="label-rating text-muted">
                       <i className="fa fa-shopping-basket"></i> 154 orders
@@ -72,13 +73,12 @@ function ProductCard() {
                     <var className="price h5">{productById.price}</var>
                     <span className="text-muted"> €</span>
                   </div>
-                  <p>
-                    {productById.description}
-                  </p>
+                  <p>{productById.description}</p>
                   <dl className="row">
                     <dt className="col-3">Model</dt>
                     <dd className="col-9">{productById.productName}</dd>
-                    <dt className="col-3">Color</dt> <dd className="col-9">{}</dd>
+                    <dt className="col-3">Color</dt>{" "}
+                    <dd className="col-9">{}</dd>
                     <dt className="col-3">Material</dt>
                     <dd className="col-9">Cotton, Jeans </dd>
                     <dt className="col-3">Delivery</dt>
@@ -141,7 +141,7 @@ function ProductCard() {
         </section>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProductCard
+export default ProductCard;

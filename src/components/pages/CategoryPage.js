@@ -4,30 +4,26 @@ import Header from "../public/Header";
 import { DataStore } from "../../DataStore";
 import { useParams } from "react-router-dom";
 import SearchTemplate from "../public/SearchTemplate";
+import CategoryFilter from "../public/CategoryFilter";
+import CategoryProducts from "../public/CategoryProducts";
+import CategoryInfo from "../public/CategoryInfo";
+import Deneme from "../public/Deneme";
 
 function CategoryPage() {
-  const { allProducts } = useContext(DataStore);
-
-  const params = useParams();
-
-  const category = params.category;
-
-  let categoriedProducts = allProducts.filter((product) => {
-    return (
-      product.category.toLowerCase().indexOf(category.toLowerCase()) !== -1
-    );
-  });
-
   return (
-    <div>
+    <div className="container">
       <Header />
-      {
-        <div className="d-flex flex-wrap justify-content-center">
-          {categoriedProducts.map((product) => {
-            return <SearchTemplate key={product._id} product={product} />;
-          })}
+      <CategoryInfo/>
+{/*       <div className="row">
+        <div className="col-3">
+          <CategoryFilter />
         </div>
-      }
+        <div className="col-9">
+          <CategoryProducts />
+        </div>
+      </div> */}
+
+      <Deneme/>
 
       <Footer />
     </div>

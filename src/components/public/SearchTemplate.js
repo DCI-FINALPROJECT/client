@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function SearchTemplate({ product }) {
   return (
-    <div className="m-5" style={{ width: "15rem" }}>
+    <div className="m-3" style={{ width: "15rem" }}>
       <Link to={`/product/${product._id}`}>
         <div className="card card-product-grid mx-2">
           <div className="img-wrap">
