@@ -33,9 +33,7 @@ function SimilarProducts() {
   }
 
   useEffect(()=>{
-
     getProductById();  
-
   },[clicked])
 
 

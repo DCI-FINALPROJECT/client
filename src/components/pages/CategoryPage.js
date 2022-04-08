@@ -4,6 +4,7 @@ import Header from "../public/Header";
 import { DataStore } from "../../DataStore";
 import { useParams } from "react-router-dom";
 import SearchTemplate from "../public/SearchTemplate";
+import CategoryFilter from "../public/CategoryFilter";
 
 function CategoryPage() {
   const { allProducts } = useContext(DataStore);
@@ -19,16 +20,23 @@ function CategoryPage() {
   });
 
   return (
-    <div>
+    <div className="container">
       <Header />
-      {
-        <div className="d-flex flex-wrap justify-content-center">
-          {categoriedProducts.map((product) => {
-            return <SearchTemplate key={product._id} product={product} />;
-          })}
+      <div className="row">
+        <div className="col-3">
+          <CategoryFilter />
         </div>
-      }
 
+        <div className="col-9">
+          {
+            <div className="d-flex flex-wrap justify-content-center">
+              {categoriedProducts.map((product) => {
+                return <SearchTemplate key={product._id} product={product} />;
+              })}
+            </div>
+          }
+        </div>
+      </div>
       <Footer />
     </div>
   );
