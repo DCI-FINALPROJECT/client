@@ -11,6 +11,8 @@ function ProductCard() {
   // This state is for selected image.
   const [image,setImage] = useState(0)
 
+  console.log("PRODUCT_CARD:",productById, image);
+
 
   return (
     <div>
@@ -23,20 +25,20 @@ function ProductCard() {
               <aside className="col-lg-6">
                 <article className="gallery-wrap">
                   <div className="img-big-wrap img-thumbnail" bis_skin_checked="1">
-                    <a href="/">
+                    <span href="">
                       <img src={productById.images[image]} />
-                    </a>
+                    </span>
                   </div>
                   <div className="thumbs-wrap" bis_skin_checked="1">
-                    <a  className="item-thumb">
+                    <span className="item-thumb">
                       <img onClick={()=>setImage(1)} src={productById.images[1]} />
-                    </a>
-                    <a href="#" className="item-thumb">
+                    </span>
+                    <span href="#" className="item-thumb">
                       <img onClick={()=>setImage(2)} src={productById.images[2]} />
-                    </a>
-                    <a href="#" className="item-thumb">
-                      <img onClick={()=>setImage(3)} src={productById.images[3]} />
-                    </a>
+                    </span>
+                    <span href="#" className="item-thumb">
+                      <img onClick={()=>setImage(0)} src={productById.images[0]} />
+                    </span>
                   </div>
                 </article>
               </aside>
