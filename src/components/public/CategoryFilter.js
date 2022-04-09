@@ -5,42 +5,16 @@ function CategoryFilter() {
 
   const query = new URLSearchParams(useLocation().search);
 
-  const choise = query.get("choise") === null ? "1" : query.get("secim");
-  const brand = query.get("brand") === null ? [] :query.get("brand");
-  const min = query.get("min") === null ? 0 : query.get("min");
-  const max = query.get("max") === null ? 0 : query.get("max");
 
   let defaultValues = [];
 
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState(defaultValues);
-  const [minPrice,setMinPrice] = useState(min);
-  const [maxPrice,setMaxPrice] = useState(max);
 
-  const params = useParams();
-
-  const applyFilter = (e) =>{
-
-    e.preventDefault();
-
-    let urlAddress = "http://localhost:3000/category/" + params.category + "?page=1" + "&choise=" + choise + "&brand=" + selectedBrands + "&min=" + minPrice  + "&max=" + maxPrice;
-
-    window.location.href = urlAddress;
-
-  }
-
-  const minPriceChanged = (e) =>{
-    setMinPrice(e.target.value);
-  }
-
-  const maxPriceChanged = (e) =>{
-    setMaxPrice(e.target.value);
-  } 
+  const params = useParams();  
 
 
-  if(brand !== [] && brand.length > 0){
-    defaultValues = brand.split(",");
-  }
+  
 
   const changingBrand = (e) => {
     const options = selectedBrands;
@@ -135,7 +109,6 @@ function CategoryFilter() {
                     Min
                   </label>
                   <input
-                    onChange={minPriceChanged}
                     class="form-control"
                     id="min"
                     placeholder="$0"
@@ -148,7 +121,6 @@ function CategoryFilter() {
                     Max
                   </label>
                   <input
-                    onChange={maxPriceChanged}
                     class="form-control"
                     id="max"
                     placeholder="$1,0000"
@@ -156,7 +128,7 @@ function CategoryFilter() {
                   />
                 </div>
               </div>
-              <button onClick={applyFilter} class="btn btn-light w-100" type="button">
+              <button  class="btn btn-light w-100" type="button">
                 Apply
               </button>
             </div>
