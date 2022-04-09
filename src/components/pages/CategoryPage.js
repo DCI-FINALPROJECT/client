@@ -7,24 +7,16 @@ import SearchTemplate from "../public/SearchTemplate";
 import CategoryFilter from "../public/CategoryFilter";
 import CategoryProducts from "../public/CategoryProducts";
 import CategoryInfo from "../public/CategoryInfo";
-import Deneme from "../public/Deneme";
 
 function CategoryPage() {
   return (
     <div className="container">
       <Header />
-      <CategoryInfo/>
-{/*       <div className="row">
-        <div className="col-3">
-          <CategoryFilter />
-        </div>
-        <div className="col-9">
-          <CategoryProducts />
-        </div>
-      </div> */}
-
-      <Deneme/>
-
+      <CategoryInfo />
+      <div className="row">
+        <CategoryFilter />
+        <CategoryProducts />
+      </div>
       <Footer />
     </div>
   );

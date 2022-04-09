@@ -2,256 +2,344 @@ import React from "react";
 
 function CategoryFilter() {
   return (
-    <div>
-      <div id="aside_filter" className="collapse card d-lg-block mb-5">
-        <article className="filter-group">
-          <header className="card-header">
-            <a
-              href="#"
-              className="title"
+          <aside class="col-lg-3">
+            <button
+              class="btn btn-outline-secondary mb-3 w-100  d-lg-none"
               data-bs-toggle="collapse"
-              data-bs-target="#collapse_aside_brands"
+              data-bs-target="#aside_filter"
             >
-              <i className="icon-control fa fa-chevron-down"></i> Brands
-            </a>
-          </header>
-          <div className="collapse show" id="collapse_aside_brands">
-            <div className="card-body">
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Mercedes </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">120</b>
-              </label>
+              Show filter
+            </button>
 
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Toyota </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">15</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Mitsubishi </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">35</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Nissan </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">89</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" value="" />
-                <span className="form-check-label"> Honda </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">30</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" value="" />
-                <span className="form-check-label"> Honda accord </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">30</b>
-              </label>
-            </div>
-          </div>
-        </article>
-
-        <article className="filter-group">
-          <header className="card-header">
-            <a
-              href="#"
-              className="title"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse_aside2"
-            >
-              <i className="icon-control fa fa-chevron-down"></i> Price
-            </a>
-          </header>
-          <div className="collapse show" id="collapse_aside2">
-            <div className="card-body">
-              <input type="range" className="form-range" min="0" max="100" />
-              <div className="row mb-3">
-                <div className="col-6">
-                  <label for="min" className="form-label">
-                    Min
-                  </label>
-                  <input
-                    className="form-control"
-                    id="min"
-                    placeholder="$0"
-                    type="number"
-                  />
+            <div id="aside_filter" class="collapse card d-lg-block mb-5">
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    class="title"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse_aside1"
+                    aria-expanded="true"
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    Related items
+                  </a>
+                </header>
+                <div class="collapse show" id="collapse_aside1" style={{}}>
+                  <div class="card-body">
+                    <ul class="list-menu">
+                      <li>
+                        <a href="#">Electronics </a>
+                      </li>
+                      <li>
+                        <a href="#">Home items </a>
+                      </li>
+                      <li>
+                        <a href="#">Books, Magazines </a>
+                      </li>
+                      <li>
+                        <a href="#">Men's clothing </a>
+                      </li>
+                      <li>
+                        <a href="#">Interiors items </a>
+                      </li>
+                      <li>
+                        <a href="#">Underwears </a>
+                      </li>
+                      <li>
+                        <a href="#">Shoes for men </a>
+                      </li>
+                      <li>
+                        <a href="#">Accessories </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+              </article>
 
-                <div className="col-6">
-                  <label for="max" className="form-label">
-                    Max
-                  </label>
-                  <input
-                    className="form-control"
-                    id="max"
-                    placeholder="$1,0000"
-                    type="number"
-                  />
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    class="title"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse_aside_brands"
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    Brands
+                  </a>
+                </header>
+                <div class="collapse show" id="collapse_aside_brands">
+                  <div class="card-body">
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label"> Mercedes </span>
+                      <b class="badge rounded-pill bg-gray-dark float-end">
+                        120
+                      </b>
+                    </label>
+
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label"> Toyota </span>
+                      <b class="badge rounded-pill bg-gray-dark float-end">
+                        15
+                      </b>
+                    </label>
+
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label"> Mitsubishi </span>
+                      <b class="badge rounded-pill bg-gray-dark float-end">
+                        35
+                      </b>
+                    </label>
+
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label"> Nissan </span>
+                      <b class="badge rounded-pill bg-gray-dark float-end">
+                        89
+                      </b>
+                    </label>
+
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                      />
+                      <span class="form-check-label"> Honda </span>
+                      <b class="badge rounded-pill bg-gray-dark float-end">
+                        30
+                      </b>
+                    </label>
+
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                      />
+                      <span class="form-check-label"> Honda accord </span>
+                      <b class="badge rounded-pill bg-gray-dark float-end">
+                        30
+                      </b>
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <button className="btn btn-light w-100" type="button">
-                Apply
-              </button>
+              </article>
+
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    class="title"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse_aside2"
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    Price
+                  </a>
+                </header>
+                <div class="collapse show" id="collapse_aside2">
+                  <div class="card-body">
+                    <input type="range" class="form-range" min="0" max="100" />
+                    <div class="row mb-3">
+                      <div class="col-6">
+                        <label for="min" class="form-label">
+                          Min
+                        </label>
+                        <input
+                          class="form-control"
+                          id="min"
+                          placeholder="$0"
+                          type="number"
+                        />
+                      </div>
+
+                      <div class="col-6">
+                        <label for="max" class="form-label">
+                          Max
+                        </label>
+                        <input
+                          class="form-control"
+                          id="max"
+                          placeholder="$1,0000"
+                          type="number"
+                        />
+                      </div>
+                    </div>
+                    <button class="btn btn-light w-100" type="button">
+                      Apply
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    class="title"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse_aside3"
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    Size
+                  </a>
+                </header>
+                <div class="collapse show" id="collapse_aside3">
+                  <div class="card-body">
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> XS </span>
+                    </label>
+
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> SM </span>
+                    </label>
+
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> LG </span>
+                    </label>
+
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> XXL </span>
+                    </label>
+                  </div>
+                </div>
+              </article>
+
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    class="title"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse_aside4"
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i> Ratings
+                  </a>
+                </header>
+                <div class="collapse show" id="collapse_aside4">
+                  <div class="card-body">
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label">
+                        <ul class="rating-stars">
+                          <li class="stars-active" style={{ width: "100%" }}>
+                            <img src="images/misc/stars-active.svg" alt="" />
+                          </li>
+                          <li>
+                            {" "}
+                            <img
+                              src="images/misc/starts-disable.svg"
+                              alt=""
+                            />{" "}
+                          </li>
+                        </ul>
+                      </span>
+                    </label>
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label">
+                        <ul class="rating-stars">
+                          <li class="stars-active" style={{ width: "80%" }}>
+                            <img src="images/misc/stars-active.svg" alt="" />
+                          </li>
+                          <li>
+                            {" "}
+                            <img
+                              src="images/misc/starts-disable.svg"
+                              alt=""
+                            />{" "}
+                          </li>
+                        </ul>
+                      </span>
+                    </label>
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label">
+                        <ul class="rating-stars">
+                          <li class="stars-active" style={{ width: "60%" }}>
+                            <img src="images/misc/stars-active.svg" alt="" />
+                          </li>
+                          <li>
+                            {" "}
+                            <img
+                              src="images/misc/starts-disable.svg"
+                              alt=""
+                            />{" "}
+                          </li>
+                        </ul>
+                      </span>
+                    </label>
+                    <label class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        checked=""
+                      />
+                      <span class="form-check-label">
+                        <ul class="rating-stars">
+                          <li class="stars-active" style={{ width: "40%" }}>
+                            <img src="images/misc/stars-active.svg" alt="" />
+                          </li>
+                          <li>
+                            {" "}
+                            <img
+                              src="images/misc/starts-disable.svg"
+                              alt=""
+                            />{" "}
+                          </li>
+                        </ul>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </article>
             </div>
-          </div>
-        </article>
-
-        <article className="filter-group">
-          <header className="card-header">
-            <a
-              href="#"
-              className="title"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse_aside3"
-            >
-              <i className="icon-control fa fa-chevron-down"></i> Size
-            </a>
-          </header>
-          <div className="collapse show" id="collapse_aside3">
-            <div className="card-body">
-              <label className="checkbox-btn">
-                <input type="checkbox" />
-                <span className="btn btn-light"> XS </span>
-              </label>
-
-              <label className="checkbox-btn">
-                <input type="checkbox" />
-                <span className="btn btn-light"> SM </span>
-              </label>
-
-              <label className="checkbox-btn">
-                <input type="checkbox" />
-                <span className="btn btn-light"> LG </span>
-              </label>
-
-              <label className="checkbox-btn">
-                <input type="checkbox" />
-                <span className="btn btn-light"> XXL </span>
-              </label>
-            </div>
-          </div>
-        </article>
-
-        <article className="filter-group">
-          <header className="card-header">
-            <a
-              href="#"
-              className="title"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse_aside4"
-            >
-              <i className="icon-control fa fa-chevron-down"></i> Ratings
-            </a>
-          </header>
-          <div className="collapse show" id="collapse_aside4">
-            <div className="card-body">
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"100%"}}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
-                    </li>
-                  </ul>
-                </span>
-              </label>
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"80%"}}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
-                    </li>
-                  </ul>
-                </span>
-              </label>
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"60%"}}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
-                    </li>
-                  </ul>
-                </span>
-              </label>
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"40%"}}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
-                    </li>
-                  </ul>
-                </span>
-              </label>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
+          </aside>
   );
 }
 

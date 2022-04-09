@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function ProductInfo({product}) {
   return (
@@ -10,9 +11,9 @@ function ProductInfo({product}) {
               <a href="/">Homepage</a>
             </li>
             <li className="breadcrumb-item">
-              <a href="#">
+              <Link to={`/category/${product.category}`}>
                {product.category}
-              </a>
+              </Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {product.productName}
