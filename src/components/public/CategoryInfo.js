@@ -1,6 +1,11 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 function CategoryInfo() {
+
+  const params = useParams();
+
+
   return (
     <section className="section-pagetop bg-light">
       <div className="container">
@@ -10,7 +15,10 @@ function CategoryInfo() {
               <a href="/">Homepage</a>
             </li>
             <li className="breadcrumb-item">
-              <a href="#">Category</a>
+              <span className="text-dark">Category</span>
+            </li>
+            <li className="breadcrumb-item">
+              <span className="text-dark">{ params.category.includes("&") ? "Filtered Category" : params.category.substring(0,1).toUpperCase()+params.category.substring(1).toLowerCase()}</span>
             </li>
           
           </ol>

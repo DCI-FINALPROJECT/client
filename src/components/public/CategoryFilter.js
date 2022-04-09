@@ -1,248 +1,258 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 function CategoryFilter() {
+
+  const query = new URLSearchParams(useLocation().search);
+
+
+  let defaultValues = [];
+
+  const [brands, setBrands] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState(defaultValues);
+
+  const params = useParams();  
+
+
+  
+
+  const changingBrand = (e) => {
+    const options = selectedBrands;
+
+    let index = 0;
+
+    if (e.target.checked) {
+      options.push(e.target.value);
+    } else {
+      index = options.indexOf(e.target.value);
+      options.splice(index, 1);
+    }
+    setSelectedBrands(options);
+  };
+
+  console.log(selectedBrands);
+
+  const getBrandsFromDatabase = () => {
+    fetch("http://localhost:5000/product/brands/filter")
+      .then((data) => data.json())
+      .then((data) => setBrands(data));
+  };
+
+  useEffect(() => {
+    getBrandsFromDatabase();
+  }, []);
+
   return (
-    <div>
-      <div id="aside_filter" className="collapse card d-lg-block mb-5">
-        <article className="filter-group">
-          <header className="card-header">
+    <aside class="col-lg-3">
+      <button
+        class="btn btn-outline-secondary mb-3 w-100  d-lg-none"
+        data-bs-toggle="collapse"
+        data-bs-target="#aside_filter"
+      >
+        Show filter
+      </button>
+
+      <div id="aside_filter" class="collapse card d-lg-block mb-5">
+        <article class="filter-group">
+          <header class="card-header">
             <a
               href="#"
-              className="title"
+              class="title"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside_brands"
             >
-              <i className="icon-control fa fa-chevron-down"></i> Brands
+              <i class="icon-control fa fa-chevron-down"></i>
+              Brands
             </a>
           </header>
-          <div className="collapse show" id="collapse_aside_brands">
-            <div className="card-body">
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Mercedes </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">120</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Toyota </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">15</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Mitsubishi </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">35</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Nissan </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">89</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" value="" />
-                <span className="form-check-label"> Honda </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">30</b>
-              </label>
-
-              <label className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" value="" />
-                <span className="form-check-label"> Honda accord </span>
-                <b className="badge rounded-pill bg-gray-dark float-end">30</b>
-              </label>
+          <div class="collapse show" id="collapse_aside_brands">
+            <div class="card-body">
+              {brands.map((brand) => {
+                return (
+                  <label class="form-check mb-2">
+                    <input
+                      defaultChecked={selectedBrands.includes(Object.keys(brand)) ? true : false}
+                      onChange={changingBrand}
+                      class="form-check-input"
+                      type="checkbox"
+                      value={Object.keys(brand)}
+                    />
+                    <span class="form-check-label"> {Object.keys(brand)} </span>
+                    <b class="badge rounded-pill bg-gray-dark float-end">
+                      {Object.values(brand)}
+                    </b>
+                  </label>
+                );
+              })}
             </div>
           </div>
         </article>
 
-        <article className="filter-group">
-          <header className="card-header">
+        <article class="filter-group">
+          <header class="card-header">
             <a
               href="#"
-              className="title"
+              class="title"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside2"
             >
-              <i className="icon-control fa fa-chevron-down"></i> Price
+              <i class="icon-control fa fa-chevron-down"></i>
+              Price
             </a>
           </header>
-          <div className="collapse show" id="collapse_aside2">
-            <div className="card-body">
-              <input type="range" className="form-range" min="0" max="100" />
-              <div className="row mb-3">
-                <div className="col-6">
-                  <label for="min" className="form-label">
+          <div class="collapse show" id="collapse_aside2">
+            <div class="card-body">
+              <input type="range" class="form-range" min="0" max="100" />
+              <div class="row mb-3">
+                <div class="col-6">
+                  <label for="min" class="form-label">
                     Min
                   </label>
                   <input
-                    className="form-control"
+                    class="form-control"
                     id="min"
                     placeholder="$0"
                     type="number"
                   />
                 </div>
 
-                <div className="col-6">
-                  <label for="max" className="form-label">
+                <div class="col-6">
+                  <label for="max" class="form-label">
                     Max
                   </label>
                   <input
-                    className="form-control"
+                    class="form-control"
                     id="max"
                     placeholder="$1,0000"
                     type="number"
                   />
                 </div>
               </div>
-              <button className="btn btn-light w-100" type="button">
+              <button  class="btn btn-light w-100" type="button">
                 Apply
               </button>
             </div>
           </div>
         </article>
 
-        <article className="filter-group">
-          <header className="card-header">
+        <article class="filter-group">
+          <header class="card-header">
             <a
               href="#"
-              className="title"
+              class="title"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside3"
             >
-              <i className="icon-control fa fa-chevron-down"></i> Size
+              <i class="icon-control fa fa-chevron-down"></i>
+              Size
             </a>
           </header>
-          <div className="collapse show" id="collapse_aside3">
-            <div className="card-body">
-              <label className="checkbox-btn">
+          <div class="collapse show" id="collapse_aside3">
+            <div class="card-body">
+              <label class="checkbox-btn">
                 <input type="checkbox" />
-                <span className="btn btn-light"> XS </span>
+                <span class="btn btn-light"> XS </span>
               </label>
 
-              <label className="checkbox-btn">
+              <label class="checkbox-btn">
                 <input type="checkbox" />
-                <span className="btn btn-light"> SM </span>
+                <span class="btn btn-light"> SM </span>
               </label>
 
-              <label className="checkbox-btn">
+              <label class="checkbox-btn">
                 <input type="checkbox" />
-                <span className="btn btn-light"> LG </span>
+                <span class="btn btn-light"> LG </span>
               </label>
 
-              <label className="checkbox-btn">
+              <label class="checkbox-btn">
                 <input type="checkbox" />
-                <span className="btn btn-light"> XXL </span>
+                <span class="btn btn-light"> XXL </span>
               </label>
             </div>
           </div>
         </article>
 
-        <article className="filter-group">
-          <header className="card-header">
+        <article class="filter-group">
+          <header class="card-header">
             <a
               href="#"
-              className="title"
+              class="title"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside4"
             >
-              <i className="icon-control fa fa-chevron-down"></i> Ratings
+              <i class="icon-control fa fa-chevron-down"></i> Ratings
             </a>
           </header>
-          <div className="collapse show" id="collapse_aside4">
-            <div className="card-body">
-              <label className="form-check mb-2">
+          <div class="collapse show" id="collapse_aside4">
+            <div class="card-body">
+              <label class="form-check mb-2">
                 <input
-                  className="form-check-input"
+                  class="form-check-input"
                   type="checkbox"
                   value=""
                   checked=""
                 />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"100%"}}>
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "100%" }}>
                       <img src="images/misc/stars-active.svg" alt="" />
                     </li>
                     <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
+                      <img src="images/misc/starts-disable.svg" alt="" />
                     </li>
                   </ul>
                 </span>
               </label>
-              <label className="form-check mb-2">
+              <label class="form-check mb-2">
                 <input
-                  className="form-check-input"
+                  class="form-check-input"
                   type="checkbox"
                   value=""
                   checked=""
                 />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"80%"}}>
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "80%" }}>
                       <img src="images/misc/stars-active.svg" alt="" />
                     </li>
                     <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
+                      <img src="images/misc/starts-disable.svg" alt="" />
                     </li>
                   </ul>
                 </span>
               </label>
-              <label className="form-check mb-2">
+              <label class="form-check mb-2">
                 <input
-                  className="form-check-input"
+                  class="form-check-input"
                   type="checkbox"
                   value=""
                   checked=""
                 />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"60%"}}>
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "60%" }}>
                       <img src="images/misc/stars-active.svg" alt="" />
                     </li>
                     <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
+                      <img src="images/misc/starts-disable.svg" alt="" />
                     </li>
                   </ul>
                 </span>
               </label>
-              <label className="form-check mb-2">
+              <label class="form-check mb-2">
                 <input
-                  className="form-check-input"
+                  class="form-check-input"
                   type="checkbox"
                   value=""
                   checked=""
                 />
-                <span className="form-check-label">
-                  <ul className="rating-stars">
-                    <li className="stars-active" style={{width:"40%"}}>
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "40%" }}>
                       <img src="images/misc/stars-active.svg" alt="" />
                     </li>
                     <li>
-                      {" "}
-                      <img src="images/misc/starts-disable.svg" alt="" />{" "}
+                      <img src="images/misc/starts-disable.svg" alt="" />
                     </li>
                   </ul>
                 </span>
@@ -251,7 +261,7 @@ function CategoryFilter() {
           </div>
         </article>
       </div>
-    </div>
+    </aside>
   );
 }
 
