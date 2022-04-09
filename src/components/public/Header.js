@@ -47,12 +47,9 @@ function Header() {
       .catch((err) => err);
   };
 
-  console.log(user);
-  console.log(loginMessage);
 
   return (
     <div>
-      {console.log(user)}
       {user ? `${user.firstName} ${user.email}` : ""}
       <header className="section-header">
         <section className="header-main border-bottom">

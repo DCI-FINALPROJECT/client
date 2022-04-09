@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 function CategoryCard({product}) {
 
-    console.log("CategoryCard:",product);
 
   return (
     <article class="card card-product-list">

@@ -5,7 +5,6 @@ function CategoryInfo() {
 
   const params = useParams();
 
-  console.log("PARAMS:",params);
 
   return (
     <section className="section-pagetop bg-light">
@@ -19,7 +18,7 @@ function CategoryInfo() {
               <span className="text-dark">Category</span>
             </li>
             <li className="breadcrumb-item">
-              <span className="text-dark">{params.category.substring(0,1).toUpperCase()+params.category.substring(1).toLowerCase()}</span>
+              <span className="text-dark">{ params.category.includes("&") ? "Filtered Category" : params.category.substring(0,1).toUpperCase()+params.category.substring(1).toLowerCase()}</span>
             </li>
           
           </ol>

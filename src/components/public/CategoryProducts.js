@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 import CategoryCard from "./CategoryCard";
-import SearchTemplate from "./SearchTemplate";
 
 function CategoryProducts() {
   const { allProducts } = useContext(DataStore);
@@ -20,7 +19,7 @@ function CategoryProducts() {
   return (
     <main class="col-lg-9">
       <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-        <strong class="d-block py-2">32 Items found </strong>
+        <strong class="d-block py-2">{categoriedProducts.length} Items found </strong>
         <div class="ms-auto">
           <select class="form-select d-inline-block w-auto">
             <option value="0">Best match</option>
