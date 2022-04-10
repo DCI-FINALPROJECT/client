@@ -9,13 +9,26 @@ function CategoryProducts() {
 
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
 
-  const page = query.get("whichPage");
+  const page =
+    query.get("whichPage") === null ? 1 : parseInt(query.get("whichPage"));
+
+  const limit = 4; // If we change this number of limit, we must change also limit of getCategoryWithPage in category.controller.
+
+  const choise = query.get("choise") === null ? "1" : query.get("choise");
+
+  let defaultChoise = "New Products"; 
+
+  if(choise==="2"){
+    defaultChoise = "Best Sellers";
+  }else if(choise === "3"){
+    defaultChoise = "Lowest Price";
+  }
 
   const [products, setProducts] = useState([]);
   const [numberOfProductByCategory, setNumberOfProductByCategory] = useState(0);
 
   const getProducts = () => {
-    fetch(`http://localhost:5000/category/${category}/${page}`)
+    fetch(`http://localhost:5000/category/${category}/${page}?choise=${choise}`)
       .then((data) => data.json())
       .then((data) => setProducts(data));
   };
@@ -28,6 +41,34 @@ function CategoryProducts() {
       .then((data) => setNumberOfProductByCategory(data));
   };
 
+  const selectedFiltering = (e) => {
+    let urlAddress= "";
+    if (e.target.value === "New Products") {
+      urlAddress =
+        "http://localhost:3000/category/" +
+        params.category +
+        "?whichPage=1" +
+        "&choise=" +
+        1;
+    } else if (e.target.value === "Best Sellers") {
+      urlAddress =
+      "http://localhost:3000/category/" +
+      params.category +
+      "?whichPage=1" +
+      "&choise=" +
+      2;
+    } else if (e.target.value === "Lowest Price") {
+      urlAddress =
+      "http://localhost:3000/category/" +
+      params.category +
+      "?whichPage=1" +
+      "&choise=" +
+      3;
+    }
+
+    window.location.href = urlAddress;
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -38,13 +79,16 @@ function CategoryProducts() {
 
   return (
     <main class="col-lg-9">
-      <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
+      <header class="d-flex align-items-center justify-content-between border-bottom mb-4 pb-3">
         <strong class="d-block py-2">
-          {" "}
           {numberOfProductByCategory} Items found{" "}
         </strong>
         <div class="ms-auto">
-          <select class="form-select d-inline-block w-auto">
+          <select
+          defaultValue={defaultChoise}
+            onChange={selectedFiltering}
+            class="form-select d-inline-block w-auto"
+          >
             <option>New Products</option>
             <option>Best Sellers</option>
             <option>Lowest Price</option>
@@ -65,32 +109,29 @@ function CategoryProducts() {
 
       <footer class="d-flex mt-4">
         <div>
-          <a href="?whichPage=1" class="btn btn-light">
+          <a href={`?whichPage=1&choise=${choise}`} class="btn btn-light">
             First Page
           </a>
         </div>
         <nav class="ms-3">
           <ul class="pagination">
-            {(query.get("whichPage") === "1" || query.get("whichPage") === null  )&& (
+            {page === 1 && (
               <div className="d-flex">
                 <li class="page-item active">
-                  <a
-                    class="page-link"
-                    href={`?whichPage=${query.get("whichPage")}`}
-                  >
+                  <a class="page-link" href={`?whichPage=${page}&choise=${choise}`}>
                     1
                   </a>
                 </li>
-                {numberOfProductByCategory / 2 > 1 && (
+                {numberOfProductByCategory / limit > 1 && (
                   <li class="page-item" aria-current="page">
-                    <a class="page-link" href={`?whichPage=2`}>
+                    <a class="page-link" href={`?whichPage=2&choise=${choise}`}>
                       2
                     </a>
                   </li>
                 )}
-                {numberOfProductByCategory / 2 > 2 && (
+                {numberOfProductByCategory / limit > 2 && (
                   <li class="page-item" aria-current="page">
-                    <a class="page-link" href={`?whichPage=3`}>
+                    <a class="page-link" href={`?whichPage=3&choise=${choise}`}>
                       3
                     </a>
                   </li>
@@ -98,34 +139,22 @@ function CategoryProducts() {
               </div>
             )}
 
-            {query.get("whichPage") !== "1" && (
+            {page !== 1 && (
               <div className="d-flex">
                 <li class="page-item">
-                  <a
-                    class="page-link"
-                    href={`?whichPage=${parseInt(query.get("whichPage")) - 1}`}
-                  >
-                    {(query.get("whichPage")) - 1}
+                  <a class="page-link" href={`?whichPage=${page - 1}&choise=${choise}`}>
+                    {page - 1}
                   </a>
                 </li>
                 <li class="page-item active" aria-current="page">
-                  <a
-                    class="page-link"
-                    href={`?whichPage=${parseInt(query.get("whichPage"))}`}
-                  >
-                    {query.get("whichPage")}
+                  <a class="page-link" href={`?whichPage=${page}&choise=${choise}`}>
+                    {page}
                   </a>
                 </li>
-                {parseInt(numberOfProductByCategory / 2) >
-                  parseInt(query.get("whichPage")) - 1 && (
+                {parseInt(numberOfProductByCategory / limit) > page && (
                   <li class="page-item" aria-current="page">
-                    <a
-                      class="page-link"
-                      href={`?whichPage=${
-                        parseInt(query.get("whichPage")) + 1
-                      }`}
-                    >
-                      {query.get("whichPage") + 1}
+                    <a class="page-link" href={`?whichPage=${page + 1}&choise=${choise}`}>
+                      {page + 1}
                     </a>
                   </li>
                 )}
@@ -133,7 +162,14 @@ function CategoryProducts() {
             )}
 
             <li class="page-item">
-              <a class="page-link" href={`?whichPage=${parseInt(numberOfProductByCategory/2)+1}`}>
+              <a
+                class="page-link"
+                href={`?whichPage=${
+                  parseInt(numberOfProductByCategory / limit) === 0
+                    ? 1
+                    : parseInt(numberOfProductByCategory / limit)
+                }&choise=${choise}`}
+              >
                 Last Page
               </a>
             </li>

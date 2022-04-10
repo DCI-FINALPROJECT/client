@@ -80,13 +80,13 @@ function Header() {
                   >
                     {categories.map((category, index) => {
                       return (
-                        <Link key={index} to={`/category/${category}`}>
+                        <a key={index} href={`/category/${category}`}>
                           <li>
                             <div className="dropdown-item" href="#">
                               {category.toUpperCase()}
                             </div>
                           </li>
-                        </Link>
+                        </a>
                       );
                     })}
                   </div>
