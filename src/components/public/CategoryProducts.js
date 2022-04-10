@@ -9,7 +9,10 @@ function CategoryProducts() {
 
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
 
-  const page = query.get("whichPage");
+  const page =
+    query.get("whichPage") === null ? 1 : parseInt(query.get("whichPage"));
+   
+  const limit = 4;  // If we change this number of limit, we must change also limit of getCategoryWithPage in category.controller.
 
   const [products, setProducts] = useState([]);
   const [numberOfProductByCategory, setNumberOfProductByCategory] = useState(0);
@@ -71,24 +74,21 @@ function CategoryProducts() {
         </div>
         <nav class="ms-3">
           <ul class="pagination">
-            {(query.get("whichPage") === "1" || query.get("whichPage") === null  )&& (
+            {page === 1 && (
               <div className="d-flex">
                 <li class="page-item active">
-                  <a
-                    class="page-link"
-                    href={`?whichPage=${query.get("whichPage")}`}
-                  >
+                  <a class="page-link" href={`?whichPage=${page}`}>
                     1
                   </a>
                 </li>
-                {numberOfProductByCategory / 2 > 1 && (
+                {numberOfProductByCategory / limit > 1 && (
                   <li class="page-item" aria-current="page">
                     <a class="page-link" href={`?whichPage=2`}>
                       2
                     </a>
                   </li>
                 )}
-                {numberOfProductByCategory / 2 > 2 && (
+                {numberOfProductByCategory / limit > 2 && (
                   <li class="page-item" aria-current="page">
                     <a class="page-link" href={`?whichPage=3`}>
                       3
@@ -98,34 +98,22 @@ function CategoryProducts() {
               </div>
             )}
 
-            {query.get("whichPage") !== "1" && (
+            {page !== 1 && (
               <div className="d-flex">
                 <li class="page-item">
-                  <a
-                    class="page-link"
-                    href={`?whichPage=${parseInt(query.get("whichPage")) - 1}`}
-                  >
-                    {(query.get("whichPage")) - 1}
+                  <a class="page-link" href={`?whichPage=${page - 1}`}>
+                    {page - 1}
                   </a>
                 </li>
                 <li class="page-item active" aria-current="page">
-                  <a
-                    class="page-link"
-                    href={`?whichPage=${parseInt(query.get("whichPage"))}`}
-                  >
-                    {query.get("whichPage")}
+                  <a class="page-link" href={`?whichPage=${page}`}>
+                    {page}
                   </a>
                 </li>
-                {parseInt(numberOfProductByCategory / 2) >
-                  parseInt(query.get("whichPage")) - 1 && (
+                {parseInt(numberOfProductByCategory / limit) > (page) && (
                   <li class="page-item" aria-current="page">
-                    <a
-                      class="page-link"
-                      href={`?whichPage=${
-                        parseInt(query.get("whichPage")) + 1
-                      }`}
-                    >
-                      {query.get("whichPage") + 1}
+                    <a class="page-link" href={`?whichPage=${page + 1}`}>
+                      {page + 1}
                     </a>
                   </li>
                 )}
@@ -133,7 +121,12 @@ function CategoryProducts() {
             )}
 
             <li class="page-item">
-              <a class="page-link" href={`?whichPage=${parseInt(numberOfProductByCategory/2)+1}`}>
+              <a
+                class="page-link"
+                href={`?whichPage=${
+                  parseInt(numberOfProductByCategory / limit)
+                }`}
+              >
                 Last Page
               </a>
             </li>
