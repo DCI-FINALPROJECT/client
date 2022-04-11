@@ -7,7 +7,7 @@ function CategoryFilter() {
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const queryBrands = query.get("brands") === null ? [] : query.get("brands");
   const min = query.get("min") === null ? 0 : query.get("min");
-  const max = query.get("max") === null ? 99999999999 : query.get("max");
+  const max = query.get("max") === null ? 0 : query.get("max");
 
   let defaultValues = [];
 
@@ -17,8 +17,8 @@ function CategoryFilter() {
 
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState(defaultValues);
-  const [minPrice,setMinPrice] = useState(0);
-  const [maxPrice,setMaxPrice] = useState(0);
+  const [minPrice,setMinPrice] = useState(min);
+  const [maxPrice,setMaxPrice] = useState(max);
 
   const params = useParams();
 
