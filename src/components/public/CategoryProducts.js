@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { DataStore } from "../../DataStore";
 import CategoryCard from "./CategoryCard";
 
 function CategoryProducts() {
@@ -16,11 +15,11 @@ function CategoryProducts() {
 
   const choise = query.get("choise") === null ? "1" : query.get("choise");
 
-  let defaultChoise = "New Products"; 
+  let defaultChoise = "New Products";
 
-  if(choise==="2"){
+  if (choise === "2") {
     defaultChoise = "Best Sellers";
-  }else if(choise === "3"){
+  } else if (choise === "3") {
     defaultChoise = "Lowest Price";
   }
 
@@ -28,42 +27,65 @@ function CategoryProducts() {
   const [numberOfProductByCategory, setNumberOfProductByCategory] = useState(0);
 
   const getProducts = () => {
-    fetch(`http://localhost:5000/category/${category}/${page}?choise=${choise}`)
+    fetch(
+      `http://localhost:5000/category/${category}/${page}?choise=${choise}&brands=${query.get(
+        "brands"
+      )}&min=${query.get("min")}&max=${query.get("max")}`
+    )
       .then((data) => data.json())
       .then((data) => setProducts(data));
   };
 
+  console.log("PRODUCTS:",products);
+
   const getNumberOfProducts = () => {
     fetch(
-      `http://localhost:5000/category/numberOfProductByCategory/${category}`
+      `http://localhost:5000/category/numberOfProductByCategory/${category}?brands=${query.get(
+        "brands"
+      )}&min=${query.get("min")}&max=${query.get("max")}`
     )
       .then((data) => data.json())
       .then((data) => setNumberOfProductByCategory(data));
   };
 
   const selectedFiltering = (e) => {
-    let urlAddress= "";
+    let urlAddress = "";
     if (e.target.value === "New Products") {
       urlAddress =
         "http://localhost:3000/category/" +
         params.category +
         "?whichPage=1" +
-        "&choise=" +
-        1;
+        "&choise=1" +
+        "&brands=" +
+        query.get("brands") +
+        "&min=" +
+        query.get("min") +
+        "&max=" +
+        query.get("max");
     } else if (e.target.value === "Best Sellers") {
       urlAddress =
-      "http://localhost:3000/category/" +
-      params.category +
-      "?whichPage=1" +
-      "&choise=" +
-      2;
+        "http://localhost:3000/category/" +
+        params.category +
+        "?whichPage=1" +
+        "&choise=2" +
+        "&brands=" +
+        query.get("brands") +
+        "&min=" +
+        query.get("min") +
+        "&max=" +
+        query.get("max");
     } else if (e.target.value === "Lowest Price") {
       urlAddress =
-      "http://localhost:3000/category/" +
-      params.category +
-      "?whichPage=1" +
-      "&choise=" +
-      3;
+        "http://localhost:3000/category/" +
+        params.category +
+        "?whichPage=1" +
+        "&choise=3" +
+        "&brands=" +
+        query.get("brands") +
+        "&min=" +
+        query.get("min") +
+        "&max=" +
+        query.get("max");
     }
 
     window.location.href = urlAddress;
@@ -85,7 +107,7 @@ function CategoryProducts() {
         </strong>
         <div class="ms-auto">
           <select
-          defaultValue={defaultChoise}
+            defaultValue={defaultChoise}
             onChange={selectedFiltering}
             class="form-select d-inline-block w-auto"
           >
@@ -109,7 +131,12 @@ function CategoryProducts() {
 
       <footer class="d-flex mt-4">
         <div>
-          <a href={`?whichPage=1&choise=${choise}`} class="btn btn-light">
+          <a
+            href={`?whichPage=1&choise=${choise}&brands=${query.get(
+              "brands"
+            )}&min=${query.get("min")}&max=${query.get("max")}`}
+            class="btn btn-light"
+          >
             First Page
           </a>
         </div>
@@ -118,20 +145,35 @@ function CategoryProducts() {
             {page === 1 && (
               <div className="d-flex">
                 <li class="page-item active">
-                  <a class="page-link" href={`?whichPage=${page}&choise=${choise}`}>
+                  <a
+                    class="page-link"
+                    href={`?whichPage=${page}&choise=${choise}&brands=${query.get(
+                      "brands"
+                    )}&min=${query.get("min")}&max=${query.get("max")}`}
+                  >
                     1
                   </a>
                 </li>
                 {numberOfProductByCategory / limit > 1 && (
                   <li class="page-item" aria-current="page">
-                    <a class="page-link" href={`?whichPage=2&choise=${choise}`}>
+                    <a
+                      class="page-link"
+                      href={`?whichPage=2&choise=${choise}&brands=${query.get(
+                        "brands"
+                      )}&min=${query.get("min")}&max=${query.get("max")}`}
+                    >
                       2
                     </a>
                   </li>
                 )}
                 {numberOfProductByCategory / limit > 2 && (
                   <li class="page-item" aria-current="page">
-                    <a class="page-link" href={`?whichPage=3&choise=${choise}`}>
+                    <a
+                      class="page-link"
+                      href={`?whichPage=3&choise=${choise}&brands=${query.get(
+                        "brands"
+                      )}&min=${query.get("min")}&max=${query.get("max")}`}
+                    >
                       3
                     </a>
                   </li>
@@ -142,18 +184,37 @@ function CategoryProducts() {
             {page !== 1 && (
               <div className="d-flex">
                 <li class="page-item">
-                  <a class="page-link" href={`?whichPage=${page - 1}&choise=${choise}`}>
+                  <a
+                    class="page-link"
+                    href={`?whichPage=${
+                      page - 1
+                    }&choise=${choise}&brands=${query.get(
+                      "brands"
+                    )}&min=${query.get("min")}&max=${query.get("max")}`}
+                  >
                     {page - 1}
                   </a>
                 </li>
                 <li class="page-item active" aria-current="page">
-                  <a class="page-link" href={`?whichPage=${page}&choise=${choise}`}>
+                  <a
+                    class="page-link"
+                    href={`?whichPage=${page}&choise=${choise}&brands=${query.get(
+                      "brands"
+                    )}&min=${query.get("min")}&max=${query.get("max")}`}
+                  >
                     {page}
                   </a>
                 </li>
-                {parseInt(numberOfProductByCategory / limit) > page && (
+                {numberOfProductByCategory / limit > page && (
                   <li class="page-item" aria-current="page">
-                    <a class="page-link" href={`?whichPage=${page + 1}&choise=${choise}`}>
+                    <a
+                      class="page-link"
+                      href={`?whichPage=${
+                        page + 1
+                      }&choise=${choise}&brands=${query.get(
+                        "brands"
+                      )}&min=${query.get("min")}&max=${query.get("max")}`}
+                    >
                       {page + 1}
                     </a>
                   </li>
@@ -165,10 +226,12 @@ function CategoryProducts() {
               <a
                 class="page-link"
                 href={`?whichPage=${
-                  parseInt(numberOfProductByCategory / limit) === 0
+                  numberOfProductByCategory / limit === 0
                     ? 1
-                    : parseInt(numberOfProductByCategory / limit)
-                }&choise=${choise}`}
+                    : Math.ceil(numberOfProductByCategory / limit)
+                }&choise=${choise}&brands=${query.get(
+                  "brands"
+                )}&min=${query.get("min")}&max=${query.get("max")}`}
               >
                 Last Page
               </a>

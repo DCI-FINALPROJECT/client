@@ -1,8 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 
 function Header() {
+
+  const query = new URLSearchParams(useLocation().search); // Getting query from URL
+  const choise = query.get("choise") === null ? "1" : query.get("choise");
+  const queryBrands = query.get("brands") === null ? [] : query.get("brands");
+  const min = query.get("min") === null ? 0 : query.get("min");
+  const max = query.get("max") === null ? 99999999999 : query.get("max");
+
   const [loginMessage, setLoginMessage] = useState("");
 
   const {
@@ -39,7 +46,6 @@ function Header() {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log("DATATATA", data);
         setLoginMessage(data.message);
         setUser(data.userInformation);
         localStorage.setItem("userToken", data.userToken);
@@ -80,7 +86,7 @@ function Header() {
                   >
                     {categories.map((category, index) => {
                       return (
-                        <a key={index} href={`/category/${category}`}>
+                        <a key={index} href={`/category/${category}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}`}>
                           <li>
                             <div className="dropdown-item" href="#">
                               {category.toUpperCase()}

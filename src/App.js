@@ -81,7 +81,6 @@ function App() {
 
   useEffect(() => {
     const getUserWithPassportJs = () => {
-      console.log("Hello");
       fetch("http://localhost:5000/auth/login/success", {
         method: "GET",
         credentials: "include",
@@ -106,7 +105,6 @@ function App() {
     getUserWithPassportJs();
   }, []);
 
-  console.log("Product", productById);
 
   return (
     <div className="App">

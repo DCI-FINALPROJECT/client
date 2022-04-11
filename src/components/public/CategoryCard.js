@@ -33,10 +33,12 @@ function CategoryCard({product}) {
             </ul>
             <span class="label-rating text-warning">4.5</span>
             <i class="dot"></i>
-            <span class="label-rating text-muted">154 orders</span>
+            <span class="label-rating text-muted">{product.sales}</span>
           </div>
           <p>
-            {product.description}
+            {product.description} 
+            <div>Category: {product.category}</div> 
+            <div>Brand: {product.brand}</div> 
           </p>
         </div>
         </Link>
