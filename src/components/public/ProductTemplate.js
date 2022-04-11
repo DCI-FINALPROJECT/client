@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import ProductDescription from "./ProductDescription";
-import ProductReview from "./ProductReview";
+import ProductReview from "./ProductReviewsAll";
 import SimilarProducts from "./SimilarProducts";
 
 export default function ProductTemplate() {

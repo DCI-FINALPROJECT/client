@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext, useState } from "react";
 import { DataStore } from "../../DataStore";
+import ProductDescription from "./ProductDescription";
 
 function ProductCard() {
   // ProductById is for ProductCard come from App.js via useContext
@@ -58,13 +59,29 @@ function ProductCard() {
                         />
                       </li>
                     </ul>
-                    <b className="label-rating text-warning">
-                      {" "}
-                      {productById.stars}
-                    </b>
-                    <i className="dot"></i>
+                    <ul className="rating-stars">
+                      <li
+                        style={{ width: `${productById.stars*20}%` }}
+                        className="stars-active"
+                      >
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                      </li>
+                      <li>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                      </li>
+                    </ul>
+                    <i className="dot">{productById.stars}</i>
                     <span className="label-rating text-muted">
-                      <i className="fa fa-shopping-basket"></i> 154 orders
+                      <i className="fa fa-shopping-basket"></i>{" "}
+                      {productById.sales} orders
                     </span>
                     <i className="dot"></i>
                     <span className="label-rating text-success">Verified</span>
