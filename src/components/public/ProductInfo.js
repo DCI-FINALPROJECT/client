@@ -11,7 +11,7 @@ function ProductInfo({product}) {
               <a href="/">Homepage</a>
             </li>
             <li className="breadcrumb-item">
-              <Link to={`/category/${product.category}`}>
+              <Link to={`/category/${product.category}?whichPage=1&choise=&brands=&min=&max=`}>
                {product.category}
               </Link>
             </li>

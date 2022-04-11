@@ -2,19 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 function CategoryFilter() {
-
   const query = new URLSearchParams(useLocation().search);
 
+  const choise = query.get("choise") === null ? "1" : query.get("choise");
+  const queryBrands = query.get("brands") === null ? [] : query.get("brands");
+  const min = query.get("min") === null ? 0 : query.get("min");
+  const max = query.get("max") === null ? 99999999999 : query.get("max");
 
   let defaultValues = [];
 
+  if (queryBrands !== [] && queryBrands.length > 0) {
+    defaultValues = queryBrands.split(",");
+  }
+
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState(defaultValues);
+  const [minPrice,setMinPrice] = useState(0);
+  const [maxPrice,setMaxPrice] = useState(0);
 
-  const params = useParams();  
+  const params = useParams();
 
-
-  
+  const category = params.category;
 
   const changingBrand = (e) => {
     const options = selectedBrands;
@@ -30,10 +38,21 @@ function CategoryFilter() {
     setSelectedBrands(options);
   };
 
-  console.log(selectedBrands);
+  const applyFilter = (e) => {
+    let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}`;
+
+    window.location.href = address;
+  };
+
+  const minPriceChanged = (e) =>{
+      setMinPrice(e.target.value);
+  }
+  const maxPriceChanged = (e) =>{
+      setMaxPrice(e.target.value);
+  }
 
   const getBrandsFromDatabase = () => {
-    fetch("http://localhost:5000/product/brands/filter")
+    fetch(`http://localhost:5000/product/brands/filter/${params.category}`)
       .then((data) => data.json())
       .then((data) => setBrands(data));
   };
@@ -71,7 +90,11 @@ function CategoryFilter() {
                 return (
                   <label class="form-check mb-2">
                     <input
-                      defaultChecked={selectedBrands.includes(Object.keys(brand)) ? true : false}
+                      defaultChecked={
+                        selectedBrands.includes(Object.keys(brand)[0])
+                          ? true
+                          : false
+                      }
                       onChange={changingBrand}
                       class="form-check-input"
                       type="checkbox"
@@ -109,10 +132,12 @@ function CategoryFilter() {
                     Min
                   </label>
                   <input
+                    onChange={minPriceChanged}
                     class="form-control"
                     id="min"
                     placeholder="$0"
                     type="number"
+                    defaultValue={minPrice}
                   />
                 </div>
 
@@ -121,14 +146,20 @@ function CategoryFilter() {
                     Max
                   </label>
                   <input
+                    onChange={maxPriceChanged}
                     class="form-control"
                     id="max"
                     placeholder="$1,0000"
                     type="number"
+                    defaultValue={maxPrice}
                   />
                 </div>
               </div>
-              <button  class="btn btn-light w-100" type="button">
+              <button
+                onClick={applyFilter}
+                class="btn btn-light w-100"
+                type="button"
+              >
                 Apply
               </button>
             </div>
