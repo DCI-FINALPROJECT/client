@@ -8,7 +8,7 @@ function Header() {
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const queryBrands = query.get("brands") === null ? [] : query.get("brands");
   const min = query.get("min") === null ? 0 : query.get("min");
-  const max = query.get("max") === null ? 99999999999 : query.get("max");
+  const max = query.get("max") === null ? 0 : query.get("max");
 
   const [loginMessage, setLoginMessage] = useState("");
 
