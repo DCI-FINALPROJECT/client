@@ -47,7 +47,7 @@ function AdminTemplate() {
           <div className="card m-auto " style={{ width: "50%" }}>
             <article className="card-body">
               <h4 className="mb-4">Add product</h4>
-              <form onSubmit={submitHandler}>
+              <form onSubmit={submitHandler} method= "post" enctype="multipart/form-data">
                 {/* product name */}
                 <div className="row mb-4">
                   <label className="col-3 col-form-label">Product Name</label>
@@ -108,7 +108,7 @@ function AdminTemplate() {
                   </label>
                   <div className="col-9">
                     <input
-                      type="text"
+                      type="file"
                       className="form-control"
                       placeholder="Type here"
                       name="images"
