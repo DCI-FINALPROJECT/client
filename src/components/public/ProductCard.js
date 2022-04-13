@@ -1,17 +1,65 @@
 import React from "react";
 import { useContext, useState } from "react";
+import { Cookies, useCookies } from "react-cookie";
 import { DataStore } from "../../DataStore";
 
 function ProductCard() {
   // ProductById is for ProductCard come from App.js via useContext
-  const { productById,productStars } = useContext(DataStore);
+  const { productById, productStars } = useContext(DataStore);
 
   // This state is for selected image.
   const [image, setImage] = useState(0);
 
+  const [inStock, setInStock] = useState(true);
 
-  console.log("PS",productStars);
+  const [cookies, setCookies] = useCookies(["cart"]);
 
+  const [quantities, setQuantities] = useState(1);
+
+  const [color, setColor] = useState("black");
+
+  const [capacity,setCapacity] = useState("64gb");
+
+  const addToCart = (e) => {
+    console.log(productById);
+
+    let array = new Cookies().get("cart") || [];
+
+    let isProductAlreadyInCart = false;
+
+    array.forEach((element) => {
+      if (element.id === productById._id && element.color === color && element.capacity === capacity) {
+        isProductAlreadyInCart = true;
+
+        element.quantities += quantities;
+      }
+    });
+
+    if (!isProductAlreadyInCart) {
+      array.push({
+        id: productById._id,
+        productName: productById.productName,
+        brand: productById.brand,
+        price: productById.price,
+        images: productById.images,
+        quantities: quantities,
+        color: color,
+        capacity:capacity
+      });
+    }
+
+    setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
+
+    console.log("Cookie:", array);
+  };
+
+  const selectedColor = (e) => {
+    setColor(e.target.value);
+  };
+
+  const selectedCapacity = (e) =>{
+    setCapacity(e.target.value);
+  }
 
   return (
     <div>
@@ -48,10 +96,9 @@ function ProductCard() {
                 <article className="ps-lg-3">
                   <h4 className="title text-dark">{productById.productName}</h4>
                   <div className="rating-wrap my-3" bis_skin_checked="1">
-                 
                     <ul className="rating-stars">
                       <li
-                        style={{ width: `${productStars*20}%` }}
+                        style={{ width: `${productStars * 20}%` }}
                         className="stars-active"
                       >
                         <i className="fa fa-star"></i>
@@ -94,38 +141,52 @@ function ProductCard() {
                   <hr />
                   <div className="row" bis_skin_checked="1">
                     <div className="col-md-3 mb-3" bis_skin_checked="1">
-                      <select className="form-select">
-                        <option selected="">Select size</option>
-                        <option>Small</option> <option>Medium</option>
-                        <option>Large</option>
+                      <select onChange={selectedCapacity} className="form-select">
+                        <option>64 GB</option>
+                        <option>128 GB</option>
+                        <option>256 GB</option>
+                        <option>512 GB</option>
                       </select>
                     </div>
                     <div className="col-md mb-3" bis_skin_checked="1">
                       <div className="mt-2" bis_skin_checked="1">
                         <label className="form-check form-check-inline">
                           <input
+                            onChange={selectedColor}
                             className="form-check-input"
                             type="radio"
                             name="choose_11"
-                            value="option1"
+                            value="red"
+                          />
+                          <span className="form-check-label">Black</span>
+                        </label>
+                        <label className="form-check form-check-inline">
+                          <input
+                            onChange={selectedColor}
+                            className="form-check-input"
+                            type="radio"
+                            name="choose_11"
+                            value="red"
                           />
                           <span className="form-check-label">Red</span>
                         </label>
                         <label className="form-check form-check-inline">
                           <input
+                            onChange={selectedColor}
                             className="form-check-input"
                             type="radio"
                             name="choose_11"
-                            value="option1"
+                            value="green"
                           />
                           <span className="form-check-label">Green</span>
                         </label>
                         <label className="form-check form-check-inline">
                           <input
+                            onChange={selectedColor}
                             className="form-check-input"
                             type="radio"
                             name="choose_11"
-                            value="option1"
+                            value="blue"
                           />
                           <span className="form-check-label">Blue</span>
                         </label>
@@ -135,9 +196,14 @@ function ProductCard() {
                   <a href="/" className="btn btn-warning">
                     Buy now
                   </a>
-                  <a href="/" className="btn btn-primary">
+                  <button
+                    onClick={addToCart}
+                    className={`btn btn-primary ${
+                      inStock === false && "disabled"
+                    }`}
+                  >
                     <i className="me-2 fa fa-shopping-basket"></i> Add to cart
-                  </a>
+                  </button>
                   <a href="/" className="btn btn-light">
                     <i className="me-2 fa fa-heart"></i> Save
                   </a>
