@@ -1,44 +1,35 @@
 import React, { useState } from "react";
 
 function AdminTemplate() {
-
   const [addProduct, setAddProduct] = useState({
     productName: "",
     category: "",
     brand: "",
     price: 0,
-    description:"",
-    images:[],
-    quantities: []
-
+    description: "",
+    images: [],
+    quantities: [],
   });
 
-  function submitHandler(e){
+  function submitHandler(e) {
     e.preventDefault();
-    
-    
+
     fetch("http://localhost:5000/addproduct", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(addProduct),
-    })
-    .then(res => console.log(res))
-       
-    }
+    }).then((res) => console.log(res));
+  }
 
+  function changeHandle(e) {
+    let dataByInput = e.target.value;
 
-   function changeHandle(e){
-     let dataByInput= e.target.value
-     
-
-       setAddProduct({...addProduct, [e.target.name]: dataByInput})
-     
+    setAddProduct({ ...addProduct, [e.target.name]: dataByInput });
   }
 
   console.log("addproduct", addProduct);
-
 
   return (
     <div className="bg">
@@ -47,7 +38,12 @@ function AdminTemplate() {
           <div className="card m-auto " style={{ width: "50%" }}>
             <article className="card-body">
               <h4 className="mb-4">Add product</h4>
-              <form onSubmit={submitHandler} method= "post" enctype="multipart/form-data">
+              <form
+                action="/addproduct"
+                onSubmit={submitHandler}
+                method="post"
+                enctype="multipart/form-data"
+              >
                 {/* product name */}
                 <div className="row mb-4">
                   <label className="col-3 col-form-label">Product Name</label>
