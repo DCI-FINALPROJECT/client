@@ -139,6 +139,7 @@ function App() {
           <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
           <Route path="/search/:productName" element={<SearchPage />} />
           <Route path="/category/:category" element={<CategoryPage />} />
+
         </Routes>
       </DataStore.Provider>
     </div>
