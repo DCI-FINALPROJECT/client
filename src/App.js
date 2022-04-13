@@ -21,8 +21,6 @@ function App() {
     price: "",
     describtion: "",
     images: [],
-    reviews: "",
-    stars: "",
     quantities: [],
   });
 
@@ -35,6 +33,8 @@ function App() {
   const [categories, setCategories] = useState([]);
 
   const [clicked,setClicked] = useState(""); // With this state we can control amendment of selected product.
+
+  const [productStars,setProductStars] = useState(0);
 
 // get allProducts in frontend
   const loadProducts = async () => {
@@ -121,7 +121,9 @@ function App() {
           categories,
           setCategories,
           clicked,
-          setClicked
+          setClicked,
+          productStars,
+          setProductStars
         }}
       >
 
@@ -132,7 +134,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin/addproduct" element={<AdminPage />} />
           <Route path="/user" element={<UserPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage  />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
           <Route path="/search/:productName" element={<SearchPage />} />
