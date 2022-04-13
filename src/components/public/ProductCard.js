@@ -4,12 +4,14 @@ import { DataStore } from "../../DataStore";
 
 function ProductCard() {
   // ProductById is for ProductCard come from App.js via useContext
-  const { productById } = useContext(DataStore);
+  const { productById,productStars } = useContext(DataStore);
 
   // This state is for selected image.
   const [image, setImage] = useState(0);
 
-  console.log("PRODUCT_CARD:", productById, image);
+
+  console.log("PS",productStars);
+
 
   return (
     <div>
@@ -49,7 +51,7 @@ function ProductCard() {
                  
                     <ul className="rating-stars">
                       <li
-                        style={{ width: `${productById.stars*20}%` }}
+                        style={{ width: `${productStars*20}%` }}
                         className="stars-active"
                       >
                         <i className="fa fa-star"></i>
@@ -66,7 +68,7 @@ function ProductCard() {
                         <i className="fa fa-star"></i>
                       </li>
                     </ul>
-                    <i className="dot">{productById.stars}</i>
+                    <i className="dot">{productStars.toFixed(1)}</i>
                     <span className="label-rating text-muted">
                       <i className="fa fa-shopping-basket"></i>{" "}
                       {productById.sales} orders
