@@ -2,6 +2,8 @@ import React from "react";
 import { useContext, useState } from "react";
 import { Cookies, useCookies } from "react-cookie";
 import { DataStore } from "../../DataStore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProductCard() {
   // ProductById is for ProductCard come from App.js via useContext
@@ -11,6 +13,7 @@ function ProductCard() {
   const [image, setImage] = useState(0);
 
   const [inStock, setInStock] = useState(true);
+  const [stockMessage, setStockMessage] = useState("");
 
   const [cookies, setCookies] = useCookies(["cart"]);
 
@@ -18,24 +21,32 @@ function ProductCard() {
 
   const [color, setColor] = useState("black");
 
-  const [capacity,setCapacity] = useState("64gb");
+  const [capacity, setCapacity] = useState("64 GB");
 
   const addToCart = (e) => {
-    console.log(productById);
 
     let array = new Cookies().get("cart") || [];
 
     let isProductAlreadyInCart = false;
 
     array.forEach((element) => {
-      if (element.id === productById._id && element.color === color && element.capacity === capacity) {
-        isProductAlreadyInCart = true;
 
-        element.quantities += quantities;
+      console.log(element);
+
+      if (productById[capacity][color] ) {
+        if (
+          element.id === productById._id &&
+          element.color === color &&
+          element.capacity === capacity
+        ) {
+          isProductAlreadyInCart = true;
+
+          element.quantities += quantities;
+        }
       }
     });
 
-    if (!isProductAlreadyInCart) {
+    if ( productById[capacity][color] > 0 && !isProductAlreadyInCart) {
       array.push({
         id: productById._id,
         productName: productById.productName,
@@ -44,11 +55,15 @@ function ProductCard() {
         images: productById.images,
         quantities: quantities,
         color: color,
-        capacity:capacity
+        capacity: capacity,
       });
     }
 
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
+
+    if (stockMessage.length === 0) {
+      toast.success("Sepete eklendi...");
+    }
 
     console.log("Cookie:", array);
   };
@@ -57,13 +72,27 @@ function ProductCard() {
     setColor(e.target.value);
   };
 
-  const selectedCapacity = (e) =>{
+  const selectedCapacity = (e) => {
     setCapacity(e.target.value);
-  }
+  };
+
+  const stockControl = () => {
+   
+
+    if (productById[capacity][color] <= 0) {
+      setInStock(false);
+      setStockMessage("This product is not in our stock!");
+    } else {
+      setInStock(true);
+      setStockMessage("");
+    }
+  };
+ 
 
   return (
     <div>
       {/* product */}
+      <ToastContainer />
       <div>
         <section className="padding-y bg-white shadow-sm">
           <div className="container" bis_skin_checked="1">
@@ -85,6 +114,7 @@ function ProductCard() {
                           <img
                             onClick={() => setImage(index)}
                             src={productById.images[index]}
+                            alt=""
                           />
                         </span>
                       );
@@ -141,7 +171,10 @@ function ProductCard() {
                   <hr />
                   <div className="row" bis_skin_checked="1">
                     <div className="col-md-3 mb-3" bis_skin_checked="1">
-                      <select onChange={selectedCapacity} className="form-select">
+                      <select
+                        onChange={selectedCapacity}
+                        className="form-select"
+                      >
                         <option>64 GB</option>
                         <option>128 GB</option>
                         <option>256 GB</option>
@@ -156,7 +189,8 @@ function ProductCard() {
                             className="form-check-input"
                             type="radio"
                             name="choose_11"
-                            value="red"
+                            value="black"
+                            defaultChecked="true"
                           />
                           <span className="form-check-label">Black</span>
                         </label>
@@ -193,20 +227,32 @@ function ProductCard() {
                       </div>
                     </div>
                   </div>
-                  <a href="/" className="btn btn-warning">
-                    Buy now
-                  </a>
                   <button
-                    onClick={addToCart}
-                    className={`btn btn-primary ${
-                      inStock === false && "disabled"
-                    }`}
+                    onClick={() => {
+                      stockControl();
+                      addToCart();
+                    }}
+                    className="btn btn-warning"
+                  >
+                    Buy now
+                  </button>
+                  <button
+                    onClick={() => {
+                      stockControl();
+                      addToCart();
+                    }}
+                    className="btn btn-primary ml-2"
                   >
                     <i className="me-2 fa fa-shopping-basket"></i> Add to cart
                   </button>
                   <a href="/" className="btn btn-light">
                     <i className="me-2 fa fa-heart"></i> Save
                   </a>
+                  <br />
+                  <br />
+                  <h4 className="text-danger">
+                    {stockMessage.length > 0 && stockMessage}
+                  </h4>
                 </article>
               </div>
             </div>
