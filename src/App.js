@@ -22,8 +22,6 @@ function App() {
     price: "",
     describtion: "",
     images: [],
-    reviews: "",
-    stars: "",
     quantities: [],
   });
 
@@ -36,6 +34,9 @@ function App() {
   const [categories, setCategories] = useState([]);
 
   const [clicked,setClicked] = useState(""); // With this state we can control amendment of selected product.
+
+
+  const [productStars,setProductStars] = useState(0);
 
 
 // get allProducts in frontend
@@ -123,7 +124,9 @@ function App() {
           categories,
           setCategories,
           clicked,
-          setClicked
+          setClicked,
+          productStars,
+          setProductStars
         }}
       >
 
@@ -135,11 +138,12 @@ function App() {
           <Route path="/admin/addproduct" element={<AdminPage />} />
           <Route path="/admin/deleteproduct/:productName" element={<DeletePage/>} />
           <Route path="/user" element={<UserPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage  />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
           <Route path="/search/:productName" element={<SearchPage />} />
           <Route path="/category/:category" element={<CategoryPage />} />
+
         </Routes>
       </DataStore.Provider>
     </div>

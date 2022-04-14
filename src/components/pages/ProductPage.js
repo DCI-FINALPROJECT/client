@@ -8,7 +8,9 @@ import { useParams } from "react-router-dom";
 import ProductInfo from "../public/ProductInfo";
 
 export default function ProductPage() {
-  const { productById,setProductById,clicked } = useContext(DataStore);
+  const { productById,setProductById,clicked,productStars } = useContext(DataStore);
+
+  console.log("jlsjdflk:",productStars);
 
   const params = useParams();
 
@@ -23,7 +25,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     getProductById();
-  }, [clicked]);
+  }, [clicked,productStars,id]);
 
 
   return (

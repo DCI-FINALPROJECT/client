@@ -1,16 +1,17 @@
 import React from "react";
 import { useContext, useState } from "react";
 import { DataStore } from "../../DataStore";
-import ProductDescription from "./ProductDescription";
 
 function ProductCard() {
   // ProductById is for ProductCard come from App.js via useContext
-  const { productById } = useContext(DataStore);
+  const { productById,productStars } = useContext(DataStore);
 
   // This state is for selected image.
   const [image, setImage] = useState(0);
 
-  console.log("PRODUCT_CARD:", productById, image);
+
+  console.log("PS",productStars);
+
 
   return (
     <div>
@@ -47,21 +48,10 @@ function ProductCard() {
                 <article className="ps-lg-3">
                   <h4 className="title text-dark">{productById.productName}</h4>
                   <div className="rating-wrap my-3" bis_skin_checked="1">
-                    <ul className="rating-stars">
-                      <li style={{ width: "80%" }} className="stars-active">
-                        <img src="images/misc/stars-active.svg" alt="" />
-                      </li>
-                      <li>
-                        <img
-                          height="520"
-                          src="images/misc/starts-disable.svg"
-                          alt=""
-                        />
-                      </li>
-                    </ul>
+                 
                     <ul className="rating-stars">
                       <li
-                        style={{ width: `${productById.stars*20}%` }}
+                        style={{ width: `${productStars*20}%` }}
                         className="stars-active"
                       >
                         <i className="fa fa-star"></i>
@@ -78,7 +68,7 @@ function ProductCard() {
                         <i className="fa fa-star"></i>
                       </li>
                     </ul>
-                    <i className="dot">{productById.stars}</i>
+                    <i className="dot">{productStars.toFixed(1)}</i>
                     <span className="label-rating text-muted">
                       <i className="fa fa-shopping-basket"></i>{" "}
                       {productById.sales} orders
