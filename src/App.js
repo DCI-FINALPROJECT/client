@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import react, { useState, useEffect } from "react";
 import SearchPage from "./components/pages/SearchPage";
 import CategoryPage from "./components/pages/CategoryPage";
+import DeletePage from "./components/pages/DeletePage";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -34,7 +35,9 @@ function App() {
 
   const [clicked,setClicked] = useState(""); // With this state we can control amendment of selected product.
 
+
   const [productStars,setProductStars] = useState(0);
+
 
 // get allProducts in frontend
   const loadProducts = async () => {
@@ -48,7 +51,7 @@ function App() {
       await loadProducts();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [clicked]);
 
 //Add all categories in categoryArray
   const categoryArray = [];
@@ -133,6 +136,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin/addproduct" element={<AdminPage />} />
+          <Route path="/admin/deleteproduct/:productName" element={<DeletePage/>} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/product/:id" element={<ProductPage  />} />
           <Route path="/payment" element={<PaymentPage />} />
