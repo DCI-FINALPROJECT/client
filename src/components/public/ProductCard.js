@@ -13,6 +13,9 @@ function ProductCard() {
   const [image, setImage] = useState(0);
 
   const [inStock, setInStock] = useState(true);
+
+  console.log("inStock",inStock);
+
   const [stockMessage, setStockMessage] = useState("");
 
   const [cookies, setCookies] = useCookies(["cart"]);
@@ -24,16 +27,14 @@ function ProductCard() {
   const [capacity, setCapacity] = useState("64 GB");
 
   const addToCart = (e) => {
-
     let array = new Cookies().get("cart") || [];
 
     let isProductAlreadyInCart = false;
 
     array.forEach((element) => {
-
       console.log(element);
 
-      if (productById[capacity][color] ) {
+      if (productById[capacity][color]) {
         if (
           element.id === productById._id &&
           element.color === color &&
@@ -46,7 +47,7 @@ function ProductCard() {
       }
     });
 
-    if ( productById[capacity][color] > 0 && !isProductAlreadyInCart) {
+    if (productById[capacity][color] > 0 && !isProductAlreadyInCart) {
       array.push({
         id: productById._id,
         productName: productById.productName,
@@ -62,32 +63,189 @@ function ProductCard() {
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
 
     if (stockMessage.length === 0) {
-      toast.success("Sepete eklendi...");
+      toast.success(`${quantities} adet ${capacity} ürün sepete eklendi...`);
     }
 
     console.log("Cookie:", array);
   };
 
   const selectedColor = (e) => {
+    console.log(e.target.value);
     setColor(e.target.value);
+    stockControl(quantities+1);
   };
 
   const selectedCapacity = (e) => {
     setCapacity(e.target.value);
+    stockControl();
   };
 
-  const stockControl = () => {
-   
-
-    if (productById[capacity][color] <= 0) {
-      setInStock(false);
-      setStockMessage("This product is not in our stock!");
-    } else {
-      setInStock(true);
-      setStockMessage("");
+  const artir = () => {
+    setQuantities(quantities + 1);
+    stockControl(quantities + 1);
+  };
+  const azalt = () => {
+    if (quantities > 1) {
+      setQuantities(quantities - 1);
+      stockControl(quantities - 1);
     }
   };
- 
+
+  const stockControl = (num=1) => {
+
+    console.log(productById);
+
+    console.log(capacity, num, color);
+    console.log(productById[capacity][color]);
+
+
+    if (capacity === "64 GB" && color === "black") {
+      if (quantities > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    } 
+    else if (capacity === "64 GB" && color === "red") {
+      if (quantities > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "64 GB" && color === "green") {
+      if (quantities > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "64 GB" && color === "blue") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "128 GB" && color === "black") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+    else if (capacity === "128 GB" && color === "red") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "128 GB" && color === "green") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "128 GB" && color === "blue") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "256 GB" && color === "black") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+    else if (capacity === "256 GB" && color === "red") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "256 GB" && color === "green") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "256 GB" && color === "blue") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "512 GB" && color === "black") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+    else if (capacity === "512 GB" && color === "red") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "512 GB" && color === "green") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+     else if (capacity === "512 GB" && color === "blue") {
+      if (num > productById[capacity][color]) {
+        setInStock(false);
+        setStockMessage("This product is not in our stock!");
+      } else {
+        setInStock(true);
+        setStockMessage("");
+      }
+    }
+  };
+
+
 
   return (
     <div>
@@ -147,7 +305,7 @@ function ProductCard() {
                     </ul>
                     <i className="dot">{productStars.toFixed(1)}</i>
                     <span className="label-rating text-muted">
-                      <i className="fa fa-shopping-basket"></i>{" "}
+                      <i className="fa fa-shopping-basket"></i>
                       {productById.sales} orders
                     </span>
                     <i className="dot"></i>
@@ -161,7 +319,7 @@ function ProductCard() {
                   <dl className="row">
                     <dt className="col-3">Model</dt>
                     <dd className="col-9">{productById.productName}</dd>
-                    <dt className="col-3">Color</dt>{" "}
+                    <dt className="col-3">Color</dt>
                     <dd className="col-9">{}</dd>
                     <dt className="col-3">Material</dt>
                     <dd className="col-9">Cotton, Jeans </dd>
@@ -225,6 +383,45 @@ function ProductCard() {
                           <span className="form-check-label">Blue</span>
                         </label>
                       </div>
+                      <div class="col-auto">
+                        <div class="input-group input-spinner">
+                          <button
+                            onClick={azalt}
+                            class="btn btn-light"
+                            type="button"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              fill="#999"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M19 13H5v-2h14v2z"></path>
+                            </svg>
+                          </button>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value={quantities}
+                          />
+                          <button
+                            onClick={artir}
+                            class="btn btn-light"
+                            type="button"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              fill="#999"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <button
@@ -237,6 +434,7 @@ function ProductCard() {
                     Buy now
                   </button>
                   <button
+                    disabled = {inStock === false && "true"}
                     onClick={() => {
                       stockControl();
                       addToCart();
@@ -248,6 +446,7 @@ function ProductCard() {
                   <a href="/" className="btn btn-light">
                     <i className="me-2 fa fa-heart"></i> Save
                   </a>
+
                   <br />
                   <br />
                   <h4 className="text-danger">
