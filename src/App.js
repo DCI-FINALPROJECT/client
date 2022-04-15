@@ -12,6 +12,8 @@ import { Routes, Route } from "react-router-dom";
 import react, { useState, useEffect } from "react";
 import SearchPage from "./components/pages/SearchPage";
 import CategoryPage from "./components/pages/CategoryPage";
+import ReviewCart from "./components/public/ReviewCart";
+import { CookiesProvider } from "react-cookie";
 import DeletePage from "./components/pages/DeletePage";
 
 function App() {
@@ -20,9 +22,11 @@ function App() {
     category: "",
     brand: "",
     price: "",
-    describtion: "",
+    description: "",
     images: [],
     quantities: [],
+    capacity: "",
+    stock:{Black:0,Red:0,Green:0,Blue:0}
   });
 
   const [user, setUser] = useState();
@@ -33,13 +37,13 @@ function App() {
 
   const [categories, setCategories] = useState([]);
 
-  const [clicked,setClicked] = useState(""); // With this state we can control amendment of selected product.
+  const [clicked, setClicked] = useState(""); // With this state we can control amendment of selected product.
 
 
-  const [productStars,setProductStars] = useState(0);
+
+  const [productStars, setProductStars] = useState(0);
 
 
-// get allProducts in frontend
   const loadProducts = async () => {
     const response = await fetch(`http://localhost:5000/products/all`);
     const productsResponse = await response.json();
@@ -53,7 +57,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clicked]);
 
-//Add all categories in categoryArray
+  //Add all categories in categoryArray
   const categoryArray = [];
   allProducts.forEach((product) => {
     if (!categoryArray.includes(product.category)) {
@@ -64,7 +68,7 @@ function App() {
   useEffect(() => {
     setCategories(categoryArray);
   }, [allProducts]);
-//category finish
+  //category finish
 
   // This useEffect controls whether there are already any token (user) in browser.
   useEffect(() => {
@@ -78,9 +82,6 @@ function App() {
       .then((data) => data.json())
       .then((data) => setUser(data.user));
   }, []);
-
-
-  
 
   useEffect(() => {
     const getUserWithPassportJs = () => {
@@ -108,7 +109,6 @@ function App() {
     getUserWithPassportJs();
   }, []);
 
-
   return (
     <div className="App">
       <DataStore.Provider
@@ -126,25 +126,26 @@ function App() {
           clicked,
           setClicked,
           productStars,
-          setProductStars
+          setProductStars,
         }}
       >
+        <CookiesProvider>
+          <Routes>
+            <Route exact path="/" element={<Homepage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/admin/addproduct" element={<AdminPage />} />              
+            <Route path="/admin/deleteproduct/:productName" element={<DeletePage/>} />
+            <Route path="/user" element={<UserPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
+            <Route path="/search/:productName" element={<SearchPage />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/deneme" element={<ReviewCart />} />
+          </Routes>
+        </CookiesProvider>
 
-      
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/admin/addproduct" element={<AdminPage />} />
-          <Route path="/admin/deleteproduct/:productName" element={<DeletePage/>} />
-          <Route path="/user" element={<UserPage />} />
-          <Route path="/product/:id" element={<ProductPage  />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
-          <Route path="/search/:productName" element={<SearchPage />} />
-          <Route path="/category/:category" element={<CategoryPage />} />
-
-        </Routes>
       </DataStore.Provider>
     </div>
   );
