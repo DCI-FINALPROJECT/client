@@ -24,7 +24,8 @@ function App() {
     description: "",
     images: [],
     quantities: [],
-    capacity: {"64 GB": {black:0,red:0,green:0,blue:0}, "128 GB": {black:0,red:0,green:0,blue:0}, "256 GB": {black:0,red:0,green:0,blue:0}, "512 GB": {black:0,red:0,green:0,blue:0}}
+    capacity: "",
+    stock:{Black:0,Red:0,Green:0,Blue:0}
   });
 
   const [user, setUser] = useState();

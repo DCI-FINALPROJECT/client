@@ -10,7 +10,6 @@ import ProductInfo from "../public/ProductInfo";
 export default function ProductPage() {
   const { productById,setProductById,clicked,productStars } = useContext(DataStore);
 
-  console.log("jlsjdflk:",productStars);
 
   const params = useParams();
 

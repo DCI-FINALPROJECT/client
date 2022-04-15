@@ -8,9 +8,6 @@ function Carrousel2() {
 
   const [allProducts,setAllProducts] = useState([]);
 
-  console.log(allProducts);
-
-
   const getAllProducts = async ()=>{
 
 

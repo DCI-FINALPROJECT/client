@@ -67,7 +67,6 @@ function SimilarProducts() {
     ]
   }
 
-  console.log(selectedCategoryProducts)
   
   return (
       <div className='container'>
