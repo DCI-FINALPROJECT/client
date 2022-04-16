@@ -29,7 +29,7 @@ function SimilarProducts() {
   const similar = async()=>{
 
 
-    await fetch(`http://localhost:5000/product/similar/${productById.category}/${id}`).then(data=>data.json()).then(data=>setSelectedCategoryProducts(data)) 
+    await fetch(`http://localhost:5000/product/similar/${productById.category}/${id}/${productById.productName}`).then(data=>data.json()).then(data=>setSelectedCategoryProducts(data)) 
   }
 
   useEffect(()=>{

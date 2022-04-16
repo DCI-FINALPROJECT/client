@@ -212,7 +212,7 @@ function ProductCard() {
               <div className="col-lg-6" bis_skin_checked="1">
                 <article className="ps-lg-3">
                   <h4 className="title text-dark">
-                    {productById.productDetails}
+                    {productById.productNameWithCapacity}
                   </h4>
                   <div className="rating-wrap my-3" bis_skin_checked="1">
                     <ul className="rating-stars">

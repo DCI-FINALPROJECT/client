@@ -5,7 +5,7 @@ import { DataStore } from "../../DataStore";
 
 export default function ProductReviewsAll() {
 
-  const { setProductStars } = useContext(DataStore);
+  const { productById,setProductStars } = useContext(DataStore);
 
   const [reviews, setReviews] = useState([]);
   const params = useParams();
@@ -13,7 +13,7 @@ export default function ProductReviewsAll() {
 
 
   const getReviewsByProductId = () => {
-    fetch(`http://localhost:5000/review/${params.id}`)
+    fetch(`http://localhost:5000/review/${productById.productName}`)
       .then((data) => data.json())
       .then((data) => {
         let review = 0;

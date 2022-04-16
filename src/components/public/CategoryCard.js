@@ -19,7 +19,7 @@ function CategoryCard({product}) {
       <Link to={`/product/${product._id}`}>
         <div class="card-body">
           <a href="#" class="title h5">
-            {product.productName}
+            {product.productNameWithCapacity}
           </a>
 
           <div class="rating-wrap mb-2">
