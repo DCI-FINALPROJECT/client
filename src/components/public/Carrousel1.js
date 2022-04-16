@@ -6,18 +6,20 @@ import 'slick-carousel/slick/slick-theme.css'
 
 function Carrousel1() {
 
-  const [allProducts,setAllProducts] = useState([]);
+  const [newProducts,setNewProducts] = useState([]);
 
-  const getAllProducts = async ()=>{
+  console.log(newProducts);
+
+  const getNewProducts = async ()=>{
 
 
-    fetch("http://localhost:5000/products/all").then(data=>data.json()).then(data=>setAllProducts(data)) 
+    fetch("http://localhost:5000/products/newProducts").then(data=>data.json()).then(data=>setNewProducts(data)) 
 
   }
 
   useEffect(()=>{
 
-    getAllProducts();
+    getNewProducts();
 
   },[])
 
@@ -53,7 +55,7 @@ function Carrousel1() {
       <Slider {...sliderSettings}>
 
       {
-        allProducts.map(product=>{
+        newProducts.map(product=>{
           return(
            <ProductCardCarrousel
            

@@ -23,8 +23,7 @@ function ProductCardCarrousel({ product }) {
               <strong className="price">$ {product.price}</strong>
             </div>
             <div className="" style={{ height: "100px" }}>
-              <h6 className="">{product.productName}</h6>
-              <p className="title mb-2">{product.description}</p>
+              <h6 className="">{product.productNameWithCapacity}</h6>
             </div>
             <div className="d-flex justify-content-around">
               <a href="#" className="btn btn-yellow">
