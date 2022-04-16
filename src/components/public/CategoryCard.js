@@ -31,7 +31,34 @@ function CategoryCard({product}) {
                 <img src="images/misc/starts-disable.svg" alt="" />
               </li>
             </ul>
-            <span class="label-rating text-warning">4.5</span>
+            <div className="rating-wrap" bis_skin_checked="1">
+                    <ul className="rating-stars">
+                      <li
+                        style={{ width: `${20}%` }}
+                        className="stars-active"
+                      >
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                      </li>
+                      <li>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                      </li>
+                    </ul>
+                    <i className="dot">{(20).toFixed(1)}</i>
+                    <span className="label-rating text-muted">
+                      <i className="fa fa-shopping-basket"></i>
+                       orders
+                    </span>
+                    <i className="dot"></i>
+                    <span className="label-rating text-success">verified</span>
+                  </div>
             <i class="dot"></i>
             <span class="label-rating text-muted">{product.sales}</span>
           </div>

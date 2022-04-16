@@ -3,14 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 
 function Header() {
-
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
   const choise = query.get("choise") === null ? "1" : query.get("choise");
-  const queryBrands = query.get("brands") === null ? [] : query.get("brands");
-  const queryCapacities = query.get("capacities") === null ? [] : query.get("capacities");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
-
 
   const [loginMessage, setLoginMessage] = useState("");
 
@@ -20,7 +16,6 @@ function Header() {
     user,
     setUser,
     categories,
-    setCategories,
   } = useContext(DataStore);
 
   const google = () => {
@@ -55,10 +50,8 @@ function Header() {
       .catch((err) => err);
   };
 
-
   return (
     <div>
-      {user ? `${user.firstName} ${user.email}` : ""}
       <header className="section-header">
         <section className="header-main border-bottom">
           <div className="container">
@@ -88,7 +81,10 @@ function Header() {
                   >
                     {categories.map((category, index) => {
                       return (
-                        <a key={index} href={`/category/${category}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}&capacities=`}>
+                        <a
+                          key={index}
+                          href={`/category/${category}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}&capacities=`}
+                        >
                           <li>
                             <div className="dropdown-item" href="#">
                               {category.toUpperCase()}
@@ -140,75 +136,93 @@ function Header() {
                       </div>
                     </a>
                   </div>
-                  <div className="widget-header dropdown">
-                    <a
-                      href="#"
-                      className="ml-3 icontext"
-                      data-toggle="dropdown"
-                      data-offset="20,10"
-                    >
-                      <div className="icon">
-                        <i className="fa fa-lg fa-user-circle"></i>
-                      </div>
-                      <div className="text">
-                        <small className="text-muted">Sign In / Join</small>{" "}
-                        <br />
-                        <span>
-                          My account <i class="fa fa-caret-down"></i>
-                        </span>
-                      </div>
-                    </a>
-                    <div className="dropdown-menu dropdown-menu-right">
-                      <form className="px-4 py-3">
-                        <div className="form-group">
-                          <label>Email address</label>
-                          <input
-                            id="emailSignIn"
-                            type="email"
-                            className="form-control"
-                            placeholder="email@example.com"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Password</label>
-                          <input
-                            id="passwordSignIn"
-                            type="password"
-                            className="form-control"
-                            placeholder="Password"
-                          />
-                        </div>
-                        <button
-                          onClick={signInWithForm}
-                          type="submit"
-                          className="btn btn-primary"
-                        >
-                          Sign in
-                        </button>
-                        <div>{loginMessage}</div>
-                      </form>
+
+                  {user.email  ? (
+                    <div>
+                      <img
+                        className="border rounded mr-3 ml-3"
+                        style={{ width: "40px" }}
+                        src={user.photo}
+                        alt=""
+                      />
+
                       <button
-                        onClick={google}
-                        type="submit"
-                        className="btn btn-success m-2"
+                        className="btn btn-danger border rounded"
+                        onClick={logout}
                       >
-                        Join with Google
+                        Log out
                       </button>
-                      <hr className="dropdown-divider" />
-                      <Link to="/register" class="dropdown-item" href="#">
-                        Have account? Sign up
-                      </Link>
-                      <a class="dropdown-item" href="#">
-                        Forgot password?
-                      </a>
                     </div>
-                  </div>
-                  <button
-                    className="btn btn-danger border rounded"
-                    onClick={logout}
-                  >
-                    Log out
-                  </button>
+                  ) : (
+                    <div className="widget-header dropdown">
+                      <a
+                        href="#"
+                        className="ml-3 icontext"
+                        data-toggle="dropdown"
+                        data-offset="20,10"
+                      >
+                        <img
+                          className="border rounded mr-3 ml-3"
+                          style={{ width: "40px", height:"40px" }}
+                          src="https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"
+                          alt=""
+                        />
+
+                        <div className="text">
+                          <small className="text-muted">Sign In / Join</small>
+                          <br />
+                          <span>
+                            My account <i class="fa fa-caret-down"></i>
+                          </span>
+                        </div>
+                      </a>
+                      <div className="dropdown-menu dropdown-menu-right">
+                        <form className="px-4 py-3">
+                          <div className="form-group">
+                            <label>Email address</label>
+                            <input
+                              id="emailSignIn"
+                              type="email"
+                              className="form-control"
+                              placeholder="email@example.com"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label>Password</label>
+                            <input
+                              id="passwordSignIn"
+                              type="password"
+                              className="form-control"
+                              placeholder="Password"
+                            />
+                          </div>
+                          <button
+                            onClick={signInWithForm}
+                            type="submit"
+                            className="btn btn-primary"
+                          >
+                            Sign in
+                          </button>
+                          <div>{loginMessage}</div>
+                        </form>
+                        <button
+                          onClick={google}
+                          type="submit"
+                          className="btn btn-success m-2"
+                        >
+                          Join with Google
+                        </button>
+                        <hr className="dropdown-divider" />
+                        <Link to="/register" class="dropdown-item" href="#">
+                          Have account? Sign up
+                        </Link>
+                        <a class="dropdown-item" href="#">
+                          Forgot password?
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               </div>
             </div>

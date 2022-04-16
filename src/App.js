@@ -29,7 +29,7 @@ function App() {
     stock:{Black:0,Red:0,Green:0,Blue:0}
   });
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({photo:"https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png",email:undefined});
 
   const [searchState, setSearchState] = useState("");
 
@@ -39,9 +39,8 @@ function App() {
 
   const [clicked, setClicked] = useState(""); // With this state we can control amendment of selected product.
 
-
-
   const [productStars, setProductStars] = useState(0);
+
 
 
   const loadProducts = async () => {
@@ -82,6 +81,8 @@ function App() {
       .then((data) => data.json())
       .then((data) => setUser(data.user));
   }, []);
+
+  console.log(user);
 
   useEffect(() => {
     const getUserWithPassportJs = () => {

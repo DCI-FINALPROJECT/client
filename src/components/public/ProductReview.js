@@ -1,3 +1,4 @@
+
 import React from "react";
 
 function ProductReview({ review }) {
@@ -5,16 +6,16 @@ function ProductReview({ review }) {
     <blockquote className="border-bottom">
       <div className="icontext d-flex" bis_skin_checked="1">
         <img
-          src="images/avatars/avatar2.jpg"
           className="img-xs icon rounded-circle"
           alt=""
+          src={review.photo}
         />
         <div className="text" bis_skin_checked="1">
           <h6 className="mb-0"> {review.name} </h6>
           <div className="rating-wrap my-3" bis_skin_checked="1">
             <ul className="rating-stars">
               <li
-                style={{ width: `${review.star * 20}%` }}
+                style={{ width: `${review.star}%` }}
                 className="stars-active"
               >
                 <i className="fa fa-star"></i>
@@ -34,11 +35,11 @@ function ProductReview({ review }) {
             <i className="dot">-</i>
 
             <i className="dot">
-              {review.star < 2
+              {review.star / 20 < 2
                 ? "Bad"
-                : review.star < 4
+                : review.star / 20 < 4
                 ? "Ok"
-                : review.star < 5
+                : review.star / 20 < 5
                 ? "Gut"
                 : "Super"}
             </i>
