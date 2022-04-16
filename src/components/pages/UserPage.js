@@ -20,7 +20,6 @@ function UserPage() {
 
     userPagePermissionControl();
 
-    console.log("USERPERM:",userPermission);
 
 
     return (
