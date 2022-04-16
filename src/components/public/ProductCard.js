@@ -80,11 +80,11 @@ function ProductCard() {
     setColor(e.target.value);
     setStockMessage("");
     console.log(productById);
-    directStockControl();
+    directStockControlByColor();
     stockControl();
   };
 
-  function directStockControl() {
+  function directStockControlByColor() {
     if (productById.stock[color] === 0) {
       setInStock(false);
       setStockMessage(
@@ -94,16 +94,17 @@ function ProductCard() {
   }
 
   useEffect(() => {
-    directStockControl();
-  }, [color, params.id]);
+    directStockControlByColor();
+  }, [color, params.id,capacity]);
 
+  
   const selectedCapacity = (e) => {
     setQuantities(1);
     setInStock(true);
     setStockMessage("");
     setCapacity(e.target.value);
     stockControl();
-    directStockControl();
+    directStockControlByColor();
   };
 
   function getProductByCapacity() {
@@ -289,7 +290,6 @@ function ProductCard() {
                             </label>
                           );
                         })}
-                      </div>
                       <div class="col-auto">
                         <div class="input-group input-spinner">
                           <button
@@ -329,6 +329,7 @@ function ProductCard() {
                             </svg>
                           </button>
                         </div>
+                      </div>
                       </div>
                     </div>
                   </div>
