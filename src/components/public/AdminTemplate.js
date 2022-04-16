@@ -14,10 +14,11 @@ function AdminTemplate() {
   function submitHandler(e) {
     e.preventDefault();
 
-    fetch("http://localhost:5000/addproduct", {
+    fetch("http://localhost:5000/admin/addproduct", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.userToken}`,
       },
       body: JSON.stringify(addProduct),
     }).then((res) => console.log(res));
