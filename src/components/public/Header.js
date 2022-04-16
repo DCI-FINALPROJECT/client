@@ -7,8 +7,10 @@ function Header() {
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const queryBrands = query.get("brands") === null ? [] : query.get("brands");
+  const queryCapacities = query.get("capacities") === null ? [] : query.get("capacities");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
+
 
   const [loginMessage, setLoginMessage] = useState("");
 
@@ -86,7 +88,7 @@ function Header() {
                   >
                     {categories.map((category, index) => {
                       return (
-                        <a key={index} href={`/category/${category}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}`}>
+                        <a key={index} href={`/category/${category}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}&capacities=`}>
                           <li>
                             <div className="dropdown-item" href="#">
                               {category.toUpperCase()}
