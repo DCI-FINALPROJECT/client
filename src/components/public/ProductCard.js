@@ -108,7 +108,6 @@ function ProductCard() {
   };
 
   function getProductByCapacity() {
-    console.log(productById);
 
     const data = fetch(
       `http://localhost:5000/product/capacity/${productById.productName}/${capacity}`
@@ -116,7 +115,6 @@ function ProductCard() {
       .then((data) => data.json())
       .then((data) => navigate(`/product/${data.id}`));
 
-    console.log(data.then((data) => console.log(data)));
   }
 
   useEffect(getProductByCapacity, [capacity]);
@@ -217,7 +215,7 @@ function ProductCard() {
                   <div className="rating-wrap my-3" bis_skin_checked="1">
                     <ul className="rating-stars">
                       <li
-                        style={{ width: `${productStars * 20}%` }}
+                        style={{ width: `${productStars}%` }}
                         className="stars-active"
                       >
                         <i className="fa fa-star"></i>

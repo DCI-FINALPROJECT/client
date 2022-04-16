@@ -90,3 +90,10 @@
 .img5 {
   background-image: url(https://images.pexels.com/photos/7550373/pexels-photo-7550373.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
 }
+
+
+/* STAR RATING COLOR */
+
+.checked {
+  color: orange;
+}

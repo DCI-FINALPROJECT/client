@@ -27,7 +27,9 @@ function CategoryFilter() {
   const [minPrice, setMinPrice] = useState(min);
   const [maxPrice, setMaxPrice] = useState(max);
   const [capacities, setCapacities] = useState([]);
-  const [selectedCapacities, setSelectedCapacities] = useState(defaultValuesForCapacities);
+  const [selectedCapacities, setSelectedCapacities] = useState(
+    defaultValuesForCapacities
+  );
 
   const params = useParams();
 
@@ -149,6 +151,141 @@ function CategoryFilter() {
               href="#"
               class="title"
               data-bs-toggle="collapse"
+              data-bs-target="#collapse_aside3"
+            >
+              <i class="icon-control fa fa-chevron-down"></i>
+              Capacity
+            </a>
+          </header>
+          <div class="collapse show" id="collapse_aside3">
+            <div class="card-body">
+              {capacities.map((capacity) => {
+                return (
+                  <label class="checkbox-btn m-1">
+                    <input
+                      onChange={changingCapacity}
+                      value={capacity.capacityName}
+                      type="checkbox"
+                      defaultChecked={
+                        selectedCapacities.includes(capacity.capacityName)
+                          ? true
+                          : false
+                      }
+                    />
+
+                    <span class="btn btn-light"> {capacity.capacityName} </span>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+        </article>
+
+        <article class="filter-group">
+          <header class="card-header">
+            Ratings
+            <a
+              href="#"
+              class="title"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse_aside4"
+            >
+              <i class="icon-control fa fa-chevron-down"></i>
+            </a>
+          </header>
+          <div class="collapse show" id="collapse_aside4">
+            <div class="card-body">
+              <label class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "100%" }}>
+                      <img src="images/misc/stars-active.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="images/misc/starts-disable.svg" alt="" />
+                    </li>
+                  </ul>
+                </span>
+                  <span class="fa fa-star checked"></span>
+               
+              </label>
+              <label class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "80%" }}>
+                      <img src="images/misc/stars-active.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="images/misc/starts-disable.svg" alt="" />
+                    </li>
+                  </ul>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </span>
+              </label>
+              <label class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "60%" }}>
+                      <img src="images/misc/stars-active.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="images/misc/starts-disable.svg" alt="" />
+                    </li>
+                  </ul>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </span>
+              </label>
+              <label class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "40%" }}>
+                      <img src="images/misc/stars-active.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="images/misc/starts-disable.svg" alt="" />
+                    </li>
+                  </ul>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </span>
+              </label>
+              <label class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" value="" />
+                <span class="form-check-label">
+                  <ul class="rating-stars">
+                    <li class="stars-active" style={{ width: "40%" }}>
+                      <img src="images/misc/stars-active.svg" alt="" />
+                    </li>
+                    <li>
+                      <img src="images/misc/starts-disable.svg" alt="" />
+                    </li>
+                  </ul>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <article class="filter-group">
+          <header class="card-header">
+            <a
+              href="#"
+              class="title"
+              data-bs-toggle="collapse"
               data-bs-target="#collapse_aside2"
             >
               <i class="icon-control fa fa-chevron-down"></i>
@@ -194,130 +331,6 @@ function CategoryFilter() {
               >
                 Apply
               </button>
-            </div>
-          </div>
-        </article>
-
-        <article class="filter-group">
-          <header class="card-header">
-            <a
-              href="#"
-              class="title"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse_aside3"
-            >
-              <i class="icon-control fa fa-chevron-down"></i>
-              Capacity
-            </a>
-          </header>
-          <div class="collapse show" id="collapse_aside3">
-            <div class="card-body">
-              {capacities.map((capacity) => {
-                return (
-                  <label class="checkbox-btn m-1">
-                    <input
-                      onChange={changingCapacity}
-                      value={capacity.capacityName}
-                      type="checkbox"
-                      defaultChecked={selectedCapacities.includes(capacity.capacityName)
-                          ? true
-                          : false}
-                    />
-
-                    <span class="btn btn-light"> {capacity.capacityName} </span>
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-        </article>
-
-        <article class="filter-group">
-          <header class="card-header">
-            Ratings
-            <a
-              href="#"
-              class="title"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse_aside4"
-            >
-              <i class="icon-control fa fa-chevron-down"></i>
-            </a>
-          </header>
-          <div class="collapse show" id="collapse_aside4">
-            <div class="card-body">
-              <label class="form-check mb-2">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "100%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                </span>
-              </label>
-              <label class="form-check mb-2">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "80%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                </span>
-              </label>
-              <label class="form-check mb-2">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "60%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                </span>
-              </label>
-              <label class="form-check mb-2">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "40%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                </span>
-              </label>
             </div>
           </div>
         </article>
