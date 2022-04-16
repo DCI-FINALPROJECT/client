@@ -6,19 +6,28 @@ function CategoryFilter() {
 
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const queryBrands = query.get("brands") === null ? [] : query.get("brands");
+  const queryCapacities =
+    query.get("capacities") === null ? [] : query.get("capacities");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
 
-  let defaultValues = [];
+  let defaultValuesForBrands = [];
+  let defaultValuesForCapacities = [];
 
   if (queryBrands !== [] && queryBrands.length > 0) {
-    defaultValues = queryBrands.split(",");
+    defaultValuesForBrands = queryBrands.split(",");
+  }
+
+  if (queryCapacities !== [] && queryCapacities.length > 0) {
+    defaultValuesForCapacities = queryCapacities.split(",");
   }
 
   const [brands, setBrands] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState(defaultValues);
-  const [minPrice,setMinPrice] = useState(min);
-  const [maxPrice,setMaxPrice] = useState(max);
+  const [selectedBrands, setSelectedBrands] = useState(defaultValuesForBrands);
+  const [minPrice, setMinPrice] = useState(min);
+  const [maxPrice, setMaxPrice] = useState(max);
+  const [capacities, setCapacities] = useState([]);
+  const [selectedCapacities, setSelectedCapacities] = useState(defaultValuesForCapacities);
 
   const params = useParams();
 
@@ -38,18 +47,33 @@ function CategoryFilter() {
     setSelectedBrands(options);
   };
 
+  const changingCapacity = (e) => {
+    const options = selectedCapacities;
+
+    let index = 0;
+
+    if (e.target.checked) {
+      options.push(e.target.value);
+    } else {
+      index = options.indexOf(e.target.value);
+      options.splice(index, 1);
+    }
+    setSelectedCapacities(options);
+  };
+  console.log(selectedCapacities);
+
   const applyFilter = (e) => {
-    let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}`;
+    let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}&capacities=${selectedCapacities}`;
 
     window.location.href = address;
   };
 
-  const minPriceChanged = (e) =>{
-      setMinPrice(e.target.value);
-  }
-  const maxPriceChanged = (e) =>{
-      setMaxPrice(e.target.value);
-  }
+  const minPriceChanged = (e) => {
+    setMinPrice(e.target.value);
+  };
+  const maxPriceChanged = (e) => {
+    setMaxPrice(e.target.value);
+  };
 
   const getBrandsFromDatabase = () => {
     fetch(`http://localhost:5000/product/brands/filter/${params.category}`)
@@ -60,6 +84,14 @@ function CategoryFilter() {
   useEffect(() => {
     getBrandsFromDatabase();
   }, []);
+
+  const getAllCapacities = () => {
+    fetch(`http://localhost:5000/capacity/getAllCapacities`)
+      .then((data) => data.json())
+      .then((data) => setCapacities(data));
+  };
+
+  useEffect(getAllCapacities, []);
 
   return (
     <aside class="col-lg-3">
@@ -175,43 +207,41 @@ function CategoryFilter() {
               data-bs-target="#collapse_aside3"
             >
               <i class="icon-control fa fa-chevron-down"></i>
-              Size
+              Capacity
             </a>
           </header>
           <div class="collapse show" id="collapse_aside3">
             <div class="card-body">
-              <label class="checkbox-btn">
-                <input type="checkbox" />
-                <span class="btn btn-light"> XS </span>
-              </label>
+              {capacities.map((capacity) => {
+                return (
+                  <label class="checkbox-btn m-1">
+                    <input
+                      onChange={changingCapacity}
+                      value={capacity.capacityName}
+                      type="checkbox"
+                      defaultChecked={selectedCapacities.includes(capacity.capacityName)
+                          ? true
+                          : false}
+                    />
 
-              <label class="checkbox-btn">
-                <input type="checkbox" />
-                <span class="btn btn-light"> SM </span>
-              </label>
-
-              <label class="checkbox-btn">
-                <input type="checkbox" />
-                <span class="btn btn-light"> LG </span>
-              </label>
-
-              <label class="checkbox-btn">
-                <input type="checkbox" />
-                <span class="btn btn-light"> XXL </span>
-              </label>
+                    <span class="btn btn-light"> {capacity.capacityName} </span>
+                  </label>
+                );
+              })}
             </div>
           </div>
         </article>
 
         <article class="filter-group">
           <header class="card-header">
+            Ratings
             <a
               href="#"
               class="title"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside4"
             >
-              <i class="icon-control fa fa-chevron-down"></i> Ratings
+              <i class="icon-control fa fa-chevron-down"></i>
             </a>
           </header>
           <div class="collapse show" id="collapse_aside4">
