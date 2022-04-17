@@ -83,7 +83,7 @@ function Header() {
                       return (
                         <a
                           key={index}
-                          href={`/category/${category}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}&capacities=`}
+                          href={`/category/${category}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}&capacities=&ratings=`}
                         >
                           <li>
                             <div className="dropdown-item" href="#">

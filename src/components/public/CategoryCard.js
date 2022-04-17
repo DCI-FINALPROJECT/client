@@ -1,7 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { Link } from 'react-router-dom';
+import { DataStore } from '../../DataStore';
 
 function CategoryCard({product}) {
+
+
+  const { productById, productStars } = useContext(DataStore);
+
+  console.log("PRODUCT:",product, productStars);
 
 
   return (
