@@ -15,6 +15,7 @@ import CategoryPage from "./components/pages/CategoryPage";
 import ReviewCart from "./components/public/ReviewCart";
 import { CookiesProvider } from "react-cookie";
 import DeletePage from "./components/pages/DeletePage";
+import EditPage from "./components/pages/EditPage";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -138,6 +139,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />   
             <Route path="/admin/addproduct" element={<AdminPage />} />              
             <Route path="/admin/deleteproduct/:productName" element={<DeletePage/>} />
+            <Route path="/admin/edit/:id" element={<EditPage />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/payment" element={<PaymentPage />} />

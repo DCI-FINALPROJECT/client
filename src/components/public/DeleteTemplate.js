@@ -35,6 +35,9 @@ function DeleteTemplate({ product }) {
             <button onClick={deleteProduct} className="btn btn-danger">
               Delete
             </button>
+            <Link to={`/admin/edit/${product._id}`}  className="btn btn-warning">
+              Edit
+            </Link>
           </div>
         </div>
       </div>
