@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AdminNav from "../public/AdminNav";
 import DeleteArea from "../public/DeleteArea";
 import DeleteHeader from "../public/DeleteHeader";
 import Footer from "../public/Footer";
@@ -23,6 +24,7 @@ function DeletePage() {
   return (
     <div>
       <DeleteHeader />
+      <AdminNav/>
 
       {adminPermission ? <DeleteArea /> : "You are not authorized! "}
 
