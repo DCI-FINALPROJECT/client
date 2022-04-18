@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import AdminNav from '../public/AdminNav'
 import AdminTemplate from '../public/AdminTemplate'
 import Footer from '../public/Footer'
 import Header from '../public/Header'
@@ -23,6 +24,7 @@ function AdminPage() {
     return (
         <div>
             <Header/>
+            <AdminNav/>
             {
                 adminPermission ?  <AdminTemplate/> : "You are not authorized! "
 
