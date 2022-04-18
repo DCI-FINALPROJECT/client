@@ -14,7 +14,6 @@ export default function ProductReviewsAll() {
 
   const [rating, setRating] = useState(0);
 
-  console.log(productById);
 
   const getReviewsByProductName = async() => {
    await fetch(`http://localhost:5000/review/${productById.productName}`)
@@ -82,7 +81,6 @@ export default function ProductReviewsAll() {
     // other logic
   };
 
-  console.log(user);
 
 
   return (
