@@ -8,11 +8,14 @@ function CategoryFilter() {
   const queryBrands = query.get("brands") === null ? [] : query.get("brands");
   const queryCapacities =
     query.get("capacities") === null ? [] : query.get("capacities");
+  const queryRatings =
+    query.get("ratings") === null ? [] : query.get("ratings");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
 
   let defaultValuesForBrands = [];
   let defaultValuesForCapacities = [];
+  let defaultValuesForRatings = [];
 
   if (queryBrands !== [] && queryBrands.length > 0) {
     defaultValuesForBrands = queryBrands.split(",");
@@ -22,6 +25,10 @@ function CategoryFilter() {
     defaultValuesForCapacities = queryCapacities.split(",");
   }
 
+  if (queryRatings !== [] && queryRatings.length > 0) {
+    defaultValuesForRatings = queryRatings.split(",");
+  }
+
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState(defaultValuesForBrands);
   const [minPrice, setMinPrice] = useState(min);
@@ -29,6 +36,9 @@ function CategoryFilter() {
   const [capacities, setCapacities] = useState([]);
   const [selectedCapacities, setSelectedCapacities] = useState(
     defaultValuesForCapacities
+  );
+  const [selectedRatings, setSelectedRatings] = useState(
+    defaultValuesForRatings
   );
 
   const params = useParams();
@@ -62,10 +72,26 @@ function CategoryFilter() {
     }
     setSelectedCapacities(options);
   };
-  console.log(selectedCapacities);
+
+  const changingRatings = (e) => {
+    const options = selectedRatings;
+
+    let index = 0;
+
+    if (e.target.checked) {
+      options.push(e.target.value);
+    } else {
+      index = options.indexOf(e.target.value);
+      options.splice(index, 1);
+    }
+    console.log(options);
+    setSelectedRatings(options);
+  };
+
+  console.log(selectedRatings);
 
   const applyFilter = (e) => {
-    let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}&capacities=${selectedCapacities}`;
+    let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}&capacities=${selectedCapacities}&ratings=${selectedRatings}`;
 
     window.location.href = address;
   };
@@ -196,7 +222,17 @@ function CategoryFilter() {
           <div class="collapse show" id="collapse_aside4">
             <div class="card-body">
               <label class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" />
+                <input
+                  onChange={changingRatings}
+                  class="form-check-input"
+                  type="checkbox"
+                  value="20"
+                  defaultChecked={
+                        selectedRatings.includes("20")
+                          ? true
+                          : false
+                      }
+                />
                 <span class="form-check-label">
                   <ul class="rating-stars">
                     <li class="stars-active" style={{ width: "100%" }}>
@@ -207,11 +243,20 @@ function CategoryFilter() {
                     </li>
                   </ul>
                 </span>
-                  <span class="fa fa-star checked"></span>
-               
+                <span class="fa fa-star checked"></span>
               </label>
               <label class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" />
+                <input
+                  onChange={changingRatings}
+                  class="form-check-input"
+                  type="checkbox"
+                  value="40" 
+                  defaultChecked={
+                        selectedRatings.includes("40")
+                          ? true
+                          : false
+                      }
+                />
                 <span class="form-check-label">
                   <ul class="rating-stars">
                     <li class="stars-active" style={{ width: "80%" }}>
@@ -226,7 +271,17 @@ function CategoryFilter() {
                 </span>
               </label>
               <label class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" />
+                <input
+                  onChange={changingRatings}
+                  class="form-check-input"
+                  type="checkbox"
+                  value="60"
+                  defaultChecked={
+                        selectedRatings.includes("60")
+                          ? true
+                          : false
+                      }
+                />
                 <span class="form-check-label">
                   <ul class="rating-stars">
                     <li class="stars-active" style={{ width: "60%" }}>
@@ -242,7 +297,17 @@ function CategoryFilter() {
                 </span>
               </label>
               <label class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" />
+                <input
+                  onChange={changingRatings}
+                  class="form-check-input"
+                  type="checkbox"
+                  value="80"
+                  defaultChecked={
+                        selectedRatings.includes("80")
+                          ? true
+                          : false
+                      }
+                />
                 <span class="form-check-label">
                   <ul class="rating-stars">
                     <li class="stars-active" style={{ width: "40%" }}>
@@ -259,7 +324,17 @@ function CategoryFilter() {
                 </span>
               </label>
               <label class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" />
+                <input
+                  onChange={changingRatings}
+                  class="form-check-input"
+                  type="checkbox"
+                  value="100"
+                  defaultChecked={
+                        selectedRatings.includes("100")
+                          ? true
+                          : false
+                      }
+                />
                 <span class="form-check-label">
                   <ul class="rating-stars">
                     <li class="stars-active" style={{ width: "40%" }}>
