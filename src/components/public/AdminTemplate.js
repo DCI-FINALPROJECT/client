@@ -163,13 +163,13 @@ function AdminTemplate() {
                 </div>
                 {/* quantities */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">Quantity</label>
+                  <label className="col-3 col-form-label">Capacity</label>
                   <div className="col-9">
                     <input
                       type="text"
                       className="form-control"
                       placeholder="Type here"
-                      name="quantities"
+                      name="Capacity"
                       onChange={changeHandle}
                     />
                   </div>
