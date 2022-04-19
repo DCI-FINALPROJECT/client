@@ -33,7 +33,7 @@ function App() {
 
   const [user, setUser] = useState({photo:"https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png",email:undefined});
 
-  const [searchState, setSearchState] = useState("");
+  const [searchState, setSearchState] = useState("null");
 
   const [allProducts, setAllProducts] = useState([]);
 

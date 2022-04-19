@@ -10,13 +10,8 @@ function Header() {
 
   const [loginMessage, setLoginMessage] = useState("");
 
-  const {
-    searchState,
-    setSearchState,
-    user,
-    setUser,
-    categories,
-  } = useContext(DataStore);
+  const { searchState, setSearchState, user, setUser, categories } =
+    useContext(DataStore);
 
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");
@@ -97,7 +92,7 @@ function Header() {
                 </div>
               </div>
               {/* SEARCH */}
-              <div className="col-md-3">
+              <div className="col-md-4">
                 <form
                   action="#"
                   className="search"
@@ -123,7 +118,7 @@ function Header() {
                 </form>
               </div>
               {/* LOGIN AND CART */}
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="widgets-wrap d-flex justify-content-end">
                   <div className="widget-header">
                     <a href="#" className="icontext">
@@ -137,7 +132,7 @@ function Header() {
                     </a>
                   </div>
 
-                  {user.email  ? (
+                  {user.email ? (
                     <div>
                       <img
                         className="border rounded mr-3 ml-3"
@@ -163,7 +158,7 @@ function Header() {
                       >
                         <img
                           className="border rounded mr-3 ml-3"
-                          style={{ width: "40px", height:"40px" }}
+                          style={{ width: "40px", height: "40px" }}
                           src="https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"
                           alt=""
                         />
@@ -222,7 +217,6 @@ function Header() {
                       </div>
                     </div>
                   )}
-
                 </div>
               </div>
             </div>
