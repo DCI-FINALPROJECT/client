@@ -8,28 +8,13 @@ function CategoryFilter() {
   const queryBrands = query.get("brands") === null ? [] : query.get("brands");
   const queryCapacities =
     query.get("capacities") === null ? [] : query.get("capacities");
-  const queryRatings =
-    query.get("ratings") === null ? "0" : query.get("ratings");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
 
-  let defaultRating = "0";
 
-  if (queryRatings === ">0") {
-    defaultRating = "⭐";
-  } else if (queryRatings === ">20") {
-    defaultRating = "⭐⭐";
-  } else if (queryRatings === ">40") {
-    defaultRating = "⭐⭐⭐";
-  } else if (queryRatings === ">60") {
-    defaultRating = "⭐⭐⭐⭐";
-  } else if (queryRatings === ">80") {
-    defaultRating = "⭐⭐⭐⭐";
-  }
 
   let defaultValuesForBrands = [];
   let defaultValuesForCapacities = [];
-  let defaultValuesForRatings = "0";
 
   if (queryBrands !== [] && queryBrands.length > 0) {
     defaultValuesForBrands = queryBrands.split(",");
@@ -39,11 +24,7 @@ function CategoryFilter() {
     defaultValuesForCapacities = queryCapacities.split(",");
   }
 
-  if (queryRatings !== "" && queryRatings.length > 0) {
-    defaultValuesForRatings = queryRatings;
-  }
 
-  console.log("QR",queryRatings);
 
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState(defaultValuesForBrands);
@@ -52,9 +33,6 @@ function CategoryFilter() {
   const [capacities, setCapacities] = useState([]);
   const [selectedCapacities, setSelectedCapacities] = useState(
     defaultValuesForCapacities
-  );
-  const [selectedRatings, setSelectedRatings] = useState(
-    defaultValuesForRatings
   );
 
   const params = useParams();
@@ -89,30 +67,10 @@ function CategoryFilter() {
     setSelectedCapacities(options);
   };
 
-  const changingRatings = (e) => {
-    let options = selectedRatings;
 
-    console.log(e.target.value);
-
-    if (e.target.value === "⭐") {
-      options = ">0";
-    } else if (e.target.value === "⭐⭐") {
-      options = ">20";
-    } else if (e.target.value === "⭐⭐⭐") {
-      options = ">40";
-    } else if (e.target.value === "⭐⭐⭐⭐") {
-      options = ">60";
-    } else if (e.target.value === "⭐⭐⭐⭐⭐") {
-      options = ">80";
-    }
-    console.log(options);
-    setSelectedRatings(options);
-  };
-
-  console.log("SR", selectedRatings);
 
   const applyFilter = (e) => {
-    let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}&capacities=${selectedCapacities}&ratings=${selectedRatings}`;
+    let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}&capacities=${selectedCapacities}`;
 
     window.location.href = address;
   };
@@ -226,36 +184,6 @@ function CategoryFilter() {
               })}
             </div>
           </div>
-        </article>
-
-        <article class="filter-group">
-          <header class="card-header">
-            <a
-              href="#"
-              class="title"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse_aside4"
-            >
-              <i class="icon-control fa fa-chevron-down"></i>
-              Ratings
-            </a>
-            <div class="collapse show" id="collapse_aside4">
-              <div class="ms-auto">
-                <select
-                  defaultValue={defaultRating}
-                  onChange={changingRatings}
-                  class="form-select d-inline-block w-auto"
-                >
-                  <option>⭐</option>
-                  <option>⭐⭐</option>
-                  <option>⭐⭐⭐</option>
-                  <option>⭐⭐⭐⭐</option>
-                  <option>⭐⭐⭐⭐⭐</option>
-                </select>
-                <div class="btn-group"></div>
-              </div>
-            </div>
-          </header>
         </article>
 
         <article class="filter-group">
