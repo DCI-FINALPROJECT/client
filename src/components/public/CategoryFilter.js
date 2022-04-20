@@ -9,13 +9,27 @@ function CategoryFilter() {
   const queryCapacities =
     query.get("capacities") === null ? [] : query.get("capacities");
   const queryRatings =
-    query.get("ratings") === null ? [] : query.get("ratings");
+    query.get("ratings") === null ? "0" : query.get("ratings");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
 
+  let defaultRating = "0";
+
+  if (queryRatings === ">0") {
+    defaultRating = "⭐";
+  } else if (queryRatings === ">20") {
+    defaultRating = "⭐⭐";
+  } else if (queryRatings === ">40") {
+    defaultRating = "⭐⭐⭐";
+  } else if (queryRatings === ">60") {
+    defaultRating = "⭐⭐⭐⭐";
+  } else if (queryRatings === ">80") {
+    defaultRating = "⭐⭐⭐⭐";
+  }
+
   let defaultValuesForBrands = [];
   let defaultValuesForCapacities = [];
-  let defaultValuesForRatings = [];
+  let defaultValuesForRatings = "0";
 
   if (queryBrands !== [] && queryBrands.length > 0) {
     defaultValuesForBrands = queryBrands.split(",");
@@ -25,9 +39,11 @@ function CategoryFilter() {
     defaultValuesForCapacities = queryCapacities.split(",");
   }
 
-  if (queryRatings !== [] && queryRatings.length > 0) {
-    defaultValuesForRatings = queryRatings.split(",");
+  if (queryRatings !== "" && queryRatings.length > 0) {
+    defaultValuesForRatings = queryRatings;
   }
+
+  console.log("QR",queryRatings);
 
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState(defaultValuesForBrands);
@@ -74,21 +90,26 @@ function CategoryFilter() {
   };
 
   const changingRatings = (e) => {
-    const options = selectedRatings;
+    let options = selectedRatings;
 
-    let index = 0;
+    console.log(e.target.value);
 
-    if (e.target.checked) {
-      options.push(e.target.value);
-    } else {
-      index = options.indexOf(e.target.value);
-      options.splice(index, 1);
+    if (e.target.value === "⭐") {
+      options = ">0";
+    } else if (e.target.value === "⭐⭐") {
+      options = ">20";
+    } else if (e.target.value === "⭐⭐⭐") {
+      options = ">40";
+    } else if (e.target.value === "⭐⭐⭐⭐") {
+      options = ">60";
+    } else if (e.target.value === "⭐⭐⭐⭐⭐") {
+      options = ">80";
     }
     console.log(options);
     setSelectedRatings(options);
   };
 
-  console.log(selectedRatings);
+  console.log("SR", selectedRatings);
 
   const applyFilter = (e) => {
     let address = `http://localhost:3000/category/${category}?whichPage=1&choise=${choise}&brands=${selectedBrands}&min=${minPrice}&max=${maxPrice}&capacities=${selectedCapacities}&ratings=${selectedRatings}`;
@@ -209,7 +230,6 @@ function CategoryFilter() {
 
         <article class="filter-group">
           <header class="card-header">
-            Ratings
             <a
               href="#"
               class="title"
@@ -217,142 +237,25 @@ function CategoryFilter() {
               data-bs-target="#collapse_aside4"
             >
               <i class="icon-control fa fa-chevron-down"></i>
+              Ratings
             </a>
-          </header>
-          <div class="collapse show" id="collapse_aside4">
-            <div class="card-body">
-              <label class="form-check mb-2">
-                <input
+            <div class="collapse show" id="collapse_aside4">
+              <div class="ms-auto">
+                <select
+                  defaultValue={defaultRating}
                   onChange={changingRatings}
-                  class="form-check-input"
-                  type="checkbox"
-                  value="20"
-                  defaultChecked={
-                        selectedRatings.includes("20")
-                          ? true
-                          : false
-                      }
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "100%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                </span>
-                <span class="fa fa-star checked"></span>
-              </label>
-              <label class="form-check mb-2">
-                <input
-                  onChange={changingRatings}
-                  class="form-check-input"
-                  type="checkbox"
-                  value="40" 
-                  defaultChecked={
-                        selectedRatings.includes("40")
-                          ? true
-                          : false
-                      }
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "80%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                </span>
-              </label>
-              <label class="form-check mb-2">
-                <input
-                  onChange={changingRatings}
-                  class="form-check-input"
-                  type="checkbox"
-                  value="60"
-                  defaultChecked={
-                        selectedRatings.includes("60")
-                          ? true
-                          : false
-                      }
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "60%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                </span>
-              </label>
-              <label class="form-check mb-2">
-                <input
-                  onChange={changingRatings}
-                  class="form-check-input"
-                  type="checkbox"
-                  value="80"
-                  defaultChecked={
-                        selectedRatings.includes("80")
-                          ? true
-                          : false
-                      }
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "40%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                </span>
-              </label>
-              <label class="form-check mb-2">
-                <input
-                  onChange={changingRatings}
-                  class="form-check-input"
-                  type="checkbox"
-                  value="100"
-                  defaultChecked={
-                        selectedRatings.includes("100")
-                          ? true
-                          : false
-                      }
-                />
-                <span class="form-check-label">
-                  <ul class="rating-stars">
-                    <li class="stars-active" style={{ width: "40%" }}>
-                      <img src="images/misc/stars-active.svg" alt="" />
-                    </li>
-                    <li>
-                      <img src="images/misc/starts-disable.svg" alt="" />
-                    </li>
-                  </ul>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                </span>
-              </label>
+                  class="form-select d-inline-block w-auto"
+                >
+                  <option>⭐</option>
+                  <option>⭐⭐</option>
+                  <option>⭐⭐⭐</option>
+                  <option>⭐⭐⭐⭐</option>
+                  <option>⭐⭐⭐⭐⭐</option>
+                </select>
+                <div class="btn-group"></div>
+              </div>
             </div>
-          </div>
+          </header>
         </article>
 
         <article class="filter-group">

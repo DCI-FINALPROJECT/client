@@ -112,7 +112,7 @@ export default function ProductReviewsAll() {
                 </ul>
 
                 <strong className="label-rating text-lg">
-                  {(starPoints / reviews.length).toFixed(1)} -
+                  {(starPoints / reviews.length).toFixed(0)}% -
                   <span>{reviews.length} reviews</span>
                 </strong>
 

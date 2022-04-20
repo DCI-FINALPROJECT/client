@@ -25,7 +25,7 @@ function ProductCard() {
 
   const [color, setColor] = useState("Black");
 
-  const [capacity, setCapacity] = useState("64 GB");
+  const [capacity, setCapacity] = useState("");
 
   const [colors, setColors] = useState(
     Object.getOwnPropertyNames(productById.stock)
@@ -232,7 +232,7 @@ function ProductCard() {
                         <i className="fa fa-star"></i>
                       </li>
                     </ul>
-                    <i className="dot">{productStars.toFixed(1)}</i>
+                    <i className="dot">{productStars.toFixed(0)}%</i>
                     <span className="label-rating text-muted">
                       <i className="fa fa-shopping-basket"></i>
                       {productById.sales} orders

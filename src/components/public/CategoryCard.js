@@ -1,9 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { DataStore } from "../../DataStore";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 function CategoryCard({ product }) {
   console.log("PRODUCT:", product);
+
+  const query = new URLSearchParams(useLocation().search);
+
+  const ratings = parseInt(query.get("ratings").substring(1));
+
+  console.log(ratings);
+
+
 
   const [reviews, setReviews] = useState([]);
   const [avarageStarPoints, setAvarageStarPoints] = useState(0);
@@ -33,9 +40,13 @@ function CategoryCard({ product }) {
 
   useEffect(getAvarageStarPoints, [reviews]);
 
+  console.log("ASP:", avarageStarPoints);
+
   return (
     <article class="card card-product-list">
-      <div class="row g-0">
+
+    {
+      avarageStarPoints > 0 && <div class="row g-0">
         <aside class="col-xl-3 col-md-4">
           <Link to={`/product/${product._id}`}>
             <a href="#" class="img-wrap">
@@ -80,7 +91,7 @@ function CategoryCard({ product }) {
                       <i className="fa fa-star"></i>
                     </li>
                   </ul>
-                  <i className="dot">{avarageStarPoints.toFixed(1)}</i>
+                  <i className="dot">{avarageStarPoints.toFixed(0)}%</i>
                   <span className="label-rating text-muted">
                     <i className="fa fa-shopping-basket"></i>
                    {product.sales} orders
@@ -117,6 +128,9 @@ function CategoryCard({ product }) {
           </div>
         </aside>
       </div>
+    }
+
+      
     </article>
   );
 }
