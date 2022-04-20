@@ -5,6 +5,7 @@ import ProductReview from "./ProductReviewsAll";
 import SimilarProducts from "./SimilarProducts";
 
 export default function ProductTemplate() {
+  
   return (
     <div className="container pt-5">
       <ProductCard />
