@@ -32,7 +32,7 @@ function CategoryProducts() {
         "brands"
       )}&min=${query.get("min")}&max=${query.get("max")}&capacities=${query.get(
         "capacities"
-      )}&ratings=${query.get("ratings")}`
+      )}`
     )
       .then((data) => data.json())
       .then((data) => setProducts(data));
@@ -44,7 +44,7 @@ function CategoryProducts() {
         "brands"
       )}&min=${query.get("min")}&max=${query.get("max")}&capacities=${query.get(
         "capacities"
-      )}&ratings=${query.get("ratings")}`
+      )}`
     )
       .then((data) => data.json())
       .then((data) => setNumberOfProductByCategory(data));
@@ -65,9 +65,7 @@ function CategoryProducts() {
         "&max=" +
         query.get("max") +
         "&capacities=" +
-        query.get("capacities") +
-        "&ratings=" +
-        query.get("ratings");
+        query.get("capacities");
     } else if (e.target.value === "Best Sellers") {
       urlAddress =
         "http://localhost:3000/category/" +
@@ -81,9 +79,7 @@ function CategoryProducts() {
         "&max=" +
         query.get("max") +
         "&capacities=" +
-        query.get("capacities") +
-        "&ratings=" +
-        query.get("ratings");
+        query.get("capacities");
     } else if (e.target.value === "Lowest Price") {
       urlAddress =
         "http://localhost:3000/category/" +
@@ -97,9 +93,7 @@ function CategoryProducts() {
         "&max=" +
         query.get("max") +
         "&capacities=" +
-        query.get("capacities") +
-        "&ratings=" +
-        query.get("ratings");
+        query.get("capacities") ;
     }
 
     window.location.href = urlAddress;
@@ -136,6 +130,7 @@ function CategoryProducts() {
       {
         <div className="d-flex flex-wrap justify-content-center">
           {products.map((product) => {
+            
             return <CategoryCard key={product._id} product={product} />;
           })}
         </div>
@@ -150,9 +145,7 @@ function CategoryProducts() {
               "brands"
             )}&min=${query.get("min")}&max=${query.get(
               "max"
-            )}&capacities=${query.get("capacities")}&ratings=${query.get(
-              "ratings"
-            )}`}
+            )}&capacities=${query.get("capacities")}`}
             class="btn btn-light"
           >
             First Page
@@ -171,7 +164,7 @@ function CategoryProducts() {
                       "max"
                     )}&capacities=${query.get(
                       "capacities"
-                    )}&ratings=${query.get("ratings")}`}
+                    )}`}
                   >
                     1
                   </a>
@@ -186,7 +179,7 @@ function CategoryProducts() {
                         "max"
                       )}&capacities=${query.get(
                         "capacities"
-                      )}&ratings=${query.get("ratings")}`}
+                      )}`}
                     >
                       2
                     </a>
@@ -202,7 +195,7 @@ function CategoryProducts() {
                         "max"
                       )}&capacities=${query.get(
                         "capacities"
-                      )}&ratings=${query.get("ratings")}`}
+                      )}`}
                     >
                       3
                     </a>
@@ -224,7 +217,7 @@ function CategoryProducts() {
                       "max"
                     )}&capacities=${query.get(
                       "capacities"
-                    )}&ratings=${query.get("ratings")}`}
+                    )}`}
                   >
                     {page - 1}
                   </a>
@@ -238,7 +231,7 @@ function CategoryProducts() {
                       "max"
                     )}&capacities=${query.get(
                       "capacities"
-                    )}&ratings=${query.get("ratings")}`}
+                    )}`}
                   >
                     {page}
                   </a>
@@ -255,7 +248,7 @@ function CategoryProducts() {
                         "max"
                       )}&capacities=${query.get(
                         "capacities"
-                      )}&ratings=${query.get("ratings")}`}
+                      )}`}
                     >
                       {page + 1}
                     </a>
@@ -275,9 +268,7 @@ function CategoryProducts() {
                   "brands"
                 )}&min=${query.get("min")}&max=${query.get(
                   "max"
-                )}&capacities=${query.get("capacities")}&ratings=${query.get(
-                  "ratings"
-                )}`}
+                )}&capacities=${query.get("capacities")}`}
               >
                 Last Page
               </a>
