@@ -26,7 +26,6 @@ export default function ProductPage() {
     getProductById();
   }, [clicked,productStars,id]);
 
-  console.log(productById);
 
 
   return (

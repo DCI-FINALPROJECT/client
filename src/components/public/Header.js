@@ -1,9 +1,27 @@
 import React, { useContext, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Link, useLocation } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 
 function Header() {
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
+  const [cookies,setCookies] = useCookies(["cart"]);
+
+  let totalProductInCart = 0;
+
+  if(cookies.cart !== undefined){
+
+    cookies.cart.forEach(product=>{
+      totalProductInCart += product.quantities;
+    })
+  }
+
+  console.log(cookies);
+  console.log(totalProductInCart);
+
+
+
+
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
@@ -121,13 +139,13 @@ function Header() {
               <div className="col-md-3">
                 <div className="widgets-wrap d-flex justify-content-end">
                   <div className="widget-header">
-                    <a href="#" className="icontext">
+                    <a href="/cartpage" className="icontext">
                       <div className="icon">
                         <i className="fa fa-lg fa-shopping-cart"></i>
                       </div>
                       <div className="text">
                         <small className="text-muted">Basket</small> <br />
-                        <span>3 items</span>
+                        <span>{totalProductInCart} items</span>
                       </div>
                     </a>
                   </div>

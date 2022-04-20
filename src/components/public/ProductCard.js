@@ -61,11 +61,14 @@ function ProductCard() {
         images: productById.images,
         quantities: quantities,
         color: color,
-        capacity: capacity,
+        capacity: productById.capacity,
+        stock :productById.stock,
+        productNameWithCapacity:productById.productNameWithCapacity
       });
     }
 
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
+
 
     if (stockMessage.length === 0) {
       toast.success(`${quantities} adet ${capacity} ürün sepete eklendi...`);
