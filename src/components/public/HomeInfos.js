@@ -9,7 +9,7 @@ function HomeInfos() {
             <div class="icontext">
               <div class="icon">
                 <span class="icon-sm">
-                  <i class="fa fa-coins fa-lg text-primary"></i>
+                  <i class="fa fa-coins fa-lg yellow"></i>
                 </span>
               </div>
               <div class="text">
@@ -22,7 +22,7 @@ function HomeInfos() {
             <div class="icontext">
               <div class="icon">
                 <span class="icon-sm">
-                  <i class="fa fa-car fa-lg text-primary"></i>
+                  <i class="fa fa-car fa-lg yellow"></i>
                 </span>
               </div>
               <div class="text">
@@ -35,7 +35,7 @@ function HomeInfos() {
             <div class="icontext">
               <div class="icon">
                 <span class="icon-sm">
-                  <i class="fa fa-comment-dots fa-lg text-primary"></i>
+                  <i class="fa fa-comment-dots fa-lg yellow"></i>
                 </span>
               </div>
               <div class="text">
@@ -48,7 +48,7 @@ function HomeInfos() {
             <div class="icontext">
               <div class="icon">
                 <span class="icon-sm">
-                  <i class="fa fa-lock fa-lg text-primary"></i>
+                  <i class="fa fa-lock fa-lg yellow"></i>
                 </span>
               </div>
               <div class="text">
