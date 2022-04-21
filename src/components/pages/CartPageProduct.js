@@ -36,35 +36,34 @@ function CartPageProduct({ product }) {
 
   const stockControl = (num) => {
     if (color === "Black") {
-      console.log(product);
 
-      if (num > product.stock[color]) {
+      if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${product.stock[color]}`);
+        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
       } else {
         setInStock(true);
         setStockMessage("");
       }
     } else if (color === "Red") {
-      if (num > product.stock[color]) {
+      if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${product.stock[color]}`);
+        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
       } else {
         setInStock(true);
         setStockMessage("");
       }
     } else if (color === "Green") {
-      if (num > product.stock[color]) {
+      if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${product.stock[color]}`);
+        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
       } else {
         setInStock(true);
         setStockMessage("");
       }
     } else if (color === "Blue") {
-      if (num > product.stock[color]) {
+      if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${product.stock[color]}`);
+        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
       } else {
         setInStock(true);
         setStockMessage("");
@@ -81,18 +80,20 @@ function CartPageProduct({ product }) {
   useEffect(() => {
     setQuantities(product.quantities);
     getInformation();
-  }, [product.quantities !== undefined]);
+  }, [product.quantities !== undefined, cookies.cart]);
 
+  
   const removeProduct = () => {
     const array = cookies.cart;
+    console.log("ARRAY:",array);
+
+    console.log(product);
 
     if (array === undefined) {
       array = [];
     }   
 
      const newArray = array.filter((productFromCookie) => {
-      console.log("FILTERED PRODUCT:",productFromCookie);
-      console.log("PRODUCT:",product);
 
       return !(
         productFromCookie.id === product.id &&
@@ -101,6 +102,8 @@ function CartPageProduct({ product }) {
         productFromCookie.quantities === product.quantities
       );
     });
+
+    console.log("NEWARRAY:",newArray);
 
      setCookies("cart", newArray, { path: "/" });  
   };
@@ -112,14 +115,14 @@ function CartPageProduct({ product }) {
           <div class="itemside me-lg-5">
             <div class="aside">
               <img
-                src={product.images[0]}
+                src={productInfo.images[0]}
                 class="img-sm border rounded"
                 alt=""
               />
             </div>
             <div class="info">
               <a href={`/product/${product.id}`} class="title mb-1">
-                {product.productNameWithCapacity}
+                {productInfo.productNameWithCapacity}
               </a>
               <p class="text-muted small">Color: {product.color}</p>
               <p class="text-muted small">Quantity: {quantities}</p>
@@ -162,10 +165,10 @@ function CartPageProduct({ product }) {
         <div class="col-lg-2 col-sm-4 col-6">
           <div class="price-wrap lh-sm">
             <var class="price h6">
-              € {(product.price * quantities).toFixed(2)}
+              € {(productInfo.price * quantities).toFixed(2)}
             </var>{" "}
             <br />
-            <small class="text-muted"> € {product.price} / per item </small>
+            <small class="text-muted"> € {productInfo.price} / per item </small>
           </div>
         </div>
         <div class="col-lg col-sm-4">

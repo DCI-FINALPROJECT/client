@@ -31,44 +31,35 @@ function ProductCard() {
     Object.getOwnPropertyNames(productById.stock)
   );
 
-  const addToCart = (e) => {
-    let array = new Cookies().get("cart") || [];
+  const addToCart = async (e) => {
+    let array = (await new Cookies().get("cart")) || [];
 
     let isProductAlreadyInCart = false;
 
+    console.log(color);
+
     array.forEach((element) => {
-      console.log(element);
-
-      if (productById.stock[color]) {
-        if (
-          element.id === productById._id &&
-          element.color === color &&
-          element.capacity === capacity
-        ) {
-          isProductAlreadyInCart = true;
-
-          element.quantities += quantities;
-        }
+      if (
+        element.id === productById._id &&
+        element.color === color &&
+        element.capacity === productById.capacity
+      ) {
+        isProductAlreadyInCart = true;
+        console.log(isProductAlreadyInCart);
+        element.quantities += quantities;
       }
     });
 
     if (productById.stock[color] > 0 && !isProductAlreadyInCart) {
       array.push({
         id: productById._id,
-        productName: productById.productName,
-        brand: productById.brand,
-        price: productById.price,
-        images: productById.images,
         quantities: quantities,
         color: color,
         capacity: productById.capacity,
-        stock :productById.stock,
-        productNameWithCapacity:productById.productNameWithCapacity
       });
     }
 
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
-
 
     if (stockMessage.length === 0) {
       toast.success(`${quantities} adet ${capacity} ürün sepete eklendi...`);
@@ -98,9 +89,8 @@ function ProductCard() {
 
   useEffect(() => {
     directStockControlByColor();
-  }, [color, params.id,capacity]);
+  }, [color, params.id, capacity]);
 
-  
   const selectedCapacity = (e) => {
     setQuantities(1);
     setInStock(true);
@@ -111,13 +101,11 @@ function ProductCard() {
   };
 
   function getProductByCapacity() {
-
     const data = fetch(
       `http://localhost:5000/product/capacity/${productById.productName}/${capacity}`
     )
       .then((data) => data.json())
       .then((data) => navigate(`/product/${data.id}`));
-
   }
 
   useEffect(getProductByCapacity, [capacity]);
@@ -291,46 +279,46 @@ function ProductCard() {
                             </label>
                           );
                         })}
-                      <div class="col-auto">
-                        <div class="input-group input-spinner">
-                          <button
-                            onClick={azalt}
-                            class="btn btn-light"
-                            type="button"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              fill="#999"
-                              viewBox="0 0 24 24"
+                        <div class="col-auto">
+                          <div class="input-group input-spinner">
+                            <button
+                              onClick={azalt}
+                              class="btn btn-light"
+                              type="button"
                             >
-                              <path d="M19 13H5v-2h14v2z"></path>
-                            </svg>
-                          </button>
-                          <input
-                            type="text"
-                            class="form-control"
-                            value={quantities}
-                          />
-                          <button
-                            onClick={artir}
-                            class="btn btn-light"
-                            type="button"
-                            disabled={inStock === false && true}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              fill="#999"
-                              viewBox="0 0 24 24"
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="#999"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M19 13H5v-2h14v2z"></path>
+                              </svg>
+                            </button>
+                            <input
+                              type="text"
+                              class="form-control"
+                              value={quantities}
+                            />
+                            <button
+                              onClick={artir}
+                              class="btn btn-light"
+                              type="button"
+                              disabled={inStock === false && true}
                             >
-                              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-                            </svg>
-                          </button>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="#999"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                              </svg>
+                            </button>
+                          </div>
                         </div>
-                      </div>
                       </div>
                     </div>
                   </div>
