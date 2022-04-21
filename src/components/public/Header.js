@@ -109,7 +109,7 @@ function Header() {
                     />
                     <div class="input-group-append">
                       <Link to={`/search/${searchState}`} className="d-flex">
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-dark yellow-bg border-0" type="submit">
                           <i class="fa fa-search"></i>
                         </button>
                       </Link>
@@ -142,7 +142,7 @@ function Header() {
                       />
 
                       <button
-                        className="btn btn-danger border rounded"
+                        className="btn btn-dark border-0 yellow-bg rounded"
                         onClick={logout}
                       >
                         Log out
@@ -203,7 +203,7 @@ function Header() {
                         <button
                           onClick={google}
                           type="submit"
-                          className="btn btn-success m-2"
+                          className="btn btn-success ml-4 mb-2"
                         >
                           Join with Google
                         </button>

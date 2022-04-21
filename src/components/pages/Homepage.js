@@ -20,14 +20,12 @@ function Homepage() {
         <BannerCategories />
         <br />
         <br />
-        <h1>New Products</h1>
         <Carrousel1 />
         <br />
         <br />
         <Banner2 />
         <br />
         <br />
-        <h1>Best Sellers</h1>
         <Carrousel2 />
         <br />
         <br />

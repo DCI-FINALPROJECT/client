@@ -13,12 +13,12 @@ function Banner2() {
               style={{minHeight:"230px"}}
             >
               <div class="caption">
-                <h3 class="card-title text-white">T-Shirts &amp; Jackets</h3>
+                <h3 class="card-title text-white">Smartphones</h3>
                 <p class="card-text text-white" style={{maxWidth: "400px"}}>
                   No matter how far along you are in your sophistication as an
                   amateur astronomer, there is always one.
                 </p>
-                <a href="" class="btn btn-warning">
+                <a href="" class="btn btn-yellow">
                   Learn more
                 </a>
               </div>
@@ -58,12 +58,12 @@ function Banner2() {
               style={{minHeight:"230px"}}
             >
               <div class="caption">
-                <h3 class="card-title text-white">T-Shirts &amp; Jackets</h3>
+                <h3 class="card-title text-white">Smartphones</h3>
                 <p class="card-text text-white" style={{maxWidth: "400px"}}>
                   No matter how far along you are in your sophistication as an
                   amateur astronomer, there is always one.
                 </p>
-                <a href="" class="btn btn-warning">
+                <a href="" class="btn btn-yellow">
                   Learn more
                 </a>
               </div>

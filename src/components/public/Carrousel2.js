@@ -49,7 +49,7 @@ function Carrousel2() {
   
   return (
       <div className='container px-5'>
-        <h6 className="home-title"></h6>
+        <h2 className="home-title">Best Sellers</h2>
       <Slider {...sliderSettings}>
 
       {
