@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { DataStore } from "../../DataStore";
 import { Cookies, useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
 
 function CartPageProduct({ product }) {
   const { productById, productStars } = useContext(DataStore);
@@ -27,6 +26,8 @@ function CartPageProduct({ product }) {
 
   const artir = () => {
     if (quantities < getStockNumber()) {
+      console.log(product);
+      setColor(product.color);
       addToCart(quantities + 1);
       setQuantities(quantities + 1);
     } else {
@@ -35,6 +36,7 @@ function CartPageProduct({ product }) {
   };
   const azalt = () => {
     if (quantities > 1) {
+      setColor(product.color);
       addToCart(quantities - 1);
       setQuantities(quantities - 1);
       stockControl(quantities - 1);
@@ -85,14 +87,13 @@ function CartPageProduct({ product }) {
     }
   };
 
+  // WE CAN GET ALL INFORMATION OF PRODUCTS FROM SERVER !!! NO COOKIE
+
   const getInformation = () => {
     fetch(`http://localhost:5000/product/${product.id}`)
       .then((data) => data.json())
       .then((data) => {
-
-
-        console.log(product.quantities, getStockNumberAtFirst(data.stock));
-
+          
         if (product.quantities > getStockNumberAtFirst(data.stock)) {
           removeProduct();
         } else {
@@ -107,7 +108,7 @@ function CartPageProduct({ product }) {
   }, [product.quantities !== undefined, cookies.cart]);
 
   const removeProduct = () => {
-    const array = cookies.cart;
+    let array = cookies.cart;
 
     if (array === undefined) {
       array = [];
@@ -122,10 +123,11 @@ function CartPageProduct({ product }) {
       );
     });
 
-    console.log("NEWARRAY:", newArray);
-
     setCookies("cart", newArray, { path: "/" });
   };
+
+  // IF USER COME LATER AND SOME PRODUCTS ARE ALREADY SOLD OR STOCK IS LESS THAN COOKIE,
+  // WE WILL DELETE THE PRODUCT THAT LESS THAN COOKIE IN BASKET
 
   function getStockNumberAtFirst(stock) {
     if (product.color === "Black") {
@@ -138,6 +140,8 @@ function CartPageProduct({ product }) {
       return stock.Blue;
     }
   }
+
+  //THIS FUNK. IS FOR ADD AND DECREASE FUNKS
 
   function getStockNumber() {
     if (color === "Black") {
