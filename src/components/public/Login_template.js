@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { DataStore } from "../../DataStore";
 
 function Login_template() {
+  const { setUser } = useContext(DataStore);
+
+  const [loginMessage, setLoginMessage] = useState("");
+
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");
+  };
+
+  const signInWithForm = async (e) => {
+    e.preventDefault();
+
+    const email = document.querySelector("#emailSign").value;
+    const password = document.querySelector("#passwordSign").value;
+
+    console.log(email,password);
+
+    await fetch("http://localhost:5000/userlogin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({ email, password }),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+
+        setLoginMessage(data.message);
+        setUser(data.userInformation);
+        localStorage.setItem("userToken", data.userToken);
+      })
+      .catch((err) => err);
   };
 
   return (
@@ -12,25 +44,20 @@ function Login_template() {
         <div className="card-body">
           <h4 className="mb-4">Sign in</h4>
           <div>
-            <div className="d-flex gap-2">
-              <a
-                href="#"
-                className="d-flex align-items-center btn btn-light w-100"
-              >
-                <img className="me-2" src="" height="20" width="20" />
-                Facebook
-              </a>
-              <div
+            <div className="d-flex gap-2 justify-content-center">
+              <button
                 onClick={google}
-                className="d-flex align-items-center btn btn-light w-100"
+                type="button"
+                class="login-with-google-btn border rounded"
               >
-                <img className="me-2" src="" height="20" width="20" />
-                Google
-              </div>
+                Sign in with Google
+              </button>
             </div>
             <p className="text-divider my-4"> Or login with username </p>
+            
             <div className="mb-3">
               <input
+                id="emailSign"
                 type="text"
                 className="form-control"
                 placeholder="Username"
@@ -38,6 +65,7 @@ function Login_template() {
             </div>
             <div className="mb-3 input-group">
               <input
+                id="passwordSign"
                 type="password"
                 className="form-control"
                 placeholder="Password"
@@ -46,6 +74,7 @@ function Login_template() {
                 <i className="text-muted fa fa-eye"></i>
               </button>
             </div>
+            
 
             <div className="mb-3">
               <label className="form-check">
@@ -59,12 +88,16 @@ function Login_template() {
               </label>
             </div>
             <div className="mb-4">
-              <button className="btn w-100 btn-primary" type="button">
+              <button
+                onClick={signInWithForm}
+                className="btn w-100 btn-primary"
+                type="button"
+              >
                 Sign in
               </button>
             </div>
             <p className="mb-1 text-center">
-              Don’t have an account? <a href="#">Sign Up</a>
+              Don’t have an account? <a href="/register">Sign Up</a>
             </p>
           </div>
         </div>
