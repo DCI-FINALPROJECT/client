@@ -3,7 +3,7 @@ import ProductReview from "./ProductReview";
 import { useParams } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 import { Rating } from "react-simple-star-rating";
-import ReviewAlert from "./ReviewAlert";
+import ReviewAlert from "./ProductReviewAlert";
 
 export default function ProductReviewsAll() {
   const { user, productById, setProductStars } = useContext(DataStore);
@@ -55,7 +55,7 @@ export default function ProductReviewsAll() {
   const sendReview = async (e) => {
     e.preventDefault();
 
-    const messageBox = document.querySelector("#messageBox").value;
+    let messageBox = document.querySelector("#messageBox").value;
 
     if (messageBox.length === 0) {
       setTextAreaEmpty(true);
@@ -77,9 +77,10 @@ export default function ProductReviewsAll() {
         },
         body: JSON.stringify(newReview),
       });
-
+      
       setReviewAdded(reviewAdded + 1);
     }
+
   };
 
   const handleRating = (rate = 0) => {

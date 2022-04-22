@@ -44,11 +44,11 @@ function Login_template() {
         <div className="card-body">
           <h4 className="mb-4">Sign in</h4>
           <div>
-            <div className="d-flex gap-2 justify-content-center">
+            <div className="d-flex justify-content-center">
               <button
                 onClick={google}
                 type="button"
-                class="login-with-google-btn border rounded"
+                class="login-with-google-btn border rounded bg-dark text-white"
               >
                 Sign in with Google
               </button>

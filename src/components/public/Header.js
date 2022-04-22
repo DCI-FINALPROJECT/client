@@ -5,22 +5,18 @@ import { DataStore } from "../../DataStore";
 
 function Header() {
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
-  const [cookies,setCookies] = useCookies(["cart"]);
+  const [cookies, setCookies] = useCookies(["cart"]);
 
   let totalProductInCart = 0;
 
-  if(cookies.cart !== undefined){
-
-    cookies.cart.forEach(product=>{
+  if (cookies.cart !== undefined) {
+    cookies.cart.forEach((product) => {
       totalProductInCart += product.quantities;
-    })
+    });
   }
 
   console.log(cookies);
   console.log(totalProductInCart);
-
-
-
 
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const min = query.get("min") === null ? 0 : query.get("min");
@@ -209,22 +205,26 @@ function Header() {
                               placeholder="Password"
                             />
                           </div>
-                          <button
-                            onClick={signInWithForm}
-                            type="submit"
-                            className="btn btn-primary"
-                          >
-                            Sign in
-                          </button>
+                          <div className="d-flex justify-content-center">
+                            <button
+                              onClick={signInWithForm}
+                              type="submit"
+                              className="btn btn-primary"
+                            >
+                              Sign in
+                            </button>
+                          </div>
                           <div>{loginMessage}</div>
                         </form>
-                        <button
-                          onClick={google}
-                          type="submit"
-                          className="btn btn-success m-2"
-                        >
-                          Join with Google
-                        </button>
+                        <div className="d-flex gap-2 justify-content-center">
+                          <button
+                            onClick={google}
+                            type="button"
+                            class="login-with-google-btn border rounded bg-dark text-white"
+                          >
+                            Sign in with Google
+                          </button>
+                        </div>
                         <hr className="dropdown-divider" />
                         <Link to="/register" class="dropdown-item" href="#">
                           Have account? Sign up
