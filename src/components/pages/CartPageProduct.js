@@ -1,15 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useCookies } from "react-cookie";
 import { DataStore } from "../../DataStore";
+import { Cookies, useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 function CartPageProduct({ product }) {
   const { productById, productStars } = useContext(DataStore);
-
   const [cookies, setCookies] = useCookies(["cart"]);
+
   const [quantities, setQuantities] = useState(1);
   const [color, setColor] = useState("Black");
   const [inStock, setInStock] = useState(true);
   const [stockMessage, setStockMessage] = useState("");
+  const [capacity, setCapacity] = useState("");
 
   const [productInfo, setProductInfo] = useState({
     productName: "",
@@ -24,11 +26,16 @@ function CartPageProduct({ product }) {
   });
 
   const artir = () => {
-    setQuantities(quantities + 1);
-    stockControl(quantities + 1);
+    if (quantities < getStockNumber()) {
+      addToCart(quantities + 1);
+      setQuantities(quantities + 1);
+    } else {
+      stockControl(quantities + 1);
+    }
   };
   const azalt = () => {
     if (quantities > 1) {
+      addToCart(quantities - 1);
       setQuantities(quantities - 1);
       stockControl(quantities - 1);
     }
@@ -36,10 +43,11 @@ function CartPageProduct({ product }) {
 
   const stockControl = (num) => {
     if (color === "Black") {
-
       if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
+        setStockMessage(
+          `Number of products in stock: ${productInfo.stock[color]}`
+        );
       } else {
         setInStock(true);
         setStockMessage("");
@@ -47,7 +55,9 @@ function CartPageProduct({ product }) {
     } else if (color === "Red") {
       if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
+        setStockMessage(
+          `Number of products in stock: ${productInfo.stock[color]}`
+        );
       } else {
         setInStock(true);
         setStockMessage("");
@@ -55,7 +65,9 @@ function CartPageProduct({ product }) {
     } else if (color === "Green") {
       if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
+        setStockMessage(
+          `Number of products in stock: ${productInfo.stock[color]}`
+        );
       } else {
         setInStock(true);
         setStockMessage("");
@@ -63,7 +75,9 @@ function CartPageProduct({ product }) {
     } else if (color === "Blue") {
       if (num > productInfo.stock[color]) {
         setInStock(false);
-        setStockMessage(`Number of products in stock: ${productInfo.stock[color]}`);
+        setStockMessage(
+          `Number of products in stock: ${productInfo.stock[color]}`
+        );
       } else {
         setInStock(true);
         setStockMessage("");
@@ -74,7 +88,17 @@ function CartPageProduct({ product }) {
   const getInformation = () => {
     fetch(`http://localhost:5000/product/${product.id}`)
       .then((data) => data.json())
-      .then((data) => setProductInfo(data));
+      .then((data) => {
+
+
+        console.log(product.quantities, getStockNumberAtFirst(data.stock));
+
+        if (product.quantities > getStockNumberAtFirst(data.stock)) {
+          removeProduct();
+        } else {
+          setProductInfo(data);
+        }
+      });
   };
 
   useEffect(() => {
@@ -82,19 +106,14 @@ function CartPageProduct({ product }) {
     getInformation();
   }, [product.quantities !== undefined, cookies.cart]);
 
-  
   const removeProduct = () => {
     const array = cookies.cart;
-    console.log("ARRAY:",array);
-
-    console.log(product);
 
     if (array === undefined) {
       array = [];
-    }   
+    }
 
-     const newArray = array.filter((productFromCookie) => {
-
+    const newArray = array.filter((productFromCookie) => {
       return !(
         productFromCookie.id === product.id &&
         productFromCookie.color === product.color &&
@@ -103,9 +122,54 @@ function CartPageProduct({ product }) {
       );
     });
 
-    console.log("NEWARRAY:",newArray);
+    console.log("NEWARRAY:", newArray);
 
-     setCookies("cart", newArray, { path: "/" });  
+    setCookies("cart", newArray, { path: "/" });
+  };
+
+  function getStockNumberAtFirst(stock) {
+    if (product.color === "Black") {
+      return stock.Black;
+    } else if (product.color === "Red") {
+      return stock.Red;
+    } else if (product.color === "Green") {
+      return stock.Green;
+    } else if (product.color === "Blue") {
+      return stock.Blue;
+    }
+  }
+
+  function getStockNumber() {
+    if (color === "Black") {
+      return productInfo.stock.Black;
+    } else if (color === "Red") {
+      return productInfo.stock.Red;
+    } else if (color === "Green") {
+      return productInfo.stock.Green;
+    } else if (color === "Blue") {
+      return productInfo.stock.Blue;
+    }
+  }
+
+  const addToCart = (num) => {
+    let array = new Cookies().get("cart");
+
+    if (array === undefined) {
+      array = [];
+    }
+
+    array.forEach((element) => {
+      if (
+        element.id === product.id &&
+        element.color === product.color &&
+        element.capacity === product.capacity &&
+        element.quantities === product.quantities
+      ) {
+        element.quantities = num;
+      }
+    });
+
+    setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
   };
 
   return (

@@ -55,6 +55,7 @@ function ProductCard() {
         quantities: quantities,
         color: color,
         capacity: productById.capacity,
+        price:productById.price,
       });
     }
 
@@ -163,6 +164,7 @@ function ProductCard() {
       }
     }
   };
+  
 
   return (
     <div>

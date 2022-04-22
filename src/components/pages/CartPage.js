@@ -7,6 +7,18 @@ import CartPageProduct from "./CartPageProduct";
 function CartPage() {
   const [cookies, setCookies] = useCookies(["cart"]);
 
+
+  // TOTAL PRICE
+
+  let totalPrice = 0;
+
+  if (cookies.cart !== undefined) {
+    cookies.cart.forEach((product) => {
+
+        totalPrice += (product.price)*(product.quantities);
+    });
+  }
+
   console.log(cookies);
 
   return (
@@ -22,10 +34,9 @@ function CartPage() {
 
                 {cookies.cart !== undefined && cookies.cart.length > 0
                   ? cookies.cart.map((product) => {
-                      return <CartPageProduct 
-                          key={product._id}
-                          product={product}
-                      />;
+                      return (
+                        <CartPageProduct key={product._id} product={product} />
+                      );
                     })
                   : ""}
               </div>
@@ -56,25 +67,22 @@ function CartPage() {
             <div class="card">
               <div class="card-body">
                 <dl class="dlist-align">
-                  <dt>Total price:</dt> <dd class="text-end"> $1403.97</dd>
+                  <dt>Total price:</dt> <dd class="text-end"> € {totalPrice.toFixed(2)}</dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Discount:</dt>
-                  <dd class="text-end text-success"> - $60.00 </dd>
-                </dl>
-                <dl class="dlist-align">
-                  <dt>TAX:</dt> <dd class="text-end text-danger"> + $14.00 </dd>
+                  <dd class="text-end text-success"> - 0 </dd>
                 </dl>
                 <hr />
                 <dl class="dlist-align">
                   <dt>Total:</dt>
-                  <dd class="text-end text-dark h5"> $1357.97 </dd>
+                  <dd class="text-end text-dark h5"> € {totalPrice.toFixed(2)} </dd>
                 </dl>
                 <div class="d-grid gap-2 my-3">
                   <a href="#" class="btn btn-primary w-100">
                     Make Purchase
                   </a>
-                  <a href="#" class="btn btn-light w-100">
+                  <a href="/" class="btn btn-light w-100">
                     Back to shop
                   </a>
                 </div>
