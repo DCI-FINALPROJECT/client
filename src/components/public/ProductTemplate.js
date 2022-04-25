@@ -11,7 +11,7 @@ export default function ProductTemplate() {
       <ProductCard />
       <h3 className='text-center'>SIMILAR PRODUCTS</h3>
       <SimilarProducts />
-      <ProductDescription />
+     {/*  <ProductDescription /> */}
       <ProductReview />
 
     </div>
