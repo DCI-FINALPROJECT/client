@@ -9,7 +9,7 @@ import PaymentPage from "./components/pages/PaymentPage";
 import PaymentConfirmPage from "./components/pages/PaymentPageConfirmation";
 import { DataStore } from "./DataStore";
 import { Routes, Route } from "react-router-dom";
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SearchPage from "./components/pages/SearchPage";
 import CategoryPage from "./components/pages/CategoryPage";
 import ReviewCart from "./components/public/ReviewCart";
@@ -29,10 +29,14 @@ function App() {
     images: [],
     quantities: [],
     capacity: "",
-    stock:{Black:0,Red:0,Green:0,Blue:0}
+    stock: { Black: 0, Red: 0, Green: 0, Blue: 0 },
   });
 
-  const [user, setUser] = useState({photo:"https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png",email:undefined});
+  const [user, setUser] = useState({
+    photo:
+      "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png",
+    email: undefined,
+  });
 
   const [searchState, setSearchState] = useState("null");
 
@@ -43,8 +47,6 @@ function App() {
   const [clicked, setClicked] = useState(""); // With this state we can control amendment of selected product.
 
   const [productStars, setProductStars] = useState(0);
-
-
 
   const loadProducts = async () => {
     const response = await fetch(`http://localhost:5000/products/all`);
@@ -138,9 +140,12 @@ function App() {
             <Route exact path="/" element={<Homepage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/admin" element={<AdminPage />} />   
-            <Route path="/admin/addproduct" element={<AddProductPage />} />              
-            <Route path="/admin/deleteproduct/:productName" element={<DeletePage/>} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/addproduct" element={<AddProductPage />} />
+            <Route
+              path="/admin/deleteproduct/:productName"
+              element={<DeletePage />}
+            />
             <Route path="/admin/edit/:id" element={<EditPage />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
@@ -148,11 +153,10 @@ function App() {
             <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
             <Route path="/search/:productName" element={<SearchPage />} />
             <Route path="/category/:category" element={<CategoryPage />} />
-            <Route path="/cartpage" element={<CartPage/>}/>
+            <Route path="/cartpage" element={<CartPage />} />
             <Route path="/deneme" element={<ReviewCart />} />
           </Routes>
         </CookiesProvider>
-
       </DataStore.Provider>
     </div>
   );
