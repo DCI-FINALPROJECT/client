@@ -7,12 +7,13 @@ function CategoryInfo() {
 
 
   return (
-    <section className="section-pagetop bg-light">
+    <section className="section-pagetop bg-light " style={{padding:"10px 0", borderRadius:"5px"}}>
       <div className="container">
-        <nav>
+      <i class="fa-solid fa-house"></i>
+        <nav >
           <ol className="breadcrumb text-white">
             <li className="breadcrumb-item">
-              <a href="/">Homepage</a>
+              <a href="/"><i className="fa fa-lg fa-home"></i> Homepage</a>
             </li>
             <li className="breadcrumb-item">
               <span className="text-dark">Category</span>
