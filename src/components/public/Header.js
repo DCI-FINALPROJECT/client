@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Link, useLocation } from "react-router-dom";
 import { DataStore } from "../../DataStore";
+import { logout } from "../helpers/logout";
 
 
 function Header() {
@@ -32,10 +33,7 @@ function Header() {
     window.open("http://localhost:5000/auth/google", "_self");
   };
 
-  const logout = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
-    localStorage.removeItem("userToken"); // With this statement if user logout click, userToken will be deleted in localStorage.
-  };
+
 
   const signInWithForm = async (e) => {
     e.preventDefault();
@@ -161,12 +159,12 @@ function Header() {
 
                 {user.email ? (
                   <div>
-                    <img
+                   <Link to="/user"><img
                       className="border rounded mr-3 ml-3"
                       style={{ width: "40px" }}
                       src={user.photo}
                       alt=""
-                    />
+                    /></Link> 
 
                     <button
                       className="btn btn-yellow"
