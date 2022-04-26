@@ -65,7 +65,7 @@ function Header() {
         <div class="container">
           {/* LOGO */}
           <div className="nav-brand">
-            <a href="/" className="nav-link active">
+            <a href="/" className="nav-link active pl-0">
               <img className="logo" src="../images/logo.svg" />
             </a>
           </div>
