@@ -118,6 +118,7 @@ function CategoryProducts() {
             defaultValue={defaultChoise}
             onChange={selectedFiltering}
             class="form-select d-inline-block w-auto"
+            style={{borderRadius: "5px", border:"none", padding:"5px 3px", color:"#595454"}}
           >
             <option>New Products</option>
             <option>Best Sellers</option>
