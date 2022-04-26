@@ -5,7 +5,7 @@ function Banner1() {
     <div>
       <section class="bg-white border-bottom banner1">
         <div class="">
-          <div class="row align-items-end justify-content-end" style={{minHeight:"550px"}}>
+          <div class="row align-items-end justify-content-end px-5" style={{minHeight:"550px"}}>
             <div class="col-lg-6 order-lg-2">
               <article class="my-5 ms-lg-5 carol">
                 <h1 class="">
