@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserPageInfos() {
+function UserPageOrderInfos() {
   return (
     <div class="col-lg-9">
     <article class="card mb-3">
@@ -183,4 +183,4 @@ function UserPageInfos() {
   )
 }
 
-export default UserPageInfos
+export default UserPageOrderInfos

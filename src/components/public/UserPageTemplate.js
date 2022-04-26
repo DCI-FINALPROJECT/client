@@ -1,14 +1,14 @@
 import React from "react";
-import UserPageInfos from "./UserPageInfos";
 import UserPageMenus from "./UserPageMenus";
+import UserPageOrderInfos from "./UserPageOrderInfos";
+import UserPageUserInfos from "./UserPageUserInfos";
 
 function UserPageTemplate() {
   return (
     <div className="container mt-3 mb-3">
       <div class="row">
-        <UserPageMenus/>
-        <UserPageInfos/>
-
+        <UserPageMenus />
+        <UserPageUserInfos />
       </div>
     </div>
   );
