@@ -7,6 +7,7 @@ function ProductCardCarrousel({ product }) {
 
   return (
     <div>
+        <div className=" card-product-grid mx-2">
       <Link
         onClick={() => {
           setClicked(product._id);
@@ -14,10 +15,10 @@ function ProductCardCarrousel({ product }) {
         }}
         to={`/product/${product._id}`}
       >
-        <div className=" card-product-grid mx-2">
           <div className="img-wrap">
             <img src={product.images[0]} />
           </div>
+      </Link>
           <div className="info-wrap">
             <div className="price-wrap">
               <strong className="price">$ {product.price}</strong>
@@ -35,7 +36,6 @@ function ProductCardCarrousel({ product }) {
             </div>
           </div>
         </div>
-      </Link>
     </div>
   );
 }
