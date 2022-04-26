@@ -154,7 +154,6 @@ function App() {
             <Route path="/search/:productName" element={<SearchPage />} />
             <Route path="/category/:category" element={<CategoryPage />} />
             <Route path="/cartpage" element={<CartPage />} />
-            <Route path="/deneme" element={<ReviewCart />} />
           </Routes>
         </CookiesProvider>
       </DataStore.Provider>

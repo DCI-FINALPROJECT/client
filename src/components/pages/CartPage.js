@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { useCookies } from "react-cookie";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
@@ -6,12 +6,16 @@ import CartPageProduct from "./CartPageProduct";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../../requestMethods";
 import { useNavigate } from "react-router-dom";
+import { DataStore } from "../../DataStore";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
 console.log(KEY);
 
 function CartPage() {
+
+  const { user } = useContext(DataStore);
+
   const [cookies, setCookies] = useCookies(["cart"]);
   const [stripeToken, setStripeToken] = useState(null);
   const [orderNumber, setOrderNumber] = useState("");
@@ -39,6 +43,9 @@ function CartPage() {
   // STRIPE
 
   const createOrder = async () => {
+
+    console.log(user);
+
     await fetch("http://localhost:5000/payment/createOrder", {
       method: "POST",
       headers: {
@@ -49,6 +56,7 @@ function CartPage() {
         products: await cookies.cart,
         stripeToken: stripeToken,
         userEmail: stripeToken.email,
+        userId:user._id || stripeToken.email
       }),
     })
       .then((data) => data.json())
@@ -69,6 +77,9 @@ function CartPage() {
         });
 
         createOrder();
+
+        
+
       } catch (err) {
         console.log(err);
       }
@@ -96,32 +107,35 @@ function CartPage() {
               </div>
 
               {orderNumber ? (
-                <div
-                  class="d-flex justify-content-between align-items-center alert alert-success alert-dismissible fade show px-2"
-                  role="alert"
-                >
-                  <div>
-                    Your order with number <strong> {`${orderNumber}`} </strong>
-                    has been created...
-                  </div>
-                  <button
-                    type="button"
-                    class="btn border btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
+                <div>
+                  <div
+                    class="d-flex justify-content-between align-items-center alert alert-success alert-dismissible fade show px-2"
+                    role="alert"
                   >
-                    x
-                  </button>
+                    <div>
+                      Your order with number{" "}
+                      <strong> {`${orderNumber}`} </strong>
+                      has been created...
+                    </div>
+                    <button
+                      type="button"
+                      class="btn border btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    >
+                      x
+                    </button>
+                  </div>
+                  <div class="card-body border-top">
+                    <p class="mb-0">
+                      <i class="me-2 text-success fa fa-truck"></i> Free
+                      Delivery within 1-2 weeks
+                    </p>
+                  </div>
                 </div>
               ) : (
                 ""
               )}
-              <div class="card-body border-top">
-                <p class="mb-0">
-                  <i class="me-2 text-success fa fa-truck"></i> Free Delivery
-                  within 1-2 weeks
-                </p>
-              </div>
             </div>
           </div>
           <aside class="col-lg-3">
