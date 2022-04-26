@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 import { useCookies } from "react-cookie";
+import Logo from "../../images/logo.svg"
 
 function DeleteHeader() {
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
@@ -63,7 +64,7 @@ function DeleteHeader() {
           {/* LOGO */}
           <div className="nav-brand">
             <a href="/" className="nav-link active">
-              <img className="logo" src="../images/logo.svg" />
+              <img className="logo" src={Logo} />
             </a>
           </div>
           <button
@@ -78,12 +79,12 @@ function DeleteHeader() {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div
-            class="collapse navbar-collapse justify-content-between"
+            class="collapse navbar-collapse row"
             id="navbarNav"
           >
             {/* CATEGORY */}
-            <div className="nav-link">
-              <div class="dropdown">
+            <div className="nav-link col-md-3">
+              <div class="dropdown d-flex justify-content-center">
                 <button
                   class="btn btn-lg  dropdown-toggle"
                   type="button"
@@ -113,7 +114,7 @@ function DeleteHeader() {
               </div>
             </div>
             {/* SEARCH */}
-            <div className="nav-link">
+            <div className="nav-link col-md-4 d-flex justify-content-center">
               <form
                 action="#"
                 className="search"
@@ -133,7 +134,7 @@ function DeleteHeader() {
                       to={`/admin/deleteproduct/${searchState}`}
                       className="d-flex"
                     >
-                      <button class="btn btn-primary" type="submit">
+                      <button class="btn btn-dark" type="submit">
                         <i class="fa fa-search"></i>
                       </button>
                     </Link>
@@ -142,8 +143,8 @@ function DeleteHeader() {
               </form>
             </div>
             {/* LOGIN AND CART */}
-            <div className="nav-link">
-              <div className="widgets-wrap d-flex justify-content-end">
+            <div className="nav-link col-md-5">
+              <div className="widgets-wrap d-flex justify-content-center">
                 <div className="widget-header">
                   <a href="/cartpage" className="icontext">
                     <div className="icon">
@@ -166,7 +167,7 @@ function DeleteHeader() {
                     />
 
                     <button
-                      className="btn btn-danger border rounded"
+                      className="btn btn-yellow"
                       onClick={logout}
                     >
                       Log out
