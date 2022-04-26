@@ -12,7 +12,6 @@ import { Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import SearchPage from "./components/pages/SearchPage";
 import CategoryPage from "./components/pages/CategoryPage";
-import ReviewCart from "./components/public/ReviewCart";
 import { CookiesProvider } from "react-cookie";
 import DeletePage from "./components/pages/DeletePage";
 import EditPage from "./components/pages/EditPage";
@@ -39,13 +38,9 @@ function App() {
   });
 
   const [searchState, setSearchState] = useState("null");
-
   const [allProducts, setAllProducts] = useState([]);
-
   const [categories, setCategories] = useState([]);
-
   const [clicked, setClicked] = useState(""); // With this state we can control amendment of selected product.
-
   const [productStars, setProductStars] = useState(0);
 
   const loadProducts = async () => {
@@ -76,7 +71,7 @@ function App() {
 
   // This useEffect controls whether there are already any token (user) in browser.
   useEffect(() => {
-    const resp = fetch("http://localhost:5000/finduser", {
+    fetch("http://localhost:5000/finduser", {
       method: "GET",
       Accept: "application/json",
       headers: {

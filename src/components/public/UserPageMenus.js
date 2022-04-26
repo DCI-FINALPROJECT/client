@@ -1,31 +1,23 @@
 import React from "react";
+import { logout } from "../helpers/logout";
 
-function UserPageMenus() {
+function UserPageMenus({whichComponent,setWhichComponent}) {
   return (
     <aside className="col-lg-3">
       <div className="card p-3 h-100">
         <nav className="nav flex-column nav-pills">
-          <a className="nav-link" href="#">
-            Account div
-          </a>
-          <a className="nav-link active" href="#">
-            New orders
-          </a>
-          <a className="nav-link" href="#">
-            Orders history
-          </a>
-          <a className="nav-link" href="#">
-            My wishlist
-          </a>
-          <a className="nav-link" href="#">
-            Transactions
-          </a>
-          <a className="nav-link" href="#">
-            Profile setting
-          </a>
-          <a className="nav-link" href="#">
-            Log out
-          </a>
+          <span onClick={()=>setWhichComponent(1)} className={`nav-link ${whichComponent === 1 && "active"}`} >
+            My Profile
+          </span>          
+          <span onClick={()=>setWhichComponent(2)} className={`nav-link ${whichComponent === 2 && "active"}`} >
+            Active Orders
+          </span>
+          <span onClick={()=>setWhichComponent(3)} className={`nav-link ${whichComponent === 3 && "active"}`} >
+            Order History
+          </span>
+          <span onClick={logout} className="nav-link">
+            Log Out
+          </span>
         </nav>
       </div>
     </aside>
