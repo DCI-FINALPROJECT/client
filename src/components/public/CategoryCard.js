@@ -94,7 +94,7 @@ function CategoryCard({ product }) {
                   <i class="dot"></i>
                   <span class="label-rating text-muted">{product.sales}</span>
                 </div>
-                <p>
+                <p style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden"}}>
                   {product.description}
                   <div>Category: {product.category}</div>
                   <div>Brand: {product.brand}</div>
