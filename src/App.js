@@ -17,6 +17,7 @@ import DeletePage from "./components/pages/DeletePage";
 import EditPage from "./components/pages/EditPage";
 import AddProductPage from "./components/pages/AddProductPage";
 import CartPage from "./components/pages/CartPage";
+import DeliveryInfoPage from "./components/pages/DeliveryInfoPage";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -149,6 +150,7 @@ function App() {
             <Route path="/search/:productName" element={<SearchPage />} />
             <Route path="/category/:category" element={<CategoryPage />} />
             <Route path="/cartpage" element={<CartPage />} />
+            <Route path="/deliveryInfo" element={<DeliveryInfoPage/>} />
           </Routes>
         </CookiesProvider>
       </DataStore.Provider>

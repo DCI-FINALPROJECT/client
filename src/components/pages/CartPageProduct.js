@@ -93,7 +93,6 @@ function CartPageProduct({ product }) {
     fetch(`http://localhost:5000/product/${product.id}`)
       .then((data) => data.json())
       .then((data) => {
-          
         if (product.quantities > getStockNumberAtFirst(data.stock)) {
           removeProduct();
         } else {
@@ -162,7 +161,11 @@ function CartPageProduct({ product }) {
       array = [];
     }
 
+
     array.forEach((element) => {
+
+      console.log(element);
+
       if (
         element.id === product.id &&
         element.color === product.color &&
@@ -175,6 +178,8 @@ function CartPageProduct({ product }) {
 
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
   };
+
+  console.log(cookies);
 
   return (
     <div>
