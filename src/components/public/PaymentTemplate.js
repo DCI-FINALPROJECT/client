@@ -1,9 +1,8 @@
-import React from 'react'
-import PaymentOverview from './PaymentOverview'
-import ContactInfo from './ContactInfo'
-import DeliveryInfo from './DeliveryInfo'
-import PaymentMethod from './PaymentMethod'
-import ReviewCart from './ReviewCart'
+import React from "react";
+import PaymentOverview from "./PaymentOverview";
+import ContactInfo from "./ContactInfo";
+import PaymentMethod from "./PaymentMethod";
+import ReviewCart from "./ReviewCart";
 
 function PaymentTemplate() {
   return (
@@ -13,19 +12,17 @@ function PaymentTemplate() {
           <div className="row">
             <main className="col-md-8">
               <ContactInfo />
-              <DeliveryInfo />
               <PaymentMethod />
             </main>
             <aside className="col-md-4">
-            <ReviewCart />
-            <PaymentOverview />
+              <ReviewCart />
+              <PaymentOverview />
             </aside>
           </div>
-      
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 export default PaymentTemplate;

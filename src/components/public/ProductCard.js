@@ -36,7 +36,7 @@ function ProductCard() {
 
     let isProductAlreadyInCart = false;
 
-    console.log(color);
+    console.log(productById);
 
     array.forEach((element) => {
       if (
@@ -56,6 +56,7 @@ function ProductCard() {
         color: color,
         capacity: productById.capacity,
         price:productById.price,
+        image:productById.images[0]
       });
     }
 

@@ -3,14 +3,10 @@ import { useCookies } from "react-cookie";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
 import CartPageProduct from "./CartPageProduct";
-import StripeCheckout from "react-stripe-checkout";
-import { userRequest } from "../../requestMethods";
 import { useNavigate } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 
-const KEY = process.env.REACT_APP_STRIPE;
 
-console.log(KEY);
 
 function CartPage() {
 
@@ -22,70 +18,13 @@ function CartPage() {
 
   const navigate = useNavigate();
 
-  const onToken = (token) => {
-    setStripeToken(token);
-  };
-
-  console.log(stripeToken);
-
-  // TOTAL PRICE
-
   let totalPrice = 0;
-
+    
   if (cookies.cart !== undefined) {
     cookies.cart.forEach((product) => {
       totalPrice += product.price * product.quantities;
     });
   }
-
-  console.log(cookies);
-
-  // STRIPE
-
-  const createOrder = async () => {
-
-    console.log(user);
-
-    await fetch("http://localhost:5000/payment/createOrder", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        products: await cookies.cart,
-        stripeToken: stripeToken,
-        userEmail: stripeToken.email,
-        userId:user._id || stripeToken.email
-      }),
-    })
-      .then((data) => data.json())
-      .then((data) => setOrderNumber(data.orderNumber))
-      .catch((err) => err);
-  };
-
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const res = await userRequest.post("/checkout/payment", {
-          tokenId: stripeToken.id,
-          amount: await cookies.cart,
-        });
-        navigate("/cartPage", {
-          stripeData: res.data,
-          products: cookies.cart,
-        });
-
-        createOrder();
-
-        
-
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    stripeToken && makeRequest();
-  }, [stripeToken, totalPrice, navigate]);
 
   return (
     <div>
@@ -172,18 +111,8 @@ function CartPage() {
                   </dd>
                 </dl>
                 <div class="d-grid gap-2 my-3">
-                  <StripeCheckout
-                    name="SmartSHOP"
-                    image="https://th.bing.com/th/id/OIP.N3mtO110O-O5ePQ4t0LWFQHaLH?w=115&h=180&c=7&r=0&o=5&pid=1.7"
-                    billingAddress
-                    shippingAddress
-                    description={`Your total is € ${totalPrice.toFixed(2)}`}
-                    amount={totalPrice.toFixed(2) * 100}
-                    token={onToken}
-                    stripeKey={KEY}
-                  >
-                    <button class="btn btn-light w-100">CHECKOUT NOW</button>
-                  </StripeCheckout>
+                
+                  <button onClick={()=>navigate("/deliveryInfo")} class="btn btn-light w-100">Go to Pay</button>
                   <a href="/" class="btn btn-light w-100 mt-1">
                     Back to shop
                   </a>
