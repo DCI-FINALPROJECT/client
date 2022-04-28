@@ -9,7 +9,7 @@ function Banner2() {
         <div class="row gy-3">
         <div class="col-lg-8">
             <div
-              class="card-banner img1 mb-3"
+              class="card-banner img1 mb-3 hvr"
               style={{minHeight:"230px"}}
             >
               <div class="caption">
@@ -26,7 +26,7 @@ function Banner2() {
           </div>
           <div class="col-lg-4 col-md-6 mb-3">
             <div
-              class="card-banner img2"
+              class="card-banner img2 hvr"
               style={{minHeight:"230px"}}
             >
               <div class="caption top">
@@ -40,7 +40,7 @@ function Banner2() {
           </div>
           <div class="col-lg-4 col-md-6 mb-3">
             <div
-              class="card-banner img3"
+              class="card-banner img3 hvr"
               style={{minHeight:"230px"}}
             >
               <div class="caption top">
@@ -54,7 +54,7 @@ function Banner2() {
           </div>
           <div class="col-lg-8 mb-3">
             <div
-              class="card-banner img4"
+              class="card-banner img4 hvr"
               style={{minHeight:"230px"}}
             >
               <div class="caption">
