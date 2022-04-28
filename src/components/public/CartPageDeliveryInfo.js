@@ -10,12 +10,11 @@ const KEY = process.env.REACT_APP_STRIPE;
 console.log(KEY);
 
 function CartPageDeliveryInfo() {
-  const { user,setOrderNumber } = useContext(DataStore);
+  const { user, setOrderNumber } = useContext(DataStore);
 
   const [cookies, setCookies] = useCookies(["cart"]);
   const [stripeToken, setStripeToken] = useState(null);
   const [whichContact, setWhichContact] = useState("user");
-  const [isUpdated, setIsUpdated] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,7 +22,7 @@ function CartPageDeliveryInfo() {
     setStripeToken(token);
   };
 
-  console.log(stripeToken);
+  console.log(user);
 
   // TOTAL PRICE
 
@@ -52,13 +51,13 @@ function CartPageDeliveryInfo() {
         user: user,
         products: await cookies.cart,
         stripeToken: stripeToken,
-        userEmail: stripeToken.email,
-        userId: user._id || stripeToken.email,
+        userEmail: user.email || "",
+        userId: user._id || user.email || stripeToken.email,
       }),
     })
       .then((data) => data.json())
       .then((data) => setOrderNumber(data.orderNumber))
-      .then(data=>setCookies("cart", [], { path: "/" }))
+      .then(() => setCookies("cart", [], { path: "/" }))
       .catch((err) => err);
   };
 
@@ -87,7 +86,6 @@ function CartPageDeliveryInfo() {
       ? setWhichContact("other")
       : setWhichContact("user");
   };
-
 
   return (
     <div className="container">
@@ -245,11 +243,9 @@ function CartPageDeliveryInfo() {
                   stripeKey={KEY}
                 >
                   <button
-                    onClick={() =>{ 
-                      navigate("/deliveryInfo")
-                      
-                      ;
-                      }}
+                    onClick={() => {
+                      navigate("/deliveryInfo");
+                    }}
                     class="btn btn-success w-100"
                   >
                     CHECKOUT NOW
