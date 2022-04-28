@@ -10,7 +10,7 @@ import { DataStore } from "../../DataStore";
 
 function CartPage() {
 
-  const { user,orderNumber } = useContext(DataStore);
+  const { orderNumber } = useContext(DataStore);
 
   const [cookies, setCookies] = useCookies(["cart"]);
 
