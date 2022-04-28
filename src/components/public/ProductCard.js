@@ -239,26 +239,26 @@ function ProductCard() {
                   </div>
                   <p>{productById.description}</p>
                   <dl className="row">
-                    <dt className="col-3">Model</dt>
-                    <dd className="col-9">{productById.productName}</dd>
-                    <dt className="col-3">Color</dt>
-                    <dd className="col-9">{colors.toString()}</dd>
-                    <dt className="col-3">Material</dt>
-                    <dd className="col-9">Cotton, Jeans </dd>
-                    <dt className="col-3">Delivery</dt>
-                    <dd className="col-9">Russia, USA, and Europe </dd>
+                    <dd className="col-3">Model</dd>
+                    <dt className="col-9">{productById.productName}</dt>
+                    <dd className="col-3">Color</dd>
+                    <dt className="col-9">{colors.toString()}</dt>
+                    <dd className="col-3">Speicherkapazität</dd>
+                    <dt className="col-9">{productById.capacity} </dt>
                   </dl>
                   <hr />
                   <div className="row" bis_skin_checked="1">
                     <div className="col-md-3 mb-3" bis_skin_checked="1">
                       <select
                         onChange={selectedCapacity}
-                        className="form-select"
+                        className="form-select "
+                        style={{borderRadius:"10px" ,padding:"4px 2px", height:"1.9em", border:"none"}}
                       >
-                        <option>64 GB</option>
-                        <option>128 GB</option>
-                        <option>256 GB</option>
-                        <option>512 GB</option>
+                         <option selected style={{color:"#e0e0e0"}}>Select Capacity</option>
+                        <option style={{color:productById.capacity==='64 GB'? "inherit" : "#e0e0e0"}}>64 GB</option>
+                        <option style={{color:productById.capacity==='128 GB'? "inherit" : "#e0e0e0"}}>128 GB</option>
+                        <option style={{color:productById.capacity==='256 GB'? "inherit" : "#e0e0e0"}}>256 GB</option>
+                        <option style={{color:productById.capacity==='512 GB'? "inherit" : "#e0e0e0"}}>512 GB</option>
                       </select>
                     </div>
                     <div className="col-md mb-3" bis_skin_checked="1">
