@@ -10,11 +10,9 @@ import { DataStore } from "../../DataStore";
 
 function CartPage() {
 
-  const { user } = useContext(DataStore);
+  const { user,orderNumber } = useContext(DataStore);
 
   const [cookies, setCookies] = useCookies(["cart"]);
-  const [stripeToken, setStripeToken] = useState(null);
-  const [orderNumber, setOrderNumber] = useState("");
 
   const navigate = useNavigate();
 

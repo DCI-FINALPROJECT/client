@@ -43,6 +43,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [clicked, setClicked] = useState(""); // With this state we can control amendment of selected product.
   const [productStars, setProductStars] = useState(0);
+  const [orderNumber, setOrderNumber] = useState("");
 
   const loadProducts = async () => {
     const response = await fetch(`http://localhost:5000/products/all`);
@@ -129,6 +130,8 @@ function App() {
           setClicked,
           productStars,
           setProductStars,
+          orderNumber,
+          setOrderNumber
         }}
       >
         <CookiesProvider>

@@ -10,11 +10,10 @@ const KEY = process.env.REACT_APP_STRIPE;
 console.log(KEY);
 
 function CartPageDeliveryInfo() {
-  const { user } = useContext(DataStore);
+  const { user,setOrderNumber } = useContext(DataStore);
 
   const [cookies, setCookies] = useCookies(["cart"]);
   const [stripeToken, setStripeToken] = useState(null);
-  const [orderNumber, setOrderNumber] = useState("");
   const [whichContact, setWhichContact] = useState("user");
   const [isUpdated, setIsUpdated] = useState(false);
 
@@ -59,6 +58,7 @@ function CartPageDeliveryInfo() {
     })
       .then((data) => data.json())
       .then((data) => setOrderNumber(data.orderNumber))
+      .then(data=>setCookies("cart", [], { path: "/" }))
       .catch((err) => err);
   };
 
@@ -245,7 +245,11 @@ function CartPageDeliveryInfo() {
                   stripeKey={KEY}
                 >
                   <button
-                    onClick={() => navigate("/deliveryInfo")}
+                    onClick={() =>{ 
+                      navigate("/deliveryInfo")
+                      
+                      ;
+                      }}
                     class="btn btn-success w-100"
                   >
                     CHECKOUT NOW
