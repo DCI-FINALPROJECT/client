@@ -30,13 +30,13 @@ function PaymentConfirmationTemplate() {
                   </span>
                   <span className="text">Order received</span>
                 </div>
-                <div className="step active">
+                <div className="step ">
                   <span className="icon">
                     <i className="fa fa-user"></i>
                   </span>
-                  <span className="text"> Confirmation</span>
+                  <span className="text"> Shipped</span>
                 </div>
-                <div className="step">
+                <div className="step ">
                   <span className="icon">
                     <i className="fa fa-truck"></i>
                   </span>
@@ -44,9 +44,9 @@ function PaymentConfirmationTemplate() {
                 </div>
                 <div className="step">
                   <span className="icon">
-                    <i className="fa fa-truck"></i>
+                    <i className="fa fa-home"></i>
                   </span>
-                  <span className="text">Delivery </span>
+                  <span className="text">Complete </span>
                 </div>
               </div>
               <br />

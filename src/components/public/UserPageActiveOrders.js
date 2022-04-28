@@ -9,7 +9,6 @@ function UserPageOrderInfos() {
   const [activeOrders, setActiveOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [ready, setReady] = useState(false);
-  const [num,setNum] = useState(0);
 
   console.log(activeOrders);
 
@@ -56,6 +55,9 @@ function UserPageOrderInfos() {
   return (
     <div class="col-lg-9">
       {activeOrders.map((order) => {
+
+        console.log(order)
+
         return (
           <article class="card mb-3">
             <div class="card-body">

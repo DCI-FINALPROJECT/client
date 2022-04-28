@@ -14,7 +14,42 @@ function CartPageDeliveryInfo() {
 
   const [cookies, setCookies] = useCookies(["cart"]);
   const [stripeToken, setStripeToken] = useState(null);
-  const [whichContact, setWhichContact] = useState("user");
+  const [whichContact, setWhichContact] = useState(
+    user.address === undefined ? "other" : "user"
+  );
+
+  const [newContact, setNewContact] = useState({ address: undefined });
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  const changeCheckoutShowingStatus = () => {
+    if (
+      user.address &&
+      whichContact === "other" &&
+      newContact.address === undefined
+    ) {
+      setShowCheckout(false);
+    } else if (user.address && whichContact === "user") {
+      setShowCheckout(true);
+    }
+  };
+
+  useEffect(() => {
+    changeCheckoutShowingStatus();
+  }, [whichContact]);
+
+  useEffect(() => {
+    console.log(newContact.address);
+
+    if (user.address !== undefined) {
+      setShowCheckout(true);
+    } else if (newContact.address !== undefined && newContact.address !== "") {
+      setShowCheckout(true);
+    } else {
+      setShowCheckout(false);
+    }
+  }, [newContact]);
+
+  console.log(whichContact, newContact);
 
   const navigate = useNavigate();
 
@@ -39,7 +74,7 @@ function CartPageDeliveryInfo() {
   // STRIPE
 
   const createOrder = async () => {
-    console.log(user);
+    console.log(newContact);
 
     await fetch("http://localhost:5000/payment/createOrder", {
       method: "POST",
@@ -48,16 +83,17 @@ function CartPageDeliveryInfo() {
       },
 
       body: JSON.stringify({
-        user: user,
+        user: newContact.address ? newContact : user,
         products: await cookies.cart,
         stripeToken: stripeToken,
-        userEmail: user.email || "",
-        userId: user._id || user.email || stripeToken.email,
+        userEmail: user.email || newContact.email || "",
+        userId: newContact.email || user._id || user.email || stripeToken.email,
       }),
     })
       .then((data) => data.json())
       .then((data) => setOrderNumber(data.orderNumber))
       .then(() => setCookies("cart", [], { path: "/" }))
+      .then(() => setNewContact({ address: undefined }))
       .catch((err) => err);
   };
 
@@ -87,6 +123,20 @@ function CartPageDeliveryInfo() {
       : setWhichContact("user");
   };
 
+  const addNewContact = (e) => {
+    e.preventDefault();
+
+    const firstName = document.querySelector("#firstName").value;
+    const lastName = document.querySelector("#lastName").value;
+    const address = document.querySelector("#address").value;
+    const phone = document.querySelector("#phone").value;
+    const email = document.querySelector("#email").value;
+
+    const createdNewContact = { firstName, lastName, address, phone, email };
+
+    setNewContact(createdNewContact);
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -97,9 +147,12 @@ function CartPageDeliveryInfo() {
                 {whichContact === "other" && "New Contact Info"}
                 {whichContact === "user" && "My Contact Info"}
               </h5>
+
               <button
                 onClick={changeContact}
-                className="btn btn-outline-warning"
+                className={`btn btn-outline-warning ${
+                  user.address === undefined && "d-none"
+                }`}
               >
                 {whichContact === "user" && "New Contact Info"}
                 {whichContact === "other" && "Use My Contact Info"}
@@ -156,13 +209,15 @@ function CartPageDeliveryInfo() {
             )}
 
             {whichContact === "other" && (
-              <div class="row">
+              <form onSubmit={addNewContact} class="row">
                 <div class="col-6 mb-3">
                   <label class="form-label">First name</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Type here"
+                    id="firstName"
+                    required
                   />
                 </div>
                 <div class="col-6">
@@ -171,11 +226,19 @@ function CartPageDeliveryInfo() {
                     type="text"
                     class="form-control"
                     placeholder="Type here"
+                    id="lastName"
+                    required
                   />
                 </div>
                 <div class="col-lg-6 mb-3">
                   <label class="form-label">Phone</label>
-                  <input type="text" class="form-control" placeholder="" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    id="phone"
+                    required
+                  />
                 </div>
                 <div class="col-lg-6 mb-3">
                   <label class="form-label">Email</label>
@@ -183,19 +246,32 @@ function CartPageDeliveryInfo() {
                     type="text"
                     class="form-control"
                     placeholder="example@gmail.com"
+                    id="email"
+                    required
                   />
                 </div>
-                <div class="col-sm-8 mb-3">
+                <div class="col-sm-12 mb-3">
                   <label class="form-label">Address</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Type here"
+                    id="address"
+                    required
                   />
                   <br />
-                  <button class="btn btn-primary">New Contact Info</button>
+                  <div className="d-flex justify-content-between">
+                    <button class="btn btn-primary">New Contact Info</button>
+                    <span
+                      className={`text-success ${
+                        newContact.address ? "d-block" : "d-none"
+                      }`}
+                    >
+                      Customer Infos are successfully added...
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </form>
             )}
           </div>
         </article>
@@ -246,7 +322,9 @@ function CartPageDeliveryInfo() {
                     onClick={() => {
                       navigate("/deliveryInfo");
                     }}
-                    class="btn btn-success w-100"
+                    className={`btn btn-success w-100 ${
+                      showCheckout === false && "d-none"
+                    }`}
                   >
                     CHECKOUT NOW
                   </button>
