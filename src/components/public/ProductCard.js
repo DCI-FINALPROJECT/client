@@ -239,14 +239,12 @@ function ProductCard() {
                   </div>
                   <p>{productById.description}</p>
                   <dl className="row">
-                    <dt className="col-3">Model</dt>
-                    <dd className="col-9">{productById.productName}</dd>
-                    <dt className="col-3">Color</dt>
-                    <dd className="col-9">{colors.toString()}</dd>
-                    <dt className="col-3">Material</dt>
-                    <dd className="col-9">Cotton, Jeans </dd>
-                    <dt className="col-3">Delivery</dt>
-                    <dd className="col-9">Russia, USA, and Europe </dd>
+                    <dd className="col-3">Model</dd>
+                    <dt className="col-9">{productById.productName}</dt>
+                    <dd className="col-3">Color</dd>
+                    <dt className="col-9">{colors.toString()}</dt>
+                    <dd className="col-3">Speicherkapazität</dd>
+                    <dt className="col-9">{productById.capacity} </dt>
                   </dl>
                   <hr />
                   <div className="row" bis_skin_checked="1">
