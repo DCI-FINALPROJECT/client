@@ -29,10 +29,10 @@ export default function EditTemplate() {
 
   const [updateProduct, setUpdateProduct] = useState({});
 
-  function submitHandler(e) {
+  async function submitHandler (e) {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/admin/updateproduct/${id}`, {
+    await fetch(`http://localhost:5000/admin/updateproduct/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
