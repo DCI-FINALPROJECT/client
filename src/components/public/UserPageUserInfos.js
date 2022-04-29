@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import { DataStore } from "../../DataStore";
+import AskPassChangeOrDelete from "./AskPassChangeOrDelete";
+import PassportChange from "./PassportChange";
 
 function UserPageUserInfos() {
   const { user } = useContext(DataStore);
 
   const [inputAmendment, setInputAmendment] = useState(false);
+  const [IsPassChangeAktiv, setIsPassChangeAktiv] = useState(false)
 
   const isInputChanged = () => {
     setInputAmendment(true);
@@ -119,35 +122,14 @@ function UserPageUserInfos() {
           </div>
           <br />
           <button class="btn btn-primary" type="submit">
-            {inputAmendment === true && "Save changes"}
+            {inputAmendment === true && "Save changes"}       
             {inputAmendment === false && "Updated"}
           </button>
         </form>
         <hr class="my-4" />
-        <div class="row" style={{ maxWidth: "920px" }}>
-          <div class="col-md">
-            <article class="box mb-3 bg-light">
-              <a class="btn float-end btn-light btn-sm" href="#">
-                Change
-              </a>
-              <p class="title mb-0">Password</p>
-              <small class="text-muted d-block" style={{ width: "70%" }}>
-                You can reset or change your password by clicking here
-              </small>
-            </article>
-          </div>
-          <div class="col-md">
-            <article class="box mb-3 bg-light">
-              <a class="btn float-end btn-outline-danger btn-sm" href="#">
-                Deactivate
-              </a>
-              <p class="title mb-0">Remove account</p>
-              <small class="text-muted d-block" style={{ width: "70%" }}>
-                Once you delete your account, there is no going back.
-              </small>
-            </article>
-          </div>
-        </div>
+
+        {IsPassChangeAktiv === true? <PassportChange/> : <AskPassChangeOrDelete setIsPassChangeAktiv={setIsPassChangeAktiv}/>}
+        
       </div>
     </div>
   );
