@@ -18,13 +18,13 @@ function PassportChange() {
     if (newPass === repeatNewPass && newPass!=="") {
       e.preventDefault();
 
-      await fetch(`http://localhost:5000/user/changepass/${email}`, {
+      await fetch(`http://localhost:5000/user/passchange`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.userToken}`,
         },
-        body: JSON.stringify({currentPass,newPass}),
+        body: JSON.stringify({currentPass,newPass, email}),
       }).then((res) =>
         res.status === 200 ? alert("password is updated") : console.log(res)
       );
