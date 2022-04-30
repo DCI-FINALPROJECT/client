@@ -24,9 +24,10 @@ function PassportChange() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.userToken}`,
         },
-        body: JSON.stringify({currentPass,newPass, email}),
+        body: JSON.stringify({currentPass, newPass, email}),
       }).then((res) =>
-        res.status === 200 ? alert("password is updated") : console.log(res)
+        {console.log(res)
+        res.status === 200 ? alert("password is updated") : alert(res)}
       );
     }else{
         alert("pass yanlis girdiniz")
