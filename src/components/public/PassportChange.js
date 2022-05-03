@@ -50,7 +50,8 @@ function PassportChange() {
         alert("didn't is written any new password or new passwords are not equal to each other.")
     }
   };
-
+  
+ 
   return (
     <div className="" style={{ width: "50%", height: "200px" }}>
       <h5 className="mb-0">Change Password</h5>
@@ -62,7 +63,7 @@ function PassportChange() {
           role="form"
           autocomplete="off"
         >
-          <div className="">
+          <div className="row">
             <label for="inputPasswordOld">Current Password</label>
             <input
               type="password"
@@ -73,8 +74,9 @@ function PassportChange() {
                 setCurrentPass(e.target.value);
               }}
             />
+            <i className="far fa-eye" onClick={()=>{const x = document.getElementById("inputPasswordOld");  x.type==="password"?x.type="text":x.type="password"}} style={{marginLeft:"-30px", cursor: "pointer", marginTop:"10px"}}></i>
           </div>
-          <div className="">
+          <div className="row">
             <label for="inputPasswordNew">New Password</label>
             <input
               type="password"
@@ -85,12 +87,14 @@ function PassportChange() {
                 setNewPass(e.target.value);
               }}
             />
+            <i className="far fa-eye" id="eye-2" onClick={()=>{const x = document.getElementById("inputPasswordNew");
+            const eye2=document.getElementById("eye-2");  x.type==="password"?x.type="text":x.type="password"}} style={{marginLeft:"-30px", cursor: "pointer", marginTop:"10px"}}></i>
             <span className="form-text small text-muted">
               The password must be 8-20 characters, and must <em>not</em>{" "}
               contain spaces.
             </span>
           </div>
-          <div className="">
+          <div className="row">
             <label for="inputPasswordNewVerify">Verify</label>
             <input
               type="password"
@@ -101,6 +105,7 @@ function PassportChange() {
                 setRepeatNewPass(e.target.value);
               }}
             />
+            <i className="far fa-eye" onClick={()=>{const x = document.getElementById("inputPasswordNewVerify");  x.type==="password"?x.type="text":x.type="password"}} style={{marginLeft:"-30px", cursor: "pointer", marginTop:"10px"}}></i>
             <span className="form-text small text-muted">
               To confirm, type the new password again.
             </span>
