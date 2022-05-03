@@ -8,6 +8,7 @@ function PassportChange() {
   const [currentPass, setCurrentPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatNewPass, setRepeatNewPass] = useState("");
+  
   console.log(currentPass);
   console.log(newPass);
   console.log(repeatNewPass);
@@ -16,24 +17,41 @@ function PassportChange() {
         e.preventDefault();
       const email=user.email
     if (newPass === repeatNewPass && newPass!=="") {
+
       e.preventDefault();
 
-      await fetch(`http://localhost:5000/user/passchange`, {
+      const newPassword = {
+        currentPass,
+        newPass,
+        email
+      }
+      const response =await fetch(`http://localhost:5000/user/passchange`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.userToken}`,
         },
-        body: JSON.stringify({currentPass, newPass, email}),
-      }).then((res) =>
-        {console.log(res)
-        res.status === 200 ? alert("password is updated") : alert(res)}
-      );
+        body: JSON.stringify(newPassword),
+      })
+      const result = response;
+      if (result.status === 200) {
+        alert("You are successfully your password changed!");
+      } else {
+        response
+          .json()
+          .then((data) => {console.log("data", data.message)
+          
+        alert(data.message)})
+
+
+      }
+     
     }else{
-        alert("pass yanlis girdiniz")
+        alert("didn't is written any new password or new passwords are not equal to each other.")
     }
   };
-
+  
+ 
   return (
     <div className="" style={{ width: "50%", height: "200px" }}>
       <h5 className="mb-0">Change Password</h5>
@@ -45,7 +63,7 @@ function PassportChange() {
           role="form"
           autocomplete="off"
         >
-          <div className="">
+          <div className="row">
             <label for="inputPasswordOld">Current Password</label>
             <input
               type="password"
@@ -56,8 +74,9 @@ function PassportChange() {
                 setCurrentPass(e.target.value);
               }}
             />
+            <i className="far fa-eye" onClick={()=>{const x = document.getElementById("inputPasswordOld");  x.type==="password"?x.type="text":x.type="password"}} style={{marginLeft:"-30px", cursor: "pointer", marginTop:"10px"}}></i>
           </div>
-          <div className="">
+          <div className="row">
             <label for="inputPasswordNew">New Password</label>
             <input
               type="password"
@@ -68,12 +87,14 @@ function PassportChange() {
                 setNewPass(e.target.value);
               }}
             />
+            <i className="far fa-eye" id="eye-2" onClick={()=>{const x = document.getElementById("inputPasswordNew");
+            const eye2=document.getElementById("eye-2");  x.type==="password"?x.type="text":x.type="password"}} style={{marginLeft:"-30px", cursor: "pointer", marginTop:"10px"}}></i>
             <span className="form-text small text-muted">
               The password must be 8-20 characters, and must <em>not</em>{" "}
               contain spaces.
             </span>
           </div>
-          <div className="">
+          <div className="row">
             <label for="inputPasswordNewVerify">Verify</label>
             <input
               type="password"
@@ -84,6 +105,7 @@ function PassportChange() {
                 setRepeatNewPass(e.target.value);
               }}
             />
+            <i className="far fa-eye" onClick={()=>{const x = document.getElementById("inputPasswordNewVerify");  x.type==="password"?x.type="text":x.type="password"}} style={{marginLeft:"-30px", cursor: "pointer", marginTop:"10px"}}></i>
             <span className="form-text small text-muted">
               To confirm, type the new password again.
             </span>
