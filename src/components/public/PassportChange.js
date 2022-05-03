@@ -8,6 +8,7 @@ function PassportChange() {
   const [currentPass, setCurrentPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatNewPass, setRepeatNewPass] = useState("");
+  
   console.log(currentPass);
   console.log(newPass);
   console.log(repeatNewPass);
@@ -16,21 +17,37 @@ function PassportChange() {
         e.preventDefault();
       const email=user.email
     if (newPass === repeatNewPass && newPass!=="") {
+
       e.preventDefault();
 
-      await fetch(`http://localhost:5000/user/passchange`, {
+      const newPassword = {
+        currentPass,
+        newPass,
+        email
+      }
+      const response =await fetch(`http://localhost:5000/user/passchange`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.userToken}`,
         },
-        body: JSON.stringify({currentPass, newPass, email}),
-      }).then((res) =>
-        {console.log(res)
-        res.status === 200 ? alert("password is updated") : alert(res)}
-      );
+        body: JSON.stringify(newPassword),
+      })
+      const result = response;
+      if (result.status === 200) {
+        alert("You are successfully your password changed!");
+      } else {
+        response
+          .json()
+          .then((data) => {console.log("data", data.message)
+          
+        alert(data.message)})
+
+
+      }
+     
     }else{
-        alert("pass yanlis girdiniz")
+        alert("didn't is written any new password or new passwords are not equal to each other.")
     }
   };
 
