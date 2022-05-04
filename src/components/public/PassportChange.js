@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { DataStore } from "../../DataStore";
 
-function PassportChange() {
+function PassportChange({ setIsPassChangeAktiv }) {
   const { user } = useContext(DataStore);
   console.log(user);
   
@@ -36,6 +36,8 @@ function PassportChange() {
       const result = response;
       if (result.status === 200) {
         alert("You are successfully your password changed!");
+        setIsPassChangeAktiv(false);
+
       } else {
         response
           .json()

@@ -128,7 +128,7 @@ function UserPageUserInfos() {
         </form>
         <hr class="my-4" />
 
-        {IsPassChangeAktiv === true? <PassportChange/> : <AskPassChangeOrDelete setIsPassChangeAktiv={setIsPassChangeAktiv}/>}
+        {IsPassChangeAktiv === true? <PassportChange setIsPassChangeAktiv={setIsPassChangeAktiv}/> : <AskPassChangeOrDelete setIsPassChangeAktiv={setIsPassChangeAktiv}/>}
         
       </div>
     </div>
