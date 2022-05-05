@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { DataStore } from "../../DataStore";
 import { useCookies } from "react-cookie";
+import { logout } from "../helpers/logout";
 
 function AskPassChangeOrDelete({ setIsPassChangeAktiv }) {
 
@@ -22,8 +23,9 @@ function AskPassChangeOrDelete({ setIsPassChangeAktiv }) {
       const result = response;
       if (result.status === 200) {
         alert("Your account is successfully deleted!");
-        /* removeCookie("cart")
-        localStorage.clear("userToken") */
+        logout()
+        removeCookie("cart")
+        localStorage.clear("userToken")
       }
    
     } else {
