@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { DataStore } from "../../DataStore";
 import { useCookies } from "react-cookie";
+import { logout } from "../helpers/logout";
 
 function AskPassChangeOrDelete({ setIsPassChangeAktiv }) {
 
@@ -10,7 +11,6 @@ function AskPassChangeOrDelete({ setIsPassChangeAktiv }) {
   const clickHandler = async () => {
     if (window.confirm("Are you sure to delete your account!!!")) {
       const email=user.email
-      console.log("cookie", cookies);
       const response =await fetch(`http://localhost:5000/user/delete`, {
         method: "DELETE",
         headers: {
@@ -22,8 +22,9 @@ function AskPassChangeOrDelete({ setIsPassChangeAktiv }) {
       const result = response;
       if (result.status === 200) {
         alert("Your account is successfully deleted!");
-        /* removeCookie("cart")
-        localStorage.clear("userToken") */
+        logout()
+        removeCookie("cart")
+        localStorage.clear("userToken")
       }
    
     } else {
