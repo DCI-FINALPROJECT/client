@@ -3,15 +3,11 @@ import { DataStore } from "../../DataStore";
 
 function PassportChange({ setIsPassChangeAktiv }) {
   const { user } = useContext(DataStore);
-  console.log(user);
   
   const [currentPass, setCurrentPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatNewPass, setRepeatNewPass] = useState("");
-  
-  console.log(currentPass);
-  console.log(newPass);
-  console.log(repeatNewPass);
+
   const submitHandler = async (e) => {
 
         e.preventDefault();
