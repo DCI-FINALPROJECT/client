@@ -112,6 +112,9 @@ function PassportChange({ setIsPassChangeAktiv }) {
             <button type="submit" className="btn btn-success float-right">
               Save
             </button>
+          <button type="submit" onClick={()=>{setIsPassChangeAktiv(false)}} className="btn btn-warning mr-3 float-right">
+              Cancel
+          </button>
           </div>
         </form>
       </div>
