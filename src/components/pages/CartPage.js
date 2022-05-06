@@ -14,6 +14,10 @@ function CartPage() {
 
   const [cookies, setCookies] = useCookies(["cart"]);
 
+  const [couponNumber, setCouponNumber] = useState("")
+  const [discount, setDiscount] = useState(0)
+
+  console.log(couponNumber);
   const navigate = useNavigate();
 
   let totalPrice = 0;
@@ -22,6 +26,34 @@ function CartPage() {
     cookies.cart.forEach((product) => {
       totalPrice += product.price * product.quantities;
     });
+  }
+
+  async function submitHandler(e){
+    e.preventDefault();
+    if(couponNumber.length>=13 && couponNumber.length<=15){
+
+      console.log("submit calisiyor");
+      const response = await fetch(`http://localhost:5000/admin/getCoupon/${couponNumber}`, {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${localStorage.userToken}`,
+                },
+              })
+              console.log("response", response);
+              if(response.status===200){
+
+                response.json().then((data)=>{
+                  console.log(data);
+                  setDiscount(data.amount)
+                  alert(data.message)
+                })
+              }else{
+                response.json().then((data)=>{
+                  alert(data.message)
+                })
+              }
+    }else{alert("you dont have valid coupon")}
   }
 
   return (
@@ -76,31 +108,14 @@ function CartPage() {
             </div>
           </div>
           <aside class="col-lg-3">
-            <div class="card mb-3">
-              <div class="card-body">
-                <form>
-                  <label class="form-label">Have coupon?</label>
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Coupon code"
-                    />
-                    <button class="btn btn-light">Apply</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+            
             <div class="card">
               <div class="card-body">
                 <dl class="dlist-align">
                   <dt>Total price:</dt>
                   <dd class="text-end"> € {totalPrice.toFixed(2)}</dd>
                 </dl>
-                <dl class="dlist-align">
-                  <dt>Discount:</dt>
-                  <dd class="text-end text-success"> - 0 </dd>
-                </dl>
+               
                 <hr />
                 <dl class="dlist-align">
                   <dt>Total:</dt>
