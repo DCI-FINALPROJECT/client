@@ -28,17 +28,17 @@ function CouponCreatTemplate() {
     
       }
   return (
-    <div className="bg">
+    <div className="bg" style={{height:"700px"}} >
       <div className="container pt-5 pb-5">
         <div className="row">
-          <div className="card m-auto " style={{ width: "50%" }}>
+          <div className="card m-auto" style={{ width: "50%" }}>
             <article className="card-body">
               <h4 className="mb-4">Creat Coupon</h4>
               <form
               onSubmit={submitHandler}>
                 {/* How much Coupon */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">
+                  <label className="col-md-3 col-form-label">
                     How much Coupon
                   </label>
                   <div className="col-9">
@@ -54,7 +54,7 @@ function CouponCreatTemplate() {
                 </div>
                 {/* Coupon Amount*/}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label"> Coupon Amount</label>
+                  <label className="col-md-3 col-form-label"> Coupon Amount</label>
                   <div className="col-9">
                     <input
                       type="number"
@@ -65,19 +65,12 @@ function CouponCreatTemplate() {
                     />
                   </div>
                 </div>
-                <div className="row mb-2">
-                  <div className="col-9 offset-3">
-                    <button type="submit" className="btn btn-primary">
+                  <div className=" d-flex justify-content-center align-items-center">
+                    <button type="submit" className="btn btn-primary ">
                       Creat Coupon
                     </button>
-                    <button
-                      type="reset"
-                      className="btn btn-outline-danger ml-3"
-                    >
-                      Cancel
-                    </button>
+                    
                   </div>
-                </div>
               </form>
             </article>
           </div>
