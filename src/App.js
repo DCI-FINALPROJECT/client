@@ -19,6 +19,7 @@ import AddProductPage from "./components/pages/AddProductPage";
 import CartPage from "./components/pages/CartPage";
 import DeliveryInfoPage from "./components/pages/DeliveryInfoPage";
 import AdminPopulerProducts from "./components/public/AdminPopulerProducts";
+import CouponCreatPage from "./components/pages/CouponCreatPage";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -148,6 +149,7 @@ function App() {
               element={<DeletePage />}
             />
             <Route path="/admin/edit/:id" element={<EditPage />} />
+            <Route path="/admin/couponCreate" element={<CouponCreatPage />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/payment" element={<PaymentPage />} />

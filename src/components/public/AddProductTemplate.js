@@ -36,7 +36,7 @@ function AdminTemplate() {
     <div className="bg">
       <div className="container pt-5 pb-5">
         <div className="row">
-          <div className="card m-auto " style={{ width: "50%" }}>
+          <div className="card m-auto ">
             <article className="card-body">
               <h4 className="mb-4">Add product</h4>
               <form
@@ -47,8 +47,8 @@ function AdminTemplate() {
               >
                 {/* product name */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">Product Name</label>
-                  <div className="col-9">
+                  <label className="col-md-3 col-form-label">Product Name</label>
+                  <div className="col-md-9">
                     <input
                       type="text"
                       className="form-control"
@@ -60,8 +60,8 @@ function AdminTemplate() {
                 </div>
                 {/* category */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">Category</label>
-                  <div className="col-9">
+                  <label className="col-md-3 col-form-label">Category</label>
+                  <div className="col-md-9">
                     <input
                       type="text"
                       className="form-control"
@@ -73,8 +73,8 @@ function AdminTemplate() {
                 </div>
                 {/* brand */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">Brand</label>
-                  <div className="col-9">
+                  <label className="col-md-3 col-form-label">Brand</label>
+                  <div className="col-md-9">
                     <input
                       type="text"
                       className="form-control"
@@ -86,8 +86,8 @@ function AdminTemplate() {
                 </div>
                 {/* price */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">Price</label>
-                  <div className="col-9">
+                  <label className="col-md-3 col-form-label">Price</label>
+                  <div className="col-md-9">
                     <input
                       type="text"
                       className="form-control"
@@ -99,11 +99,11 @@ function AdminTemplate() {
                 </div>
                 {/* image */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">
+                  <label className="col-md-3 col-form-label">
                     Image <br />{" "}
                     <small className="text-muted">(Max 10 mb)</small>
                   </label>
-                  <div className="col-9">
+                  <div className="col-md-9">
                     <input
                       type="file"
                       className="form-control"
@@ -151,8 +151,8 @@ function AdminTemplate() {
                 </div>
                 {/* description */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">Description</label>
-                  <div className="col-9">
+                  <label className="col-md-3 col-form-label">Description</label>
+                  <div className="col-md-9">
                     <textarea
                       className="form-control"
                       placeholder="Type here"
@@ -163,8 +163,8 @@ function AdminTemplate() {
                 </div>
                 {/* quantities */}
                 <div className="row mb-4">
-                  <label className="col-3 col-form-label">Capacity</label>
-                  <div className="col-9">
+                  <label className="col-md-3 col-form-label">Capacity</label>
+                  <div className="col-md-9">
                     <input
                       type="text"
                       className="form-control"
