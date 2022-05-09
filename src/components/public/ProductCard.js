@@ -254,7 +254,7 @@ function ProductCard() {
                         className="form-select "
                         style={{borderRadius:"10px" ,padding:"4px 2px", height:"1.9em", border:"none"}}
                       >
-                         <option selected style={{color:"#e0e0e0"}}>Select Capacity</option>
+                        <option selected style={{color:"#e0e0e0"}}>Select Capacity</option>
                         <option style={{color:productById.capacity==='64 GB'? "inherit" : "#e0e0e0"}}>64 GB</option>
                         <option style={{color:productById.capacity==='128 GB'? "inherit" : "#e0e0e0"}}>128 GB</option>
                         <option style={{color:productById.capacity==='256 GB'? "inherit" : "#e0e0e0"}}>256 GB</option>

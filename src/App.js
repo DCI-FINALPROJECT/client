@@ -18,6 +18,7 @@ import EditPage from "./components/pages/EditPage";
 import AddProductPage from "./components/pages/AddProductPage";
 import CartPage from "./components/pages/CartPage";
 import DeliveryInfoPage from "./components/pages/DeliveryInfoPage";
+import AdminPopulerProducts from "./components/public/AdminPopulerProducts";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -141,6 +142,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/addproduct" element={<AddProductPage />} />
+            <Route path="/admin/populerproducts" element={<AdminPopulerProducts />} />
             <Route
               path="/admin/deleteproduct/:productName"
               element={<DeletePage />}
