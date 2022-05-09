@@ -254,6 +254,7 @@ function ProductCard() {
                         className="form-select "
                         style={{borderRadius:"10px" ,padding:"4px 4px", height:"2.2em",fontSize:"1.05rem", border:"none"}}
                       >
+
                          <option disabled selected style={{color:"#e0e0e0"}}>Select Capacity</option>
                         <option >64 GB</option>
                         <option >128 GB</option>

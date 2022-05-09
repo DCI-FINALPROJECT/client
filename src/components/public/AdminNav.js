@@ -17,6 +17,8 @@ function AdminNav() {
           <a class={path===`/admin/edit/${id}`||path===`/admin/deleteproduct/${prName}`?"nav-link active":"nav-link"} href="/admin/deleteproduct/null">
            Edit or Delete Product
           </a>
+          <a class={path===`/admin/edit/${id}`||path===`/admin/populerproducts`?"nav-link active":"nav-link"} href="/admin/populerproducts">
+            Populer Products
           <a class={path===`/admin/couponCreate`?"nav-link active":"nav-link"} href="/admin/couponCreate">
             Coupon Creat
           </a>
