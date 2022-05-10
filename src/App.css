@@ -30,7 +30,7 @@
   box-shadow: 0 0 1em #3167eb;
 }
 
-
+/* Carrousel */
 .slick-arrow {
   background-color: black !important;
   border-radius: 50%;
@@ -39,9 +39,12 @@
 .logo {
   width: 250px;
 }
-
+/* Colors */
 .yellow {
   color:#ffbe0b;
+}
+.black {
+  color:black
 }
 .yellow-bg {
   background-color:#ffbe0b;
@@ -60,8 +63,12 @@
 .hover:hover {
   color: #ffbe0b;
 }
+
 .bottom {
-  background-color: #ffbe0b;;
+  background-color: #ffbe0b;
+}
+.text-primary {
+  color: #ffbe0b !important;
 }
 
 .banner1 {
@@ -95,7 +102,7 @@
 /* STAR RATING COLOR */
 
 .checked {
-  color: orange;
+  color: #ffbe0b;
 }
 
 .text-banner1 {
@@ -105,9 +112,7 @@
   width: 100%;
   height: 550px;
 }
-.carol {
-  color:white;
-}
+
 
 
 /* SIGN IN WITH GOOGLE */

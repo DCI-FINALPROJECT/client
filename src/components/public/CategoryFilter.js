@@ -101,33 +101,33 @@ function CategoryFilter() {
   useEffect(getAllCapacities, []);
 
   return (
-    <aside class="col-lg-3">
+    <aside className="col-lg-3">
       <button
-        class="btn btn-outline-secondary mb-3 w-100  d-lg-none"
+        className="btn btn-outline-secondary mb-3 w-100  d-lg-none"
         data-bs-toggle="collapse"
         data-bs-target="#aside_filter"
       >
         Show filter
       </button>
 
-      <div id="aside_filter" class="collapse card d-lg-block mb-5">
-        <article class="filter-group">
-          <header class="card-header">
+      <div id="aside_filter" className="collapse card d-lg-block mb-5">
+        <article className="filter-group">
+          <header className="card-header">
             <a
               href="#"
-              class="title"
+              className="title yellow hover h5"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside_brands"
             >
-              <i class="icon-control fa fa-chevron-down"></i>
+              <i className="icon-control fa fa-chevron-down"></i>
               Brands
             </a>
           </header>
-          <div class="collapse show" id="collapse_aside_brands">
-            <div class="card-body">
+          <div className="collapse show" id="collapse_aside_brands">
+            <div className="card-body">
               {brands.map((brand) => {
                 return (
-                  <label class="form-check mb-2">
+                  <label className="form-check mb-2">
                     <input
                       defaultChecked={
                         selectedBrands.includes(Object.keys(brand)[0])
@@ -135,12 +135,12 @@ function CategoryFilter() {
                           : false
                       }
                       onChange={changingBrand}
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
                       value={Object.keys(brand)}
                     />
-                    <span class="form-check-label"> {Object.keys(brand)} </span>
-                    <b class="badge rounded-pill bg-gray-dark float-end">
+                    <span className="form-check-label"> {Object.keys(brand)} </span>
+                    <b className="badge rounded-pill bg-gray-dark float-end">
                       {Object.values(brand)}
                     </b>
                   </label>
@@ -150,23 +150,23 @@ function CategoryFilter() {
           </div>
         </article>
 
-        <article class="filter-group">
-          <header class="card-header">
+        <article className="filter-group">
+          <header className="card-header">
             <a
               href="#"
-              class="title"
+              className="title yellow hover h5"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside3"
             >
-              <i class="icon-control fa fa-chevron-down"></i>
+              <i className="icon-control fa fa-chevron-down"></i>
               Capacity
             </a>
           </header>
-          <div class="collapse show" id="collapse_aside3">
-            <div class="card-body">
+          <div className="collapse show" id="collapse_aside3">
+            <div className="card-body">
               {capacities.map((capacity) => {
                 return (
-                  <label class="checkbox-btn m-1">
+                  <label className="checkbox-btn m-1">
                     <input
                       onChange={changingCapacity}
                       value={capacity.capacityName}
@@ -178,7 +178,7 @@ function CategoryFilter() {
                       }
                     />
 
-                    <span class="btn btn-light"> {capacity.capacityName} </span>
+                    <span className="btn btn-light"> {capacity.capacityName} </span>
                   </label>
                 );
               })}
@@ -186,29 +186,28 @@ function CategoryFilter() {
           </div>
         </article>
 
-        <article class="filter-group">
-          <header class="card-header">
+        <article className="filter-group">
+          <header className="card-header">
             <a
               href="#"
-              class="title"
+              className="title yellow hover h5"
               data-bs-toggle="collapse"
               data-bs-target="#collapse_aside2"
             >
-              <i class="icon-control fa fa-chevron-down"></i>
+              <i className="icon-control fa fa-chevron-down yellow"></i>
               Price
             </a>
           </header>
-          <div class="collapse show" id="collapse_aside2">
-            <div class="card-body">
-              <input type="range" class="form-range" min="0" max="100" />
-              <div class="row mb-3">
-                <div class="col-6">
-                  <label for="min" class="form-label">
+          <div className="collapse show" id="collapse_aside2">
+            <div className="card-body">
+              <div className="row mb-3">
+                <div className="col-6">
+                  <label for="min" className="form-label">
                     Min
                   </label>
                   <input
                     onChange={minPriceChanged}
-                    class="form-control"
+                    className="form-control"
                     id="min"
                     placeholder="$0"
                     type="number"
@@ -216,13 +215,13 @@ function CategoryFilter() {
                   />
                 </div>
 
-                <div class="col-6">
-                  <label for="max" class="form-label">
+                <div className="col-6">
+                  <label for="max" className="form-label">
                     Max
                   </label>
                   <input
                     onChange={maxPriceChanged}
-                    class="form-control"
+                    className="form-control"
                     id="max"
                     placeholder="$1,0000"
                     type="number"
@@ -232,7 +231,7 @@ function CategoryFilter() {
               </div>
               <button
                 onClick={applyFilter}
-                class="btn btn-light w-100"
+                className="btn btn-light btn-yellow w-100"
                 type="button"
               >
                 Apply

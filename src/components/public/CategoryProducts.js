@@ -108,28 +108,28 @@ function CategoryProducts() {
   }, []);
 
   return (
-    <main class="col-lg-9">
-      <header class="d-flex align-items-center justify-content-between border-bottom mb-4 pb-3">
-        <strong class="d-block py-2">
+    <main className="col-lg-9">
+      <header className="d-flex align-items-center justify-content-between border-bottom mb-4 pb-3">
+        <strong className="d-block py-2">
           {numberOfProductByCategory} Items found{" "}
         </strong>
-        <div class="ms-auto">
+        <div className="ms-auto">
           <select
             defaultValue={defaultChoise}
             onChange={selectedFiltering}
-            class="form-select d-inline-block w-auto"
+            className="form-select d-inline-block w-auto"
             style={{borderRadius: "5px", border:"none", padding:"5px 3px", color:"#595454"}}
           >
             <option>New Products</option>
             <option>Best Sellers</option>
             <option>Lowest Price</option>
           </select>
-          <div class="btn-group"></div>
+          <div className="btn-group"></div>
         </div>
       </header>
 
       {
-        <div className="d-flex flex-wrap justify-content-center">
+        <div classNameName="d-flex flex-wrap justify-content-center">
           {products.map((product) => {
             
             return <CategoryCard key={product._id} product={product} />;
@@ -139,7 +139,7 @@ function CategoryProducts() {
 
       <hr />
 
-      <footer class="d-flex mt-4">
+      <footer className="d-flex mt-4">
         <div>
           <a
             href={`?whichPage=1&choise=${choise}&brands=${query.get(
@@ -147,18 +147,18 @@ function CategoryProducts() {
             )}&min=${query.get("min")}&max=${query.get(
               "max"
             )}&capacities=${query.get("capacities")}`}
-            class="btn btn-light"
+            className="btn btn-light"
           >
             First Page
           </a>
         </div>
-        <nav class="ms-3">
-          <ul class="pagination">
+        <nav className="ms-3">
+          <ul className="pagination">
             {page === 1 && (
-              <div className="d-flex">
-                <li class="page-item active">
+              <div classNameName="d-flex">
+                <li className="page-item active">
                   <a
-                    class="page-link"
+                    className="page-link"
                     href={`?whichPage=${page}&choise=${choise}&brands=${query.get(
                       "brands"
                     )}&min=${query.get("min")}&max=${query.get(
@@ -171,9 +171,9 @@ function CategoryProducts() {
                   </a>
                 </li>
                 {numberOfProductByCategory / limit > 1 && (
-                  <li class="page-item" aria-current="page">
+                  <li className="page-item" aria-current="page">
                     <a
-                      class="page-link"
+                      className="page-link"
                       href={`?whichPage=2&choise=${choise}&brands=${query.get(
                         "brands"
                       )}&min=${query.get("min")}&max=${query.get(
@@ -187,9 +187,9 @@ function CategoryProducts() {
                   </li>
                 )}
                 {numberOfProductByCategory / limit > 2 && (
-                  <li class="page-item" aria-current="page">
+                  <li className="page-item btn btn-light" aria-current="page">
                     <a
-                      class="page-link"
+                      className="page-link"
                       href={`?whichPage=3&choise=${choise}&brands=${query.get(
                         "brands"
                       )}&min=${query.get("min")}&max=${query.get(
@@ -206,10 +206,10 @@ function CategoryProducts() {
             )}
 
             {page !== 1 && (
-              <div className="d-flex">
-                <li class="page-item">
+              <div classNameName="d-flex">
+                <li className="page-item">
                   <a
-                    class="page-link"
+                    className="page-link"
                     href={`?whichPage=${
                       page - 1
                     }&choise=${choise}&brands=${query.get(
@@ -223,9 +223,9 @@ function CategoryProducts() {
                     {page - 1}
                   </a>
                 </li>
-                <li class="page-item active" aria-current="page">
+                <li className="page-item active" aria-current="page">
                   <a
-                    class="page-link"
+                    className="page-link"
                     href={`?whichPage=${page}&choise=${choise}&brands=${query.get(
                       "brands"
                     )}&min=${query.get("min")}&max=${query.get(
@@ -238,9 +238,9 @@ function CategoryProducts() {
                   </a>
                 </li>
                 {numberOfProductByCategory / limit > page && (
-                  <li class="page-item" aria-current="page">
+                  <li className="page-item" aria-current="page">
                     <a
-                      class="page-link"
+                      className="page-link"
                       href={`?whichPage=${
                         page + 1
                       }&choise=${choise}&brands=${query.get(
@@ -258,9 +258,9 @@ function CategoryProducts() {
               </div>
             )}
 
-            <li class="page-item">
+            <li classNameName="page-item">
               <a
-                class="page-link"
+                className="page-link btn btn-light text-dark"
                 href={`?whichPage=${
                   numberOfProductByCategory / limit === 0
                     ? 1

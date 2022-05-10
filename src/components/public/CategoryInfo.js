@@ -13,7 +13,7 @@ function CategoryInfo() {
         <nav >
           <ol className="breadcrumb text-white">
             <li className="breadcrumb-item">
-              <a href="/"><i className="fa fa-lg fa-home"></i> Homepage</a>
+              <a className="text-dark" href="/"><i className="fa fa-lg fa-home"></i> Homepage</a>
             </li>
             <li className="breadcrumb-item">
               <span className="text-dark">Category</span>
