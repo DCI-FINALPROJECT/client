@@ -50,7 +50,7 @@ function CategoryCard({ product }) {
           <div class="col-xl-6 col-md-5 col-sm-7">
             <Link to={`/product/${product._id}`}>
               <div class="card-body">
-                <a href="#" class="title h5">
+                <a href="#" class="h5 black hover">
                   {product.productNameWithCapacity}
                 </a>
 
@@ -83,18 +83,17 @@ function CategoryCard({ product }) {
                         <i className="fa fa-star"></i>
                       </li>
                     </ul>
-                    <i className="dot">{avarageStarPoints.toFixed(0) === "NaN" ? 0 : avarageStarPoints.toFixed(0)}%</i>
+                    <i className="dot black p-1">{avarageStarPoints.toFixed(0) === "NaN" ? 0 : avarageStarPoints.toFixed(0)}%</i>
                     <span className="label-rating text-muted">
                       <i className="fa fa-shopping-basket"></i>
                       {product.sales} orders
                     </span>
                     <i className="dot"></i>
-                    <span className="label-rating text-success">verified</span>
                   </div>
                   <i class="dot"></i>
                   <span class="label-rating text-muted">{product.sales}</span>
                 </div>
-                <p style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden"}}>
+                <p className="black" style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden"}}>
                   {product.description}
                   <div>Category: {product.category}</div>
                   <div>Brand: {product.brand}</div>
@@ -103,20 +102,13 @@ function CategoryCard({ product }) {
             </Link>
           </div>
           <aside class="col-xl-3 col-md-3 col-sm-5">
-            <div class="info-aside">
+            <div class="info-aside d-flex flex-column align-items-end">
               <div class="price-wrap">
-                <span class="price h5"> €{product.price} </span>
+                <span class="price h5"> € {product.price} </span>
               </div>
-              <p class="text-success">Free shipping</p>
+              <p class="yellow">Free shipping</p>
               <br />
-              <div class="mb-3">
-                <a href="#" class="btn btn-primary">
-                  Buy this
-                </a>
-                <a href="#" class="btn btn-light btn-icon">
-                  <i class="fa fa-heart"></i>
-                </a>
-              </div>
+              
             </div>
           </aside>
         </div>

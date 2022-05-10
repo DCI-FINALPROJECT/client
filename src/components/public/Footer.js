@@ -160,11 +160,7 @@ function Footer() {
           </section>
 
           <section className="footer-copyright border-top">
-            <p target="_blank" className="float-right text-muted">
-              <a href="#">Privacy & Cookies</a> &nbsp &nbsp
-              <a href="#">Accessibility</a>
-            </p>
-            <p className="text-muted">&copy 2020 Company All rights resetved</p>
+            <p className="text-muted"> &copy; 2020 Company All rights reserved</p>
           </section>
         </div>
       </footer>
