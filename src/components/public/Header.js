@@ -41,7 +41,7 @@ function Header() {
     const email = document.querySelector("#emailSignIn").value;
     const password = document.querySelector("#passwordSignIn").value;
 
-    await fetch("http://localhost:5000/userlogin", {
+    const response = await fetch("http://localhost:5000/userlogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,13 +49,30 @@ function Header() {
 
       body: JSON.stringify({ email, password }),
     })
-      .then((data) => data.json())
-      .then((data) => {
-        setLoginMessage(data.message);
-        setUser(data.userInformation);
-        localStorage.setItem("userToken", data.userToken);
+
+    const result = response;
+    result
+        .json()
+        .then(async(data) => {console.log("data", data.status)
+
+        if (data.status === 'error') {
+          console.log("if calisiyor");
+          setLoginMessage(data.message)
+          console.log("loginMassege", loginMessage);
+          
+        } else {
+          console.log("else calisiyor");
+    
+          setLoginMessage(data.message)
+          console.log("loginMassege", loginMessage);          
+          setUser(data.userInformation);
+          localStorage.setItem("userToken", data.userToken);
+          
+        }
+        
       })
-      .catch((err) => err);
+   
+     
   };
 
   return (
@@ -197,10 +214,11 @@ function Header() {
                       </div>
                     </a>
                     <div className="dropdown-menu dropdown-menu-right">
-                      <form className="px-4 py-3">
+                      <form className="px-4 py-3"  onSubmit={signInWithForm}>
                         <div className="form-group">
                           <label>Email address</label>
                           <input
+                            required
                             id="emailSignIn"
                             type="email"
                             className="form-control"
@@ -210,6 +228,7 @@ function Header() {
                         <div className="form-group">
                           <label>Password</label>
                           <input
+                            required  
                             id="passwordSignIn"
                             type="password"
                             className="form-control"
@@ -218,7 +237,7 @@ function Header() {
                         </div>
                         <div className="d-flex justify-content-center">
                           <button
-                            onClick={signInWithForm}
+                           
                             type="submit"
                             className="btn btn-primary"
                           >
@@ -240,9 +259,7 @@ function Header() {
                       <Link to="/register" class="dropdown-item" href="#">
                         Have account? Sign up
                       </Link>
-                      <a class="dropdown-item" href="#">
-                        Forgot password?
-                      </a>
+                      
                     </div>
                   </div>
                 )}
