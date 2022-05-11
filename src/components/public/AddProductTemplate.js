@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
 
 function AdminTemplate() {
   const [addProduct, setAddProduct] = useState({
@@ -9,28 +10,112 @@ function AdminTemplate() {
     description: "",
     images: [],
     quantities: [],
+    stock: [],
+    capacity: "",
   });
 
-  function submitHandler(e) {
-    e.preventDefault();
+  const el = useRef();
 
+  const [categories, setCategories] = useState([]);
+  const [dosya1, setDosya1] = useState("");
+  const [dosya2, setDosya2] = useState("");
+  const [dosya3, setDosya3] = useState("");
+  const [dosya4, setDosya4] = useState("");
+
+  function imageHandle(event) {
+    const dosya = event.target.files[0];
+    const nameDegeri = event.target.name;
+
+    if (nameDegeri === "dosya1") {
+      setDosya1(dosya);
+    } else if (nameDegeri === "dosya2") {
+      setDosya2(dosya);
+    } else if (nameDegeri === "dosya3") {
+      setDosya3(dosya);
+    } else if (nameDegeri === "dosya4") {
+      setDosya4(dosya);
+    }
+
+  }
+
+  console.log(dosya1);
+
+  function getCategories() {
+    fetch("http://localhost:5000/category/getAllCategories")
+      .then((data) => data.json())
+      .then((data) => setCategories(data));
+  }
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  console.log(categories);
+
+  function submitHandler(event) {
+    event.preventDefault();
+
+
+    const formData = new FormData();
+    formData.append("productName", event.target.productName.value);
+    formData.append("description", event.target.description.value);
+    formData.append(
+      "category",
+      event.target.category[event.target.category.selectedIndex].textContent
+    );
+    formData.append("brand", event.target.brand.value);
+    formData.append("price", event.target.price.value);
+    formData.append("Black", event.target.Black.value);
+    formData.append("Red", event.target.Red.value);
+    formData.append("Green", event.target.Green.value);
+    formData.append("Blue", event.target.Blue.value);
+    formData.append("capacity",event.target.capacity.value);
+
+    if (dosya1 !== "") {
+      formData.append("dosya1", dosya1);
+    }
+    if (dosya2 !== "") {
+      formData.append("dosya2", dosya2);
+    }
+    if (dosya3 !== "") {
+      formData.append("dosya3", dosya3);
+    }
+    if (dosya4 !== "") {
+      formData.append("dosya4", dosya4);
+
+    }
+
+    axios
+    .post("http://localhost:5000/admin/addproduct", formData, {
+      
+    })
+    .then(function (gelenVeri) {
+      console.log("Kayıt Tamamdır.");
+    });
+
+    event.target.reset();
+
+
+/* 
     fetch("http://localhost:5000/admin/addproduct", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.userToken}`,
       },
-      body: JSON.stringify(addProduct),
-    }).then((res) => console.log(res));
+      body: JSON.stringify(formData),
+    }).then((res) => console.log(res)); */
   }
 
   function changeHandle(e) {
     let dataByInput = e.target.value;
 
+    console.log(e.target.value);
     setAddProduct({ ...addProduct, [e.target.name]: dataByInput });
   }
 
-  console.log("addproduct", addProduct);
+
+  console.log("addproduct", dosya1);
 
   return (
     <div className="bg">
@@ -47,7 +132,9 @@ function AdminTemplate() {
               >
                 {/* product name */}
                 <div className="row mb-4">
-                  <label className="col-md-3 col-form-label">Product Name</label>
+                  <label className="col-md-3 col-form-label">
+                    Product Name
+                  </label>
                   <div className="col-md-9">
                     <input
                       type="text"
@@ -59,16 +146,19 @@ function AdminTemplate() {
                   </div>
                 </div>
                 {/* category */}
+
                 <div className="row mb-4">
                   <label className="col-md-3 col-form-label">Category</label>
                   <div className="col-md-9">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Type here"
-                      name="category"
+                    <select
                       onChange={changeHandle}
-                    />
+                      id="category"
+                      name="category"
+                    >
+                      {categories.map((category) => {
+                        return <option>{category.categoryName}</option>;
+                      })}
+                    </select>
                   </div>
                 </div>
                 {/* brand */}
@@ -103,14 +193,60 @@ function AdminTemplate() {
                     Image <br />{" "}
                     <small className="text-muted">(Max 10 mb)</small>
                   </label>
+
+                  <div className="d-flex flex-wrap col mb-2 p-2  align-items-center">
+                    <div>
+                      <span>Image 1</span>
+                      <input
+                        required
+                        ref={el}
+                        className="pl-2 w-75"
+                        name="dosya1"
+                        id="dosya1"
+                        type="file"
+                        onChange={imageHandle}
+                      />
+                    </div>
+                    <div>
+                      <span>Image 2</span>
+                      <input
+                        required
+                        ref={el}
+                        className="pl-2 w-75"
+                        name="dosya2"
+                        id="dosya2"
+                        type="file"
+                        onChange={imageHandle}
+                      />
+                    </div>
+                    <div>
+                      <span>Image 3</span>
+                      <input
+                        required
+                        ref={el}
+                        className="pl-2 w-75"
+                        name="dosya3"
+                        id="dosya3"
+                        type="file"
+                        onChange={imageHandle}
+                      />
+                    </div>
+                    <div>
+                      <span>Image 4</span>
+                      <input
+                        required
+                        ref={el}
+                        className="pl-2 w-75"
+                        name="dosya4"
+                        id="dosya4"
+                        type="file"
+                        onChange={imageHandle}
+                      />
+                    </div>
+                  </div>
+
                   <div className="col-md-9">
-                    <input
-                      type="file"
-                      className="form-control"
-                      placeholder="Type here"
-                      name="images"
-                      onChange={changeHandle}
-                    />
+                    <div></div>
                     {/* <div className="gallery-uploader-wrap d-flex justify-content-start">
                       <div
                         style={{ width: "80px", height: "80px" }}
@@ -149,6 +285,41 @@ function AdminTemplate() {
                     </div> */}
                   </div>
                 </div>
+
+                <div className="row mb-4">
+                  <label className="col-md-3 col-form-label">Stock</label>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <input
+                      type="text"
+                      className="form-control m-2"
+                      placeholder="Black"
+                      name="Black"
+                      onChange={changeHandle}
+                    />
+                    <input
+                      type="text"
+                      className="form-control m-2"
+                      placeholder="Red"
+                      name="Red"
+                      onChange={changeHandle}
+                    />
+                    <input
+                      type="text"
+                      className="form-control m-2"
+                      placeholder="Green"
+                      name="Green"
+                      onChange={changeHandle}
+                    />
+                    <input
+                      type="text"
+                      className="form-control m-2"
+                      placeholder="Blue"
+                      name="Blue"
+                      onChange={changeHandle}
+                    />
+                  </div>
+                </div>
+
                 {/* description */}
                 <div className="row mb-4">
                   <label className="col-md-3 col-form-label">Description</label>
@@ -169,7 +340,7 @@ function AdminTemplate() {
                       type="text"
                       className="form-control"
                       placeholder="Type here"
-                      name="Capacity"
+                      name="capacity"
                       onChange={changeHandle}
                     />
                   </div>

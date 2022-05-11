@@ -5,39 +5,26 @@ import { DataStore } from "../../DataStore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams, useNavigate } from "react-router-dom";
-
 function ProductCard() {
   const navigate = useNavigate();
   const params = useParams();
   // ProductById is for ProductCard come from App.js via useContext
   const { productById, productStars } = useContext(DataStore);
-
   // This state is for selected image.
   const [image, setImage] = useState(0);
-
   const [inStock, setInStock] = useState(true);
-
   const [stockMessage, setStockMessage] = useState("");
-
   const [cookies, setCookies] = useCookies(["cart"]);
-
   const [quantities, setQuantities] = useState(1);
-
   const [color, setColor] = useState("Black");
-
   const [capacity, setCapacity] = useState("");
-
   const [colors, setColors] = useState(
     Object.getOwnPropertyNames(productById.stock)
   );
-
   const addToCart = async (e) => {
     let array = (await new Cookies().get("cart")) || [];
-
     let isProductAlreadyInCart = false;
-
     console.log(productById);
-
     array.forEach((element) => {
       if (
         element.id === productById._id &&
@@ -48,7 +35,6 @@ function ProductCard() {
         element.quantities += quantities;
       }
     });
-
     if (productById.stock[color] > 0 && !isProductAlreadyInCart) {
       array.push({
         id: productById._id,
@@ -59,16 +45,12 @@ function ProductCard() {
         image: productById.images[0],
       });
     }
-
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
-
     if (stockMessage.length === 0) {
       toast.success(`${quantities} adet ${capacity} ürün sepete eklendi...`);
     }
-
     console.log("Cookie:", array);
   };
-
   const selectedColor = (e) => {
     console.log(e.target.value);
     setQuantities(1);
@@ -78,7 +60,6 @@ function ProductCard() {
     directStockControlByColor();
     stockControl();
   };
-
   function directStockControlByColor() {
     if (productById.stock[color] === 0) {
       setInStock(false);
@@ -87,11 +68,9 @@ function ProductCard() {
       );
     }
   }
-
   useEffect(() => {
     directStockControlByColor();
   }, [color, params.id, capacity]);
-
   const selectedCapacity = (e) => {
     setQuantities(1);
     setInStock(true);
@@ -100,7 +79,6 @@ function ProductCard() {
     stockControl();
     directStockControlByColor();
   };
-
   function getProductByCapacity() {
     const data = fetch(
       `http://localhost:5000/product/capacity/${productById.productName}/${capacity}`
@@ -108,9 +86,7 @@ function ProductCard() {
       .then((data) => data.json())
       .then((data) => navigate(`/product/${data.id}`));
   }
-
   useEffect(getProductByCapacity, [capacity]);
-
   const artir = () => {
     setQuantities(quantities + 1);
     stockControl(quantities + 1);
@@ -121,7 +97,6 @@ function ProductCard() {
       stockControl(quantities - 1);
     }
   };
-
   const stockControl = (num) => {
     if (color === "Black") {
       if (num > productById.stock[color]) {
@@ -166,7 +141,8 @@ function ProductCard() {
     }
   };
 
-  return (
+return (
+
     <div>
       {/* product */}
       <ToastContainer />
@@ -351,3 +327,4 @@ function ProductCard() {
 }
 export default ProductCard; 
        
+
