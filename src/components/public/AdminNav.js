@@ -48,8 +48,13 @@ function AdminNav() {
           >
             Coupon Creat
           </a>
-          <a class="nav-link" href="#">
-            New Feature
+          <a class={
+              path === `/admin/category` || path === `/admin/category`
+                ? "nav-link active"
+                : "nav-link"
+            }
+            href="/admin/category">
+            Category
           </a>
           <a class="nav-link" href="#">
             New Feature
