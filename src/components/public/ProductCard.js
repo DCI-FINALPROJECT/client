@@ -41,8 +41,8 @@ function ProductCard() {
         quantities: quantities,
         color: color,
         capacity: productById.capacity,
-        price:productById.price,
-        image:productById.images[0]
+        price: productById.price,
+        image: productById.images[0],
       });
     }
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
@@ -140,7 +140,9 @@ function ProductCard() {
       }
     }
   };
+
 return (
+
     <div>
       {/* product */}
       <ToastContainer />
@@ -215,12 +217,12 @@ return (
                     <dt className="col-9">{productById.productName}</dt>
                     <dd className="col-3">Color</dd>
                     <dt className="col-9">{colors.toString()}</dt>
-                    <dd className="col-3">Speicherkapazität</dd>
+                    <dd className="col-3">Capacity</dd>
                     <dt className="col-9">{productById.capacity} </dt>
                   </dl>
                   <hr />
                   <div className="row" bis_skin_checked="1">
-                    <div className="col-md-3 mb-3" bis_skin_checked="1">
+                    <div className="col-md-3 mb-3 mr-5" bis_skin_checked="1">
                       <select
                         onChange={selectedCapacity}
                         className="form-select "
@@ -253,7 +255,7 @@ return (
                             </label>
                           );
                         })}
-                        <div class="col-auto">
+                        <div class="col-auto m-3">
                           <div class="input-group input-spinner">
                             <button
                               onClick={azalt}
@@ -306,7 +308,7 @@ return (
                   >
                     <i className="me-2 fa fa-shopping-basket"></i> Add to cart
                   </button>
-                  <a href="/" className="btn btn-light">
+                  <a href="/" className="btn btn-outline-dark">
                     <i className="me-2 fa fa-heart"></i> Save
                   </a>
                   <br />
@@ -323,4 +325,6 @@ return (
     </div>
   );
 }
-export default ProductCard;
+export default ProductCard; 
+       
+

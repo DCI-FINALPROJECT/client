@@ -47,7 +47,7 @@ function ProductReview({ review }) {
         </div>
         <div
           className="d-flex justify-content-end"
-          style={{ minWidth: "250px" }}
+          
         >
           {review.date.toString()}
         </div>

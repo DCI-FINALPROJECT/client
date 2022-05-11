@@ -152,7 +152,7 @@ export default function ProductReviewsAll() {
                         ratingValue={rating} /* Available Props */
                       />
                     </label>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-yellow">
                       Send your opinion
                     </button>
                   </div>
