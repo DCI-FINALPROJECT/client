@@ -55,8 +55,8 @@ function ProductCard() {
         quantities: quantities,
         color: color,
         capacity: productById.capacity,
-        price:productById.price,
-        image:productById.images[0]
+        price: productById.price,
+        image: productById.images[0],
       });
     }
 
@@ -165,7 +165,6 @@ function ProductCard() {
       }
     }
   };
-  
 
   return (
     <div>
@@ -225,13 +224,12 @@ function ProductCard() {
                         <i className="fa fa-star"></i>
                       </li>
                     </ul>
-                    <i className="dot">{productStars.toFixed(0)}%</i>
+                    <i className="dot p-1">{productStars.toFixed(0)}%</i>
                     <span className="label-rating text-muted">
                       <i className="fa fa-shopping-basket"></i>
                       {productById.sales} orders
                     </span>
                     <i className="dot"></i>
-                    <span className="label-rating text-success">verified</span>
                   </div>
                   <div className="mb-3" bis_skin_checked="1">
                     <var className="price h5">{productById.price}</var>
@@ -243,19 +241,18 @@ function ProductCard() {
                     <dt className="col-9">{productById.productName}</dt>
                     <dd className="col-3">Color</dd>
                     <dt className="col-9">{colors.toString()}</dt>
-                    <dd className="col-3">Speicherkapazität</dd>
+                    <dd className="col-3">Capacity</dd>
                     <dt className="col-9">{productById.capacity} </dt>
                   </dl>
                   <hr />
                   <div className="row" bis_skin_checked="1">
-                    <div className="col-md-3 mb-3" bis_skin_checked="1">
+                    <div className="col-md-3 mb-3 mr-5" bis_skin_checked="1">
                       <select
                         onChange={selectedCapacity}
                         className="form-select "
                         style={{borderRadius:"10px" ,padding:"4px 4px", height:"2.2em",fontSize:"1.05rem", border:"none"}}
                       >
-
-                         <option disabled selected style={{color:"#e0e0e0"}}>Select Capacity</option>
+                         <option disabled selected style={{color:"#E0E0E0"}}>Select Capacity</option>
                         <option >64 GB</option>
                         <option >128 GB</option>
                         <option >256 GB</option>
@@ -282,7 +279,7 @@ function ProductCard() {
                             </label>
                           );
                         })}
-                        <div class="col-auto">
+                        <div class="col-auto m-3">
                           <div class="input-group input-spinner">
                             <button
                               onClick={azalt}
@@ -331,24 +328,13 @@ function ProductCard() {
                       stockControl();
                       addToCart();
                     }}
-                    className="btn btn-warning"
-                  >
-                    Buy now
-                  </button>
-                  <button
-                    disabled={inStock === false && true}
-                    onClick={() => {
-                      stockControl();
-                      addToCart();
-                    }}
-                    className="btn btn-primary ml-2"
+                    className="btn btn-yellow mx-2"
                   >
                     <i className="me-2 fa fa-shopping-basket"></i> Add to cart
                   </button>
-                  <a href="/" className="btn btn-light">
+                  <a href="/" className="btn btn-outline-dark">
                     <i className="me-2 fa fa-heart"></i> Save
                   </a>
-
                   <br />
                   <br />
                   <h4 className="text-danger">
@@ -363,5 +349,5 @@ function ProductCard() {
     </div>
   );
 }
-
-export default ProductCard;
+export default ProductCard; 
+       
