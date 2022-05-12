@@ -15,12 +15,48 @@ function ProductCard() {
   const [inStock, setInStock] = useState(true);
   const [stockMessage, setStockMessage] = useState("");
   const [cookies, setCookies] = useCookies(["cart"]);
+  const [cookiesWish, setCookiesWish] = useCookies(["wish"]);
   const [quantities, setQuantities] = useState(1);
   const [color, setColor] = useState("Black");
   const [capacity, setCapacity] = useState("");
   const [colors, setColors] = useState(
     Object.getOwnPropertyNames(productById.stock)
   );
+/* add to Wish */
+const addToWish = async (e) => {
+  let array = (await new Cookies().get("wish")) || [];
+  let isProductAlreadyInWish = false;
+  console.log(productById);
+  array.forEach((element) => {
+    if (
+      element.id === productById._id &&
+      element.color === color &&
+      element.capacity === productById.capacity
+    ) {
+      isProductAlreadyInWish = true;
+      element.quantities += quantities;
+    }
+  });
+  if (productById.stock[color] > 0 && !isProductAlreadyInWish) {
+    array.push({
+      id: productById._id,
+      quantities: quantities,
+      color: color,
+      capacity: productById.capacity,
+      price: productById.price,
+      image: productById.images[0],
+    });
+  }
+  setCookiesWish("wish", array, { path: "/" }); // We can get the cookies with 3. parameter.
+  if (stockMessage.length === 0) {
+    toast.success(`${quantities} adet ${capacity} ürün sepete eklendi...`);
+  }
+  console.log("CookieWish:", array);
+};
+
+
+
+
   const addToCart = async (e) => {
     let array = (await new Cookies().get("cart")) || [];
     let isProductAlreadyInCart = false;
@@ -308,9 +344,16 @@ return (
                   >
                     <i className="me-2 fa fa-shopping-basket"></i> Add to cart
                   </button>
-                  <a href="/" className="btn btn-outline-dark">
+                  <button
+                    disabled={inStock === false && true}
+                    onClick={() => {
+                      stockControl();
+                      addToWish();
+                    }}
+                    className="btn btn-outline-dark"
+                  >
                     <i className="me-2 fa fa-heart"></i> Save
-                  </a>
+                  </button>
                   <br />
                   <br />
                   <h4 className="text-danger">
