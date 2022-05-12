@@ -21,6 +21,10 @@ function CartPageDeliveryInfo() {
   const [newContact, setNewContact] = useState({ address: undefined });
   const [showCheckout, setShowCheckout] = useState(false);
 
+/* for coupon and discount */
+  const [couponNumber, setCouponNumber] = useState("")
+  const [discount, setDiscount] = useState(0)
+
   const changeCheckoutShowingStatus = () => {
     if (
       user.address &&
@@ -86,6 +90,7 @@ function CartPageDeliveryInfo() {
         user: newContact.address ? newContact : user,
         products: await cookies.cart,
         stripeToken: stripeToken,
+        discount:discount,
         userEmail: user.email || newContact.email || "",
         userId: newContact.email || user._id || user.email || stripeToken.email,
       }),
@@ -102,7 +107,7 @@ function CartPageDeliveryInfo() {
       try {
         const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount: await cookies.cart,
+          amount: await cookies.cart
         });
         navigate("/cartPage", {
           stripeData: res.data,
@@ -137,10 +142,8 @@ function CartPageDeliveryInfo() {
     setNewContact(createdNewContact);
   };
 
-  const [couponNumber, setCouponNumber] = useState("")
-  const [discount, setDiscount] = useState(0)
 
-  console.log(couponNumber);
+  
 
   async function submitHandler(e){
     e.preventDefault();
@@ -159,7 +162,7 @@ function CartPageDeliveryInfo() {
 
                 response.json().then((data)=>{
                   console.log(data);
-                  setDiscount(data.amount)
+                  setDiscount(discount+data.amount)
                   alert(data.message)
                 })
               }else{

@@ -83,7 +83,9 @@
 }
 
 .img2 {
-  background-image: url(https://images.pexels.com/photos/9555114/pexels-photo-9555114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+  background-image:url("/src/images/giftcard-1.png");
+  background-size: contain;
+  
 }
 
 /* banner3 */

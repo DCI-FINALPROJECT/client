@@ -69,11 +69,7 @@ function UserPageOrderInfos() {
                   </h6>
                   <span>Date: {order.date}</span>
                 </div>
-                <div>
-                  <a href="#" class="btn btn-sm btn-primary">
-                    Track order
-                  </a>
-                </div>
+                
               </header>
               <hr />
               <div class="row">
@@ -92,6 +88,15 @@ function UserPageOrderInfos() {
                   <p class="m-0">{order.userContact.address}</p>
                 </div>
                 <div class="col-md-4 border-start">
+                <p class="mb-0 text-muted">Product Preis</p>
+                  <p class="m-0">
+                    <strong>Prd Price: €{order.amount + order.discount}</strong>
+                  </p>
+                  
+                  <p class="mb-0 text-muted">Discount</p>
+                  <p class="m-0">
+                    <strong>Discount: €{order.discount}</strong>
+                  </p>
                   <p class="mb-0 text-muted">Payment</p>
                   <p class="m-0">
                     <strong>Total paid: €{order.amount}</strong>

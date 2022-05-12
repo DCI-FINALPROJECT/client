@@ -21,7 +21,9 @@ import DeliveryInfoPage from "./components/pages/DeliveryInfoPage";
 import AdminPopulerProducts from "./components/public/AdminPopulerProducts";
 import CouponCreatPage from "./components/pages/AdminCouponCreatePage";
 import AdminCategoryPage from "./components/pages/AdminCategoryPage";
+import GiftCardPage from "./components/pages/GiftCardPage";
 import WishPage from "./components/pages/WishPage";
+
 
 function App() {
   const [productById, setProductById] = useState({
@@ -162,6 +164,7 @@ function App() {
             <Route path="/cartpage" element={<CartPage />} />
             <Route path="/wishpage" element={<WishPage />} />
             <Route path="/deliveryInfo" element={<DeliveryInfoPage/>} />
+            <Route path="/giftcard" element={<GiftCardPage/>} />
           </Routes>
         </CookiesProvider>
       </DataStore.Provider>
