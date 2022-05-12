@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import AdminNav from '../public/AdminNav'
 import Footer from '../public/Footer'
 import Header from '../public/Header'
 import CouponCreatTemplate from '../public/CouponCreatTemplate'
+import { DataStore } from '../../DataStore'
 function CouponCreatPage() {
 
-    const [adminPermission, setadminPermission] = useState(null);
+  const { user} = useContext(DataStore);
+  const [adminPermission, setadminPermission] = useState(null);
 
   const userPagePermissionControl = () => {
-    const resp = fetch(`http://localhost:5000/userpage`, {
+    fetch("http://localhost:5000/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {
@@ -16,7 +18,10 @@ function CouponCreatPage() {
       },
     })
       .then((data) => data.json())
-      .then((data) => setadminPermission(data.status));
+      .then((data)=>console.log(data))
+      .then((data) => {
+        user.isAdmin === true  ? 
+        setadminPermission(true) : setadminPermission(false)});
   };
 
   userPagePermissionControl();

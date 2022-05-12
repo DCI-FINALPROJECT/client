@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
+import { DataStore } from "../../DataStore";
 import AdminNav from "../public/AdminNav";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
@@ -6,7 +7,9 @@ import Header from "../public/Header";
 function AdminCategoryPage() {
   const [adminPermission, setadminPermission] = useState(null);
   const [allCategories, setAllCategories] = useState([]);
-  const [newCategory,setNewCategory] = useState("");
+  const [newCategory, setNewCategory] = useState("");
+
+  const { user} = useContext(DataStore);
 
   const userPagePermissionControl = () => {
     fetch("http://localhost:5000/userpage", {
@@ -17,7 +20,10 @@ function AdminCategoryPage() {
       },
     })
       .then((data) => data.json())
-      .then((data) => setadminPermission(data.status));
+      .then((data)=>console.log(data))
+      .then((data) => {
+        user.isAdmin === true  ? 
+        setadminPermission(true) : setadminPermission(false)});
   };
 
   userPagePermissionControl();
@@ -43,8 +49,8 @@ function AdminCategoryPage() {
           categoryValue.substring(0, 1).toUpperCase() +
           categoryValue.substring(1).toLowerCase(),
       }),
-    });
-    setNewCategory(categoryValue);
+    }).then(() => setNewCategory(categoryValue));
+
     document.querySelector("#category").value = "";
   };
 

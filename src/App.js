@@ -15,11 +15,11 @@ import CategoryPage from "./components/pages/CategoryPage";
 import { CookiesProvider } from "react-cookie";
 import DeletePage from "./components/pages/DeletePage";
 import EditPage from "./components/pages/EditPage";
-import AddProductPage from "./components/pages/AddProductPage";
+import AddProductPage from "./components/pages/AdminAddProductPage";
 import CartPage from "./components/pages/CartPage";
 import DeliveryInfoPage from "./components/pages/DeliveryInfoPage";
 import AdminPopulerProducts from "./components/public/AdminPopulerProducts";
-import CouponCreatPage from "./components/pages/CouponCreatPage";
+import CouponCreatPage from "./components/pages/AdminCouponCreatePage";
 import AdminCategoryPage from "./components/pages/AdminCategoryPage";
 
 function App() {

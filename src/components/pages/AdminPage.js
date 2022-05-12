@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { DataStore } from "../../DataStore";
 import AdminNav from "../public/AdminNav";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
 
 function AdminPage() {
+
+  const { user} = useContext(DataStore);
+
+  
+
   const [adminPermission, setadminPermission] = useState(null);
 
   const userPagePermissionControl = () => {
@@ -15,10 +21,15 @@ function AdminPage() {
       },
     })
       .then((data) => data.json())
-      .then((data) => setadminPermission(data.status));
+      .then((data)=>console.log(data))
+      .then((data) => {
+        user.isAdmin === true  ? 
+        setadminPermission(true) : setadminPermission(false)});
   };
 
   userPagePermissionControl();
+
+  console.log(adminPermission);
 
   return (
     <div>
