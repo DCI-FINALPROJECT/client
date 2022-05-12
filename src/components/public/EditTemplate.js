@@ -6,40 +6,46 @@ export default function EditTemplate() {
   const params = useParams();
   const id = params.id;
 
+
   const [changeCategory, setChangeCategory] = useState(false);
+  const [changeImage1, setChangeImage1] = useState(false);
+  const [changeImage2, setChangeImage2] = useState(false);
+  const [changeImage3, setChangeImage3] = useState(false);
+  const [changeImage4, setChangeImage4] = useState(false);
 
   const [productById, setProductById] = useState({
     productName: "",
     category: "",
     brand: "",
-    price: 0,
+    price: "",
     description: "",
-    images: [],
+    images: ["", "", "", ""],
     quantities: [],
     stock: [],
     capacity: "",
   });
 
+  const [categories, setCategories] = useState([]);
+  const [dosya1, setDosya1] = useState(productById.images[0]);
+  const [dosya2, setDosya2] = useState(productById.images[1]);
+  const [dosya3, setDosya3] = useState(productById.images[2]);
+  const [dosya4, setDosya4] = useState(productById.images[3]);
 
   const getProductById = async () => {
     const data = await fetch(`http://localhost:5000/product/${id}`);
     const response = await data.json();
     setProductById(response);
+    setDosya1(response.images[0]);
+    setDosya2(response.images[1]);
+    setDosya3(response.images[2]);
+    setDosya4(response.images[3]);
   };
 
   useEffect(() => {
     getProductById();
   }, []);
 
-  const [updateProduct, setUpdateProduct] = useState({});
-
   const el = useRef();
-
-  const [categories, setCategories] = useState([]);
-  const [dosya1, setDosya1] = useState("");
-  const [dosya2, setDosya2] = useState("");
-  const [dosya3, setDosya3] = useState("");
-  const [dosya4, setDosya4] = useState("");
 
   function imageHandle(event) {
     const dosya = event.target.files[0];
@@ -78,7 +84,9 @@ export default function EditTemplate() {
     formData.append("description", event.target.description.value);
     formData.append(
       "category",
-      event.target.category[event.target.category.selectedIndex].textContent
+      changeCategory
+        ? event.target.category[event.target.category.selectedIndex].textContent
+        : productById.category
     );
     formData.append("brand", event.target.brand.value);
     formData.append("price", event.target.price.value);
@@ -108,6 +116,7 @@ export default function EditTemplate() {
       });
 
     event.target.reset();
+    document. location. reload() 
   }
 
   function changeHandle(e) {
@@ -117,7 +126,7 @@ export default function EditTemplate() {
     setProductById({ ...productById, [e.target.name]: dataByInput });
   }
 
-  console.log(productById);
+  console.log(productById.category);
 
   return (
     <div className="bg">
@@ -127,7 +136,6 @@ export default function EditTemplate() {
             <article className="card-body">
               <h4 className="mb-4">Add product</h4>
               <form
-                action="/addproduct"
                 onSubmit={submitHandler}
                 method="post"
                 enctype="multipart/form-data"
@@ -159,6 +167,7 @@ export default function EditTemplate() {
                         onChange={changeHandle}
                         id="category"
                         name="category"
+                        defaultValue={productById.category}
                       >
                         {categories.map((category) => {
                           return (
@@ -193,6 +202,7 @@ export default function EditTemplate() {
                   </div>
                 </div>
                 {/* price */}
+
                 <div className="row mb-4">
                   <label className="col-md-3 col-form-label">Price</label>
                   <div className="col-md-9">
@@ -208,62 +218,93 @@ export default function EditTemplate() {
                 </div>
                 <div className="row mb-4">
                   <label className="col-md-3 col-form-label">
-                    Image <br />{" "}
+                    Image <br />
                     <small className="text-muted">(Max 10 mb)</small>
                   </label>
 
-                  <div className="d-flex flex-wrap col mb-2 p-2  align-items-center">
-                    <div>
-                      <span>Image 1</span>
-                      <input
-                        required
-                        ref={el}
-                        className="pl-2 w-75"
-                        name="dosya1"
-                        id="dosya1"
-                        type="file"
-                        onChange={imageHandle}
+                  <div className="d-flex justify-content-around flex-wrap col mb-2 p-2  align-items-center">
+                    {changeImage1 === false ? (
+                      <img
+                        style={{ height: "100px" }}
+                        src={productById.images[0]}
+                        alt=""
+                        onClick={() => setChangeImage1(true)}
                       />
-                    </div>
-                    <div>
-                      <span>Image 2</span>
-                      <input
-                        required
-                        ref={el}
-                        className="pl-2 w-75"
-                        name="dosya2"
-                        id="dosya2"
-                        type="file"
-                        onChange={imageHandle}
+                    ) : (
+                      <div>
+                        <span>Image 1</span>
+                        <input
+                          ref={el}
+                          className="pl-2 w-75"
+                          name="dosya1"
+                          id="dosya1"
+                          type="file"
+                          onChange={imageHandle}
+                        />
+                      </div>
+                    )}
+                    {changeImage2 === false ? (
+                      <img
+                        style={{ height: "100px" }}
+                        src={productById.images[1]}
+                        alt=""
+                        onClick={() => setChangeImage2(true)}
                       />
-                    </div>
-                    <div>
-                      <span>Image 3</span>
-                      <input
-                        required
-                        ref={el}
-                        className="pl-2 w-75"
-                        name="dosya3"
-                        id="dosya3"
-                        type="file"
-                        onChange={imageHandle}
+                    ) : (
+                      <div>
+                        <span>Image 2</span>
+                        <input
+                          ref={el}
+                          className="pl-2 w-75"
+                          name="dosya2"
+                          id="dosya2"
+                          type="file"
+                          onChange={imageHandle}
+                        />
+                      </div>
+                    )}
+                    {changeImage3 === false ? (
+                      <img
+                        style={{ height: "100px" }}
+                        src={productById.images[2]}
+                        alt=""
+                        onClick={() => setChangeImage3(true)}
                       />
-                    </div>
-                    <div>
-                      <span>Image 4</span>
-                      <input
-                        required
-                        ref={el}
-                        className="pl-2 w-75"
-                        name="dosya4"
-                        id="dosya4"
-                        type="file"
-                        onChange={imageHandle}
+                    ) : (
+                      <div>
+                        <span>Image 3</span>
+                        <input
+                          ref={el}
+                          className="pl-2 w-75"
+                          name="dosya3"
+                          id="dosya3"
+                          type="file"
+                          onChange={imageHandle}
+                        />
+                      </div>
+                    )}
+                    {changeImage4 === false ? (
+                      <img
+                        style={{ height: "100px" }}
+                        src={productById.images[3]}
+                        alt=""
+                        onClick={() => setChangeImage4(true)}
                       />
-                    </div>
+                    ) : (
+                      <div>
+                        <span>Image 4</span>
+                        <input
+                          ref={el}
+                          className="pl-2 w-75"
+                          name="dosya4"
+                          id="dosya4"
+                          type="file"
+                          onChange={imageHandle}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
-
                 <div className="row mb-4">
                   <label className="col-md-3 col-form-label">Stock</label>
                   <div className="d-flex justify-content-between align-items-center">
@@ -282,7 +323,6 @@ export default function EditTemplate() {
                       name="Red"
                       onChange={changeHandle}
                       defaultValue={productById.stock.Red}
-
                     />
                     <input
                       type="text"
@@ -291,7 +331,6 @@ export default function EditTemplate() {
                       name="Green"
                       onChange={changeHandle}
                       defaultValue={productById.stock.Green}
-
                     />
                     <input
                       type="text"
@@ -300,7 +339,6 @@ export default function EditTemplate() {
                       name="Blue"
                       onChange={changeHandle}
                       defaultValue={productById.stock.Blue}
-
                     />
                   </div>
                 </div>
