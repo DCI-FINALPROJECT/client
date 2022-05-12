@@ -21,6 +21,7 @@ import DeliveryInfoPage from "./components/pages/DeliveryInfoPage";
 import AdminPopulerProducts from "./components/public/AdminPopulerProducts";
 import CouponCreatPage from "./components/pages/AdminCouponCreatePage";
 import AdminCategoryPage from "./components/pages/AdminCategoryPage";
+import WishPage from "./components/pages/WishPage";
 
 function App() {
   const [productById, setProductById] = useState({
@@ -159,6 +160,7 @@ function App() {
             <Route path="/search/:productName" element={<SearchPage />} />
             <Route path="/category/:category" element={<CategoryPage />} />
             <Route path="/cartpage" element={<CartPage />} />
+            <Route path="/wishpage" element={<WishPage />} />
             <Route path="/deliveryInfo" element={<DeliveryInfoPage/>} />
           </Routes>
         </CookiesProvider>
