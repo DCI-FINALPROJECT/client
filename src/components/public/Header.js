@@ -20,6 +20,23 @@ function Header() {
   console.log(cookies);
   console.log(totalProductInCart);
 
+  const [cookiesWish, setCookiesWish] = useCookies(["wish"]);
+
+  let totalProductInWish = 0;
+
+  if (cookiesWish.wish !== undefined) {
+    cookiesWish.wish.forEach((product) => {
+      totalProductInWish += product.quantities;
+    });
+  }
+
+  console.log(cookies);
+  console.log(totalProductInWish);
+
+
+
+
+
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
@@ -163,6 +180,19 @@ function Header() {
             {/* LOGIN AND CART */}
             <div className="nav-link col-md-5">
               <div className="widgets-wrap d-flex justify-content-center">
+                {/* Wish List */}
+              <div className="widget-header mr-2">
+                  <a href="/wishpage" className="icontext">
+                    <div className="icon">
+                      <i className="fa fa-heart"></i>
+                    </div>
+                    <div className="text">
+                      <small className="text-muted">Wish</small> <br />
+                      <span>{totalProductInWish} items</span>
+                    </div>
+                  </a>
+                </div>
+                {/* Cart */}
                 <div className="widget-header">
                   <a href="/cartpage" className="icontext">
                     <div className="icon">
@@ -176,7 +206,7 @@ function Header() {
                 </div>
 
                 {user.email ? (
-                  <div>
+                  <div className="d-flex">
                    <Link to="/user"><img
                       className="border rounded mr-3 ml-3"
                       style={{ width: "40px" }}
