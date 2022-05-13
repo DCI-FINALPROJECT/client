@@ -17,7 +17,6 @@ function CartPage() {
   const [couponNumber, setCouponNumber] = useState("")
   const [discount, setDiscount] = useState(0)
 
-  console.log(couponNumber);
   const navigate = useNavigate();
 
   let totalPrice = 0;

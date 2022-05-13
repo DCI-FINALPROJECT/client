@@ -188,7 +188,7 @@ function CartPageProduct({ product }) {
           <div class="itemside me-lg-5">
             <div class="aside">
               <img
-                src={productInfo.images[0]}
+                src={productInfo.images.length===0?product.image:productInfo.images[0]}
                 class="img-sm border rounded"
                 alt=""
               />
@@ -238,7 +238,7 @@ function CartPageProduct({ product }) {
         <div class="col-lg-2 col-sm-4 col-6">
           <div class="price-wrap lh-sm">
             <var class="price h6">
-              € {(productInfo.price * quantities).toFixed(2)}
+              € {productInfo.price===""?(product.price * quantities).toFixed(2):(productInfo.price * quantities).toFixed(2)}
             </var>{" "}
             <br />
             <small class="text-muted"> € {productInfo.price} / per item </small>
