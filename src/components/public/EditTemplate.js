@@ -6,12 +6,8 @@ export default function EditTemplate() {
   const params = useParams();
   const id = params.id;
 
-
   const [changeCategory, setChangeCategory] = useState(false);
-  const [changeImage1, setChangeImage1] = useState(false);
-  const [changeImage2, setChangeImage2] = useState(false);
-  const [changeImage3, setChangeImage3] = useState(false);
-  const [changeImage4, setChangeImage4] = useState(false);
+  const [changeImage, setChangeImage] = useState(false);
 
   const [productById, setProductById] = useState({
     productName: "",
@@ -96,6 +92,8 @@ export default function EditTemplate() {
     formData.append("Blue", event.target.Blue.value);
     formData.append("capacity", event.target.capacity.value);
 
+    console.log(dosya1);
+
     if (dosya1 !== "") {
       formData.append("dosya1", dosya1);
     }
@@ -116,7 +114,7 @@ export default function EditTemplate() {
       });
 
     event.target.reset();
-    document. location. reload() 
+    document.location.reload();
   }
 
   function changeHandle(e) {
@@ -134,7 +132,9 @@ export default function EditTemplate() {
         <div className="row">
           <div className="card m-auto ">
             <article className="card-body">
-              <h4 className="mb-4">Add product</h4>
+              <h4 className="mb-4">
+                Edit product with name {productById.productName}
+              </h4>
               <form
                 onSubmit={submitHandler}
                 method="post"
@@ -222,13 +222,14 @@ export default function EditTemplate() {
                     <small className="text-muted">(Max 10 mb)</small>
                   </label>
 
-                  <div className="d-flex justify-content-around flex-wrap col mb-2 p-2  align-items-center">
-                    {changeImage1 === false ? (
+                  <div className="d-flex flex-column justify-content-around align-items-center flex-wrap col mb-2 p-2  align-items-center">
+                    {changeImage === false ? (
                       <img
+                        className="mt-3 border shadow"
                         style={{ height: "100px" }}
                         src={productById.images[0]}
                         alt=""
-                        onClick={() => setChangeImage1(true)}
+                        onClick={() => setChangeImage(true)}
                       />
                     ) : (
                       <div>
@@ -240,15 +241,17 @@ export default function EditTemplate() {
                           id="dosya1"
                           type="file"
                           onChange={imageHandle}
+                          required
                         />
                       </div>
                     )}
-                    {changeImage2 === false ? (
+                    {changeImage === false ? (
                       <img
+                        className="mt-3 border shadow"
                         style={{ height: "100px" }}
                         src={productById.images[1]}
                         alt=""
-                        onClick={() => setChangeImage2(true)}
+                        onClick={() => setChangeImage(true)}
                       />
                     ) : (
                       <div>
@@ -260,15 +263,19 @@ export default function EditTemplate() {
                           id="dosya2"
                           type="file"
                           onChange={imageHandle}
+                          required
                         />
                       </div>
                     )}
-                    {changeImage3 === false ? (
+                  </div>
+                  <div className="d-flex flex-column justify-content-around align-items-center flex-wrap col mb-2 p-2  align-items-center">
+                    {changeImage === false ? (
                       <img
+                        className="mt-3 border shadow"
                         style={{ height: "100px" }}
                         src={productById.images[2]}
                         alt=""
-                        onClick={() => setChangeImage3(true)}
+                        onClick={() => setChangeImage(true)}
                       />
                     ) : (
                       <div>
@@ -280,15 +287,17 @@ export default function EditTemplate() {
                           id="dosya3"
                           type="file"
                           onChange={imageHandle}
+                          required
                         />
                       </div>
                     )}
-                    {changeImage4 === false ? (
+                    {changeImage === false ? (
                       <img
+                        className="mt-3 border shadow"
                         style={{ height: "100px" }}
                         src={productById.images[3]}
                         alt=""
-                        onClick={() => setChangeImage4(true)}
+                        onClick={() => setChangeImage(true)}
                       />
                     ) : (
                       <div>
@@ -300,6 +309,7 @@ export default function EditTemplate() {
                           id="dosya4"
                           type="file"
                           onChange={imageHandle}
+                          required
                         />
                       </div>
                     )}
@@ -353,6 +363,7 @@ export default function EditTemplate() {
                       name="description"
                       onChange={changeHandle}
                       defaultValue={productById.description}
+                      style={{ minHeight: "200px" }}
                     ></textarea>
                   </div>
                 </div>
