@@ -155,7 +155,7 @@ function CategoryProducts() {
         <nav className="ms-3">
           <ul className="pagination">
             {page === 1 && (
-              <div classNameName="d-flex">
+              <div className="d-flex">
                 <li className="page-item active">
                   <a
                     className="page-link"
