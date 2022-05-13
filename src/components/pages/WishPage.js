@@ -14,7 +14,7 @@ function WishPage() {
       <Header />
       <div className="container my-3 shadow">
         <div class="row">
-          <div class="col-lg-9">
+          <div class="col">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title mb-4">Wish List</h5>

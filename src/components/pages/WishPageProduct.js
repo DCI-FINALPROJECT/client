@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { DataStore } from "../../DataStore";
 import { Cookies, useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function WishPageProduct({ product }) {
@@ -27,29 +29,37 @@ function WishPageProduct({ product }) {
     stock: { Black: 0, Red: 0, Green: 0, Blue: 0 },
   });
 
-  const addToCart = () => {
-    let array = new Cookies().get("cart");
-
-    if (array === undefined) {
-      array = [];
-    }
+  const addToCart = async (e) => {
 
 
+    let array = (await new Cookies().get("cart")) || [];
+    let isProductAlreadyInCart = false;
+    console.log(productInfo);
     array.forEach((element) => {
-
-      console.log(element);
-
       if (
-        element.id === product.id &&
-        element.color === product.color &&
-        element.capacity === product.capacity &&
-        element.quantities === product.quantities
+        element.id === productInfo._id &&
+        element.color === color &&
+        element.capacity === productInfo.capacity
       ) {
-        element.quantities = product;
+        isProductAlreadyInCart = true;
+        element.quantities += quantities;
       }
     });
-
+    if (productInfo.stock[color] > 0 && !isProductAlreadyInCart) {
+      array.push({
+        id: productInfo._id,
+        quantities: quantities,
+        color: color,
+        capacity: productInfo.capacity,
+        price: productInfo.price,
+        image: productInfo.images[0],
+      });
+    }
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
+    if (stockMessage.length === 0) {
+      toast.success(`${quantities} adet ${capacity} ürün sepete eklendi...`);
+    }
+    console.log("Cookie:", array);
   };
 
   console.log(cookies);
@@ -188,7 +198,7 @@ function WishPageProduct({ product }) {
   return (
     <div>
       <article className="row gy-3 my-2 py-3 shadow">
-        <div className="col-lg-6">
+        <div className="col-md-6">
           <div className="itemside me-lg-5">
             <div className="aside">
               <img
@@ -207,7 +217,7 @@ function WishPageProduct({ product }) {
             </div>
           </div>
         </div>
-        <div className="col-lg-2 col-sm-4 col-6">
+        <div className="col-md-2">
           <div className="price-wrap lh-sm">
             <var className="price h6">
               € {(productInfo.price * quantities).toFixed(2)}
@@ -219,11 +229,8 @@ function WishPageProduct({ product }) {
             </small>
           </div>
         </div>
-        <div className="col-lg col-sm-4">
-          <div className="float-lg-end">
-            <button onClick={removeProduct} className="btn btn-yellow mr-2">
-              Add to cart
-            </button>
+        <div className="col-md-4">
+
             <button
               disabled={inStock === false && true}
               onClick={() => {
@@ -238,9 +245,14 @@ function WishPageProduct({ product }) {
               onClick={removeProduct}
               className="btn btn-light text-danger"
             >
-              Remove
+              <i style={{
+                          fontSize: "15px",
+                          color: "red",
+                        }}
+                        className="far fa-trash-alt"
+                      ></i>
             </button>
-          </div>
+          
         </div>
       </article>
     </div>
