@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DataStore } from "../../DataStore";
 import AdminNav from "../public/AdminNav";
 import Footer from "../public/Footer";
@@ -8,8 +8,9 @@ function AdminCategoryPage() {
   const [adminPermission, setadminPermission] = useState(null);
   const [allCategories, setAllCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
+  const [deletedCategory,setDeletedCategory] = useState(null);
 
-  const { user} = useContext(DataStore);
+  const { user } = useContext(DataStore);
 
   const userPagePermissionControl = () => {
     fetch("http://localhost:5000/userpage", {
@@ -20,10 +21,12 @@ function AdminCategoryPage() {
       },
     })
       .then((data) => data.json())
-      .then((data)=>console.log(data))
+      .then((data) => console.log(data))
       .then((data) => {
-        user.isAdmin === true  ? 
-        setadminPermission(true) : setadminPermission(false)});
+        user.isAdmin === true
+          ? setadminPermission(true)
+          : setadminPermission(false);
+      });
   };
 
   userPagePermissionControl();
@@ -60,9 +63,22 @@ function AdminCategoryPage() {
       .then((data) => setAllCategories(data));
   };
 
+  const deleteCategory = (category) => {
+    console.log(category._id);
+
+    fetch(`http://localhost:5000/category/delete/${category._id}`,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({id:category._id})
+    }).then(data=>data.json()).then(data=>setDeletedCategory(data.deletedId))
+
+  };
+
   useEffect(() => {
     getAllCategories();
-  }, [newCategory]);
+  }, [newCategory,deletedCategory]);
 
   console.log(allCategories);
 
@@ -71,30 +87,47 @@ function AdminCategoryPage() {
       <Header />
       <AdminNav />
       {adminPermission ? (
-        <div className=" d-flex justify-content-center align-items-center  text-center">
-          <form onSubmit={addCategory}>
+        <div style={{width:"100%"}} className="d-flex justify-content-center">
+          <div
+            style={{ width: "50%", minWidth: "50%" }}
+            className=" d-flex flex-column text-center"
+          >
             <div className="bg-dark text-light">All Categories</div>
             <div className="bg-light border">
               {allCategories.map((category) => {
-                return <div>{category.categoryName}</div>;
+                return (
+                  <div className="d-flex justify-content-around align-items-center m-2">
+                    {category.categoryName}
+                    <button
+                      onClick={() => {
+                        deleteCategory(category);
+                      }}
+                      className="btn btn-danger"
+                    >
+                      Delete {category.categoryName}
+                    </button>
+                  </div>
+                );
               })}
             </div>
-            <div class="mb-3 mt-3">
-              <label for="exampleInputEmail1" class="form-label">
-                New Category Name
-              </label>
-              <input
-                id="category"
-                type="category"
-                class="form-control"
-                aria-describedby="emailHelp"
-              />
-            </div>
+            <form onSubmit={addCategory}>
+              <div class="mb-3 mt-3">
+                <label for="exampleInputEmail1" class="form-label">
+                  New Category Name
+                </label>
+                <input
+                  id="category"
+                  type="category"
+                  class="form-control"
+                  aria-describedby="emailHelp"
+                />
+              </div>
 
-            <button type="submit" class="btn btn-primary">
-              Submit
-            </button>
-          </form>
+              <button type="submit" class="btn btn-primary">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       ) : (
         "You are not authorized! "

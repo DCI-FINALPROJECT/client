@@ -284,6 +284,7 @@ function AdminTemplate() {
                       placeholder="Type here"
                       name="capacity"
                       onChange={changeHandle}
+                      value = "64 GB"
                     />
                   </div>
                 </div>

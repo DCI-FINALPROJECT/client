@@ -115,8 +115,12 @@ const addToWish = async (e) => {
     stockControl();
     directStockControlByColor();
   };
-  function getProductByCapacity() {
-    const data = fetch(
+ async function getProductByCapacity() {
+    
+    console.log(productById.productName, capacity);
+
+
+    const data = await fetch(
       `http://localhost:5000/product/capacity/${productById.productName}/${capacity}`
     )
       .then((data) => data.json())
