@@ -23,6 +23,7 @@ import CouponCreatPage from "./components/pages/AdminCouponCreatePage";
 import AdminCategoryPage from "./components/pages/AdminCategoryPage";
 import GiftCardPage from "./components/pages/GiftCardPage";
 import WishPage from "./components/pages/WishPage";
+import AdminUserList from "./components/public/AdminUserList";
 
 
 function App() {
@@ -155,6 +156,7 @@ function App() {
             <Route path="/admin/edit/:id" element={<EditPage />} />
             <Route path="/admin/couponCreate" element={<CouponCreatPage />} />
             <Route path="/admin/category" element={<AdminCategoryPage />} />
+            <Route path="/admin/userlist" element={<AdminUserList/>} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/payment" element={<PaymentPage />} />

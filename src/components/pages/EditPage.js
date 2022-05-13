@@ -19,7 +19,7 @@ export default function EditPage() {
     })
       .then((data) => data.json())
       .then((data) => console.log(data))
-      .then((data) => {
+      .then(() => {
         user.isAdmin === true
           ? setadminPermission(true)
           : setadminPermission(false);

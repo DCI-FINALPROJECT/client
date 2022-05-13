@@ -32,7 +32,7 @@ function AdminNav() {
           </a>
           <a
             class={
-              path === `/admin/edit/${id}` || path === `/admin/populerproducts`
+              path === `/admin/populerproducts`
                 ? "nav-link active"
                 : "nav-link"
             }
@@ -49,15 +49,19 @@ function AdminNav() {
             Coupon Creat
           </a>
           <a class={
-              path === `/admin/category` || path === `/admin/category`
+              path === `/admin/category` 
                 ? "nav-link active"
                 : "nav-link"
             }
             href="/admin/category">
             Category
           </a>
-          <a class="nav-link" href="#">
-            New Feature
+          <a class={
+              path === `/admin/userlist` 
+                ? "nav-link active"
+                : "nav-link"
+            } href="/admin/userlist">
+            User List
           </a>
         </nav>
       </div>
