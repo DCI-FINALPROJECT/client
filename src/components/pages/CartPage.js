@@ -31,7 +31,6 @@ function CartPage() {
     e.preventDefault();
     if(couponNumber.length>=13 && couponNumber.length<=15){
 
-      console.log("submit calisiyor");
       const response = await fetch(`http://localhost:5000/admin/getCoupon/${couponNumber}`, {
                 method: "GET",
                 headers: {
@@ -39,11 +38,10 @@ function CartPage() {
                   Authorization: `Bearer ${localStorage.userToken}`,
                 },
               })
-              console.log("response", response);
+
               if(response.status===200){
 
                 response.json().then((data)=>{
-                  console.log(data);
                   setDiscount(data.amount)
                   alert(data.message)
                 })

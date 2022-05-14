@@ -31,7 +31,6 @@ function GiftCard() {
     })
       setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
       
-      console.log("Cookie:", array);
     };
 
    /*  const addToCart = async (e) => {
