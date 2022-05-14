@@ -7,7 +7,6 @@ import { DataStore } from "../../DataStore";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
-console.log(KEY);
 
 function CartPageDeliveryInfo() {
   const { user, setOrderNumber } = useContext(DataStore);
@@ -42,7 +41,7 @@ function CartPageDeliveryInfo() {
   }, [whichContact]);
 
   useEffect(() => {
-    console.log(newContact.address);
+
 
     if (user.address !== undefined) {
       setShowCheckout(true);
@@ -53,7 +52,6 @@ function CartPageDeliveryInfo() {
     }
   }, [newContact]);
 
-  console.log(whichContact, newContact);
 
   const navigate = useNavigate();
 
@@ -61,7 +59,7 @@ function CartPageDeliveryInfo() {
     setStripeToken(token);
   };
 
-  console.log(user);
+
 
   // TOTAL PRICE
 
@@ -72,13 +70,13 @@ function CartPageDeliveryInfo() {
       totalPrice += product.price * product.quantities;
     });
   }
+  
 
-  console.log(cookies);
 
   // STRIPE
 
   const createOrder = async () => {
-    console.log(newContact);
+
 
     await fetch("http://localhost:5000/payment/createOrder", {
       method: "POST",
@@ -149,7 +147,6 @@ function CartPageDeliveryInfo() {
     e.preventDefault();
     if(couponNumber.length>=13 && couponNumber.length<=15){
 
-      console.log("submit calisiyor");
       const response = await fetch(`http://localhost:5000/admin/getCoupon/${couponNumber}`, {
                 method: "GET",
                 headers: {
@@ -157,11 +154,11 @@ function CartPageDeliveryInfo() {
                   Authorization: `Bearer ${localStorage.userToken}`,
                 },
               })
-              console.log("response", response);
+
               if(response.status===200){
 
                 response.json().then((data)=>{
-                  console.log(data);
+                  
                   setDiscount(discount+data.amount)
                   alert(data.message)
                 })
