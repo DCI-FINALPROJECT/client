@@ -9,6 +9,7 @@ function UserPageOrderInfos() {
   const [activeOrders, setActiveOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [ready, setReady] = useState(false);
+  const [couponNumber, setCouponNumber] = useState("");
 
   console.log(activeOrders);
 
@@ -21,14 +22,49 @@ function UserPageOrderInfos() {
       body: JSON.stringify({ email: user.email }),
     })
       .then((data) => data.json())
-      .then((data) => setActiveOrders(data));
+      .then((data) => {
+        data.forEach(element => {
+          if(element.products[0].capacity.slice(0,2)==="GC"){
+            const giftNumber =element.products[0].capacity
+            console.log("if calisiyor");
+            console.log(giftNumber);
+            const result = async( )=>{
+              console.log("result calisiyor");
+              await fetch("http://localhost:5000/getGift", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ giftNumber}),
+              }).then((data) => data.json())
+              .then((data)=>setCouponNumber(data.couponNumber))
+            } 
+            
+            
+            
+            result();
+          }
+          
+        });
+        setActiveOrders(data)});
   };
 
+/*   const getCoupon = async() =>{
+    console.log("getCoupon calisti");
+    await fetch("http://localhost:5000/getGift", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify( {giftNumber : giftNumber} ),
+    }).then((data) => data.json())
+    .then((data)=>console.log("data",data))
+  } */
   useEffect(() => {
     getActiveOrders();
   }, [ready]);
 
-  console.log(activeOrders);
+  console.log("activeOrders",activeOrders);
 
   const getProductsById = async () => {
     const array = [];
@@ -86,7 +122,23 @@ function UserPageOrderInfos() {
                 <div class="col-md-4 border-start">
                   <p class="mb-0 text-muted">Shipping address</p>
                   <p class="m-0">{order.userContact.address}</p>
+                  
+
+                  {order.products[0].capacity.slice(0,2)==="GC"?  
+                  (
+                    <div>
+
+                      <p class="mb-0 text-muted">Coupon Number</p>
+                      <p class="m-0">{couponNumber}</p>
+                    </div>
+                  ):null
+                   
+                       
+                      }
+                 
+                 
                 </div>
+                
                 <div class="col-md-4 border-start">
                 <p class="mb-0 text-muted">Product Preis</p>
                   <p class="m-0">
