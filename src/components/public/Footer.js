@@ -2,8 +2,8 @@ import React from "react";
 
 function Footer() {
   return (
-    <div style={{color:"grey"}}>
-      <footer className="section-footer border-top">
+    <div style={{color:"grey"}} className="bg">
+      <footer className="section-footer border-top footer-e bg">
         <div className="container">
           <section className="footer-top py-3">
             <div className="row ">
@@ -160,7 +160,7 @@ function Footer() {
           </section>
 
           <section className="footer-copyright border-top">
-            <p className="text-muted"> &copy; 2020 Company All rights reserved</p>
+            <p className="text-muted"> &copy; 2022 Company All rights reserved</p>
           </section>
         </div>
       </footer>

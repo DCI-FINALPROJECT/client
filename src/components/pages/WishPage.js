@@ -12,7 +12,7 @@ function WishPage() {
   return (
     <div>
       <Header />
-      <div className="container my-3 shadow">
+      <div className="container my-3 py-2 shadow">
         <div class="row">
           <div class="col">
             <div class="card">
