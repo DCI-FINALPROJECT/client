@@ -35,98 +35,96 @@ function UserPageUserInfos() {
   };
 
   return (
-    <div class="col-lg-9">
-      <div class="card-body">
+    <div className="col-lg-9">
+      <div className="card-body">
         <form onSubmit={updateInfos}>
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="row gx-3">
-                <div class="col-6 mb-3">
-                  <label class="form-label">First name</label>
+          <div className="row">
+            <div className="col-lg-8">
+              <div className="row gx-3">
+                <div className="col-6 mb-3">
+                  <label className="form-label">First name</label>
                   <input
                     onChange={isInputChanged}
                     name="firstName"
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     placeholder="Type here"
                     defaultValue={user.firstName}
                   />
                 </div>
-                <div class="col-6 mb-3">
-                  <label class="form-label">Last name</label>
+                <div className="col-6 mb-3">
+                  <label className="form-label">Last name</label>
                   <input
                     onChange={isInputChanged}
                     name="lastName"
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     placeholder="Type here"
                     defaultValue={user.lastName}
                   />
                 </div>
-                <div class="col-lg-6 col-md-6 mb-3">
-                  <label class="form-label">Email</label>
+                <div className="col-lg-6 col-md-6 mb-3">
+                  <label className="form-label">Email</label>
                   <input
                     onChange={isInputChanged}
-                    class="form-control"
+                    className="form-control"
                     type="email"
                     placeholder="example@mail.com"
                     defaultValue={user.email}
                   />
                 </div>
-                <div class="col-lg-6 col-md-6 mb-3">
-                  <label class="form-label">Phone</label>
+                <div className="col-lg-6 col-md-6 mb-3">
+                  <label className="form-label">Phone</label>
                   <input
                     onChange={isInputChanged}
                     name="phone"
-                    class="form-control"
+                    className="form-control"
                     type="tel"
                     placeholder="+1234567890"
                     defaultValue={user.phone}
                   />
                 </div>
-                <div class="col-lg-12 mb-3">
-                  <label class="form-label">Address</label>
+                <div className="col-lg-12 mb-3">
+                  <label className="form-label">Address</label>
                   <input
                     onChange={isInputChanged}
                     name="address"
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     placeholder="Type here"
                     defaultValue={user.address}
                   />
                 </div>
-                <div class="col-lg-6 col-6 mb-3">
-                  <label class="form-label">Birthday</label>
-                  <input name="birthday" onChange={isInputChanged} class="form-control" type="date" defaultValue={user.birthday} />
+                <div className="col-lg-6 col-6 mb-3">
+                  <label className="form-label">Birthday</label>
+                  <input name="birthday" onChange={isInputChanged} className="form-control" type="date" defaultValue={user.birthday} />
                 </div>
               </div>
             </div>
-            <aside class="col-lg-4">
-              <div class="text-lg-center mt-3">
+            <aside className="col-lg-4">
+              <div className="text-lg-center mt-3">
                 <img
-                  class="img-lg mb-3 img-avatar rounded"
+                  className="img-lg mb-3 img-avatar rounded"
                   src={user.photo}
                   alt="User Photo"
                   style={{ width: "100px", height: "100px" }}
                 />
                 <div>
-                  <a class="btn btn-sm btn-light" href="#">
-                    <i class="fa fa-camera"></i> Upload
+                  <a className="btn btn-sm btn-light" href="#">
+                    <i className="fa fa-camera"></i> Upload
                   </a>
-                  <a class="btn btn-sm btn-outline-danger" href="#">
-                    <i class="fa fa-trash"></i>
-                  </a>
+                  
                 </div>
               </div>
             </aside>
           </div>
           <br />
-          <button class="btn btn-primary" type="submit">
+          <button className="btn btn-primary" type="submit">
             {inputAmendment === true && "Save changes"}       
             {inputAmendment === false && "Updated"}
           </button>
         </form>
-        <hr class="my-4" />
+        <hr className="my-4" />
 
         {IsPassChangeAktiv === true? <PassportChange setIsPassChangeAktiv={setIsPassChangeAktiv}/> : <AskPassChangeOrDelete setIsPassChangeAktiv={setIsPassChangeAktiv}/>}
         
