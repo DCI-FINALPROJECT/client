@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { DataStore } from "../../DataStore";
 import { logout } from "../helpers/logout";
 
-
 function Header() {
   const query = new URLSearchParams(useLocation().search); // Getting query from URL
   const [cookies, setCookies] = useCookies(["cart"]);
@@ -33,10 +32,6 @@ function Header() {
   console.log(cookies);
   console.log(totalProductInWish);
 
-
-
-
-
   const choise = query.get("choise") === null ? "1" : query.get("choise");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
@@ -49,8 +44,6 @@ function Header() {
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");
   };
-
-
 
   const signInWithForm = async (e) => {
     e.preventDefault();
@@ -65,31 +58,25 @@ function Header() {
       },
 
       body: JSON.stringify({ email, password }),
-    })
+    });
 
     const result = response;
-    result
-        .json()
-        .then(async(data) => {console.log("data", data.status)
+    result.json().then(async (data) => {
+      console.log("data", data.status);
 
-        if (data.status === 'error') {
-          console.log("if calisiyor");
-          setLoginMessage(data.message)
-          console.log("loginMassege", loginMessage);
-          
-        } else {
-          console.log("else calisiyor");
-    
-          setLoginMessage(data.message)
-          console.log("loginMassege", loginMessage);          
-          setUser(data.userInformation);
-          localStorage.setItem("userToken", data.userToken);
-          
-        }
-        
-      })
-   
-     
+      if (data.status === "error") {
+        console.log("if calisiyor");
+        setLoginMessage(data.message);
+        console.log("loginMassege", loginMessage);
+      } else {
+        console.log("else calisiyor");
+
+        setLoginMessage(data.message);
+        console.log("loginMassege", loginMessage);
+        setUser(data.userInformation);
+        localStorage.setItem("userToken", data.userToken);
+      }
+    });
   };
 
   return (
@@ -113,9 +100,8 @@ function Header() {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          
-          <div class="collapse navbar-collapse row" id="navbarNav" >
-           
+
+          <div class="collapse navbar-collapse row" id="navbarNav">
             {/* CATEGORY */}
             <div className="nav-link col-md-3">
               <div class="dropdown d-flex justify-content-center">
@@ -129,10 +115,7 @@ function Header() {
                 >
                   All Category
                 </button>
-                <div
-                  class="dropdown-menu"
-                  aria-labelledby="dropdownMenuButton"
-                >
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   {categories.map((category, index) => {
                     return (
                       <a
@@ -163,7 +146,7 @@ function Header() {
                   <input
                     type="text"
                     className="form-control"
-                    style={{maxWidth:"250px"}}
+                    style={{ maxWidth: "250px" }}
                     placeholder="Search"
                     onChange={(e) => setSearchState(e.target.value)}
                   />
@@ -181,7 +164,7 @@ function Header() {
             <div className="nav-link col-md-5">
               <div className="widgets-wrap d-flex justify-content-center">
                 {/* Wish List */}
-              <div className="widget-header mr-2">
+                <div className="widget-header mr-2">
                   <a href="/wishpage" className="icontext">
                     <div className="icon">
                       <i className="fa fa-heart"></i>
@@ -207,17 +190,16 @@ function Header() {
 
                 {user.email ? (
                   <div className="d-flex">
-                   <Link to="/user"><img
-                      className="border rounded mr-3 ml-3"
-                      style={{ width: "40px" }}
-                      src={user.photo}
-                      alt=""
-                    /></Link> 
+                    <Link to="/user">
+                      <img
+                        className="border rounded mr-3 ml-3"
+                        style={{ width: "40px" }}
+                        src={user.photo}
+                        alt=""
+                      />
+                    </Link>
 
-                    <button
-                      className="btn btn-yellow"
-                      onClick={logout}
-                    >
+                    <button className="btn btn-yellow" onClick={logout}>
                       Log out
                     </button>
                   </div>
@@ -245,7 +227,7 @@ function Header() {
                       </div>
                     </a>
                     <div className="dropdown-menu dropdown-menu-right">
-                      <form className="px-4 py-3"  onSubmit={signInWithForm}>
+                      <form className="px-4 py-3" onSubmit={signInWithForm}>
                         <div className="form-group">
                           <label>Email address</label>
                           <input
@@ -258,20 +240,30 @@ function Header() {
                         </div>
                         <div className="form-group">
                           <label>Password</label>
-                          <input
-                            required  
-                            id="passwordSignIn"
-                            type="password"
-                            className="form-control"
-                            placeholder="Password"
-                          />
+                          <div className="d-flex">
+                            <input
+                              required
+                              id="passwordSignIn"
+                              type="password"
+                              className="form-control"
+                              placeholder="Password"
+                            />
+                            <button type="button" className="btn btn-light">
+                              <i
+                                className="text-muted fa fa-eye"
+                                onClick={() => {
+                                  const x =
+                                    document.getElementById("passwordSignIn");
+                                  x.type === "password"
+                                    ? (x.type = "text")
+                                    : (x.type = "password");
+                                }}
+                              ></i>
+                            </button>
+                          </div>
                         </div>
                         <div className="d-flex justify-content-center">
-                          <button
-                           
-                            type="submit"
-                            className="btn btn-primary"
-                          >
+                          <button type="submit" className="btn btn-primary">
                             Sign in
                           </button>
                         </div>
@@ -290,7 +282,6 @@ function Header() {
                       <Link to="/register" class="dropdown-item" href="#">
                         Have account? Sign up
                       </Link>
-                      
                     </div>
                   </div>
                 )}
