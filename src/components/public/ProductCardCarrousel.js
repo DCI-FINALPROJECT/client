@@ -5,9 +5,11 @@ import { DataStore } from "../../DataStore";
 function ProductCardCarrousel({ product }) {
   const { setClicked, setProductById } = useContext(DataStore);
 
+  
+
   return (
     <div>
-        <div className=" card-product-grid mx-2">
+        <div className="card-product-grid mx-2">
       <Link
         onClick={() => {
           setClicked(product._id);

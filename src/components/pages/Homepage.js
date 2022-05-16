@@ -14,7 +14,7 @@ function Homepage() {
     <div>
       <Header />
       <Banner1 />
-      <div className="bg">
+      <div className="">
         <br />
         <br />
         <BannerCategories />

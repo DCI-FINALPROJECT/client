@@ -7,12 +7,14 @@ import CategoryInfo from "../public/CategoryInfo";
 
 function CategoryPage() {
   return (
-    <div className="container">
+    <div className="">
       <Header />
-      <CategoryInfo />
-      <div className="row">
-        <CategoryFilter />
-        <CategoryProducts />
+      <div className="container">
+        <CategoryInfo />
+        <div className="row py-2">
+          <CategoryFilter />
+          <CategoryProducts />
+        </div>
       </div>
       <Footer />
     </div>

@@ -1,11 +1,10 @@
-import React,{useEffect,useState,useContext} from 'react';
+import React, { useEffect, useState, useContext } from "react";
 import { DataStore } from "../../DataStore";
 
 function UserPageOrderHistory() {
-
   const { user } = useContext(DataStore);
 
-  const [allOrders,setAllOrders] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
 
   const getAllOrders = async () => {
     await fetch("http://localhost:5000/myallorders", {
@@ -23,37 +22,30 @@ function UserPageOrderHistory() {
     getAllOrders();
   }, []);
 
-
   console.log(allOrders);
 
   return (
-<table class="table table-striped col-lg-9">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Order Number</th>
-      <th scope="col">Date</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-{
-  allOrders.map((order,index)=>{
-    return(
-      <tr>
-      <th scope="row">{index+1}</th>
-      <td>{order.orderNumber}</td>
-      <td>{order.date}</td>
-      <td>€ {order.amount}</td>
-      <td> .... </td>
-    </tr>
-    )
-  })
-}
-  </tbody>
-</table>
-  )
+    <div className="col-lg-9 pt-2">
+      
+      <div className="">
+        {allOrders.map((order, index) => {
+          return (
+            <ul className="list-unstyled card p-2 mr-2">
+              <li className="order-number yellow">
+                {index + 1}
+              </li>
+              <li>Order Number: {order.orderNumber}</li>
+              <li>Date: {order.date}</li>
+              <li>Amount: € {order.amount}</li>
+              <li>Status: .... </li>
+            </ul>
+          );
+        })}
+      </div>
+    </div>
+
+    
+  );
 }
 
-export default UserPageOrderHistory
+export default UserPageOrderHistory;
