@@ -42,7 +42,7 @@ function AdminPopulerProducts() {
     <div>
       <Header />
       <AdminNav />
-      <div className="d-flex justify-content-center align-items-center flex-wrap">
+      <div className="d-flex justify-content-center align-items-center flex-wrap" style={{width:"100%"}}>
       {adminPermission
         ? populerProducts.map((product) => {
             return (

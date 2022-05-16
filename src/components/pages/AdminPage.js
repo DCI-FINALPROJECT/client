@@ -3,6 +3,7 @@ import { DataStore } from "../../DataStore";
 import AdminNav from "../public/AdminNav";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
+import NotAuthorize from "../public/NotAuthorize";
 
 function AdminPage() {
 
@@ -45,9 +46,7 @@ function AdminPage() {
             or EDIT)
           </div>
         </div>
-      ) : (
-        "You are not authorized! "
-      )}
+      ) : <NotAuthorize/>}
 
       <Footer />
     </div>

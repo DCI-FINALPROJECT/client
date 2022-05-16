@@ -24,13 +24,12 @@ function DeleteArea() {
       <div className="d-flex flex-column flex-wrap justify-content-center container">
         <h3 className="my-3">Searched Product</h3>
         {searchedProducts.length === 0 ? (
-          <div className="container row-12  d-flex align-items-center justify-content-center shadow my-5">
+          <div className="d-flex align-items-center  auth p-2 my-5" style={{width:"90%", height:"8rem"}} >
             {/* <div className="col-3" ><img src={dog} className="dog" alt="" /></div> */}
-            <div className="col-5">
-              <h2>
-                Ooo schade... <br /> Product wurde nicht gefunden
-              </h2>
-            </div>
+            
+              <h3 className="ml-sm-5" >
+                 Product is not found <br/> <span className="text-muted"> Search a new product </span>
+              </h3>
           </div>
         ) : (
           <div className="d-flex flex-wrap justify-content-center">
@@ -42,7 +41,7 @@ function DeleteArea() {
       </div>
 
       <div className="d-flex flex-wrap justify-content-center flex-column container">
-        <h3 className="my-3">All Product</h3>
+        <h3 className="my-3">All Products</h3>
         <div className="d-flex flex-wrap justify-content-center">
           {allProducts.map((product) => {
             return <DeleteTemplate key={product._id} product={product} />;
