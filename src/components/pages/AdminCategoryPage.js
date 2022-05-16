@@ -3,6 +3,7 @@ import { DataStore } from "../../DataStore";
 import AdminNav from "../public/AdminNav";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
+import NotAuthorize from "../public/NotAuthorize";
 
 function AdminCategoryPage() {
   const [adminPermission, setadminPermission] = useState(null);
@@ -129,9 +130,7 @@ function AdminCategoryPage() {
             </form>
           </div>
         </div>
-      ) : (
-        "You are not authorized! "
-      )}
+      ) : <NotAuthorize/>}
 
       <Footer />
     </div>

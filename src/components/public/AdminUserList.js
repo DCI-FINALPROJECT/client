@@ -3,6 +3,7 @@ import { DataStore } from "../../DataStore";
 import AdminNav from "./AdminNav";
 import Footer from "./Footer";
 import Header from "./Header";
+import NotAuthorize from "./NotAuthorize";
 
 function AdminUserList() {
   const [adminPermission, setadminPermission] = useState(null);
@@ -110,9 +111,7 @@ function AdminUserList() {
               </div>
             </div>
           </div>
-        ) : (
-          "You are not authorized! "
-        )}
+        ) : <NotAuthorize/>}
       </div>
       <Footer />
     </div>

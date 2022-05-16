@@ -4,6 +4,7 @@ import Footer from '../public/Footer'
 import Header from '../public/Header'
 import CouponCreatTemplate from '../public/CouponCreatTemplate'
 import { DataStore } from '../../DataStore'
+import NotAuthorize from '../public/NotAuthorize'
 function CouponCreatPage() {
 
   const { user} = useContext(DataStore);
@@ -29,7 +30,7 @@ function CouponCreatPage() {
     <div>
          <Header/>
         <AdminNav/>
-      {adminPermission ? <CouponCreatTemplate/> : "You are not authorized! "}
+      {adminPermission ? <CouponCreatTemplate/> : <NotAuthorize/>}
         <Footer/>
     </div>
   )
