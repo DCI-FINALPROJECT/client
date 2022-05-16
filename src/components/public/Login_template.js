@@ -70,24 +70,14 @@ function Login_template() {
                 className="form-control"
                 placeholder="Password"
               />
-              <button type="button" className="btn btn-light">
-                <i className="text-muted fa fa-eye"></i>
+              <button type="button"  className="btn btn-light">
+                <i className="text-muted fa fa-eye"  onClick={()=>{const x = document.getElementById("passwordSign");  x.type==="password"?x.type="text":x.type="password"}}></i>
               </button>
             </div>
             
 
-            <div className="mb-3">
-              <label className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  checked=""
-                />
-                <span className="form-check-label"> Remember </span>
-              </label>
-            </div>
-            <div className="mb-4">
+  
+            <div className="my-5">
               <button
                 onClick={signInWithForm}
                 className="btn w-100 btn-primary"
