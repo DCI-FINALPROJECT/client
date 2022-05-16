@@ -6,7 +6,7 @@ function ProductCardCarrousel({ product }) {
   const { setClicked, setProductById } = useContext(DataStore);
 
   return (
-    <div>
+    <div className="m-3" style={{ width: "15rem"}}>
         <div className=" card-product-grid mx-2">
       <Link
         onClick={() => {
@@ -15,7 +15,7 @@ function ProductCardCarrousel({ product }) {
         }}
         to={`/product/${product._id}`}
       >
-          <div className="img-wrap">
+          <div className=" pt-2 img-wrap">
             <img src={product.images[0]} />
           </div>
       </Link>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 function AdminTemplate() {
   const [addProduct, setAddProduct] = useState({
@@ -284,7 +285,7 @@ function AdminTemplate() {
                       placeholder="Type here"
                       name="capacity"
                       onChange={changeHandle}
-                      value = "64 GB"
+                      value="64 GB"
                     />
                   </div>
                 </div>
@@ -294,9 +295,11 @@ function AdminTemplate() {
                     <button type="submit" className="btn btn-primary">
                       Add product
                     </button>
-                    <button type="reset" className="btn btn-outline-danger">
-                      Cancel
-                    </button>
+                    <Link to={"/admin"}>
+                      <button type="reset" className="btn btn-warning mx-3">
+                        Cancel
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </form>
