@@ -63,9 +63,9 @@ function PassportChange({ setIsPassChangeAktiv }) {
                 type="password"
                 className="form-control"
                 id="currentPassword"
-                required=""
+                required
                 onChange={(e) => {
-                  setRepeatNewPass(e.target.value);
+                  setCurrentPass(e.target.value);
                 }}
               />
               <button type="button" className="btn btn-light">
@@ -88,9 +88,10 @@ function PassportChange({ setIsPassChangeAktiv }) {
                 type="password"
                 className="form-control"
                 id="newPassword"
-                required=""
+                required
+                minLength={8}
                 onChange={(e) => {
-                  setRepeatNewPass(e.target.value);
+                  setNewPass(e.target.value);
                 }}
               />
               <button type="button" className="btn btn-light">
@@ -117,7 +118,7 @@ function PassportChange({ setIsPassChangeAktiv }) {
                 type="password"
                 className="form-control"
                 id="inputPasswordNewVerify"
-                required=""
+                required
                 onChange={(e) => {
                   setRepeatNewPass(e.target.value);
                 }}
