@@ -246,7 +246,7 @@ function WishPageProduct({ product }) {
               className="btn btn-light text-danger"
             >
               <i style={{
-                          fontSize: "15px",
+                          fontSize: "16px",
                           color: "red",
                         }}
                         className="far fa-trash-alt"
