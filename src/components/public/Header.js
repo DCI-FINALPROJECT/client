@@ -151,7 +151,7 @@ function Header() {
                     onChange={(e) => setSearchState(e.target.value)}
                   />
                   <div class="input-group-append">
-                    <Link to={`/search/${searchState}`} className="d-flex">
+                    <Link to={`/search/${searchState===""?"null":searchState}`} className="d-flex">
                       <button class="btn btn-dark" type="submit">
                         <i class="fa fa-search"></i>
                       </button>

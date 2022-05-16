@@ -57,7 +57,7 @@ function WishPageProduct({ product }) {
     }
     setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
     if (stockMessage.length === 0) {
-      toast.success(`${quantities} piece ${capacity} product is added in cart...`);
+      toast.success(`${quantities} piece ${capacity} product is added to cart...`);
     }
     console.log("Cookie:", array);
   };

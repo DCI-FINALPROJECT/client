@@ -67,7 +67,7 @@ function CouponCreatTemplate() {
                 </div>
                   <div className=" d-flex justify-content-center align-items-center">
                     <button type="submit" className="btn btn-primary ">
-                      Creat Coupon
+                      Create Coupon
                     </button>
                     
                   </div>

@@ -46,7 +46,7 @@ function AdminNav() {
             }
             href="/admin/couponCreate"
           >
-            Coupon Creat
+            Create Coupon
           </a>
           <a class={
               path === `/admin/category` 

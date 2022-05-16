@@ -24,7 +24,7 @@ function DeleteArea() {
       <div className="d-flex flex-column flex-wrap justify-content-center container">
         <h3 className="my-3">Searched Product</h3>
         {searchedProducts.length === 0 ? (
-          <div className="d-flex align-items-center  auth p-2 my-5" style={{width:"90%", height:"8rem"}} >
+          <div className="d-flex align-items-center auth p-2 my-5" style={{width:"90%", height:"8rem"}} >
             {/* <div className="col-3" ><img src={dog} className="dog" alt="" /></div> */}
             
               <h3 className="ml-sm-5" >
