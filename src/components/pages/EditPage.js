@@ -4,6 +4,7 @@ import AdminNav from "../public/AdminNav";
 import EditTemplate from "../public/EditTemplate";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
+import NotAuthorize from "../public/NotAuthorize";
 
 export default function EditPage() {
   const { user } = useContext(DataStore);
@@ -31,7 +32,7 @@ export default function EditPage() {
     <div>
       <Header />
       <AdminNav />
-      {adminPermission ? <EditTemplate /> : "You are not authorized! "}
+      {adminPermission ? <EditTemplate /> : <NotAuthorize/>}
       <Footer />
     </div>
   );

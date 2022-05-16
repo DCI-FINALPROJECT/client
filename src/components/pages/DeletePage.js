@@ -4,6 +4,7 @@ import AdminNav from "../public/AdminNav";
 import DeleteArea from "../public/DeleteArea";
 import DeleteHeader from "../public/DeleteHeader";
 import Footer from "../public/Footer";
+import NotAuthorize from "../public/NotAuthorize";
 
 function DeletePage() {
   const [adminPermission, setadminPermission] = useState(null);
@@ -32,7 +33,7 @@ function DeletePage() {
       <DeleteHeader />
       <AdminNav/>
 
-      {adminPermission ? <DeleteArea /> : "You are not authorized! "}
+      {adminPermission ? <DeleteArea /> : <NotAuthorize/>}
 
       <Footer />
     </div>

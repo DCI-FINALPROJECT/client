@@ -4,6 +4,7 @@ import AddProductTemplate from '../public/AddProductTemplate'
 import Footer from '../public/Footer'
 import Header from '../public/Header'
 import { DataStore } from '../../DataStore'
+import NotAuthorize from '../public/NotAuthorize'
 
 function AddProductPage() {
 
@@ -30,7 +31,7 @@ function AddProductPage() {
     <div>
         <Header/>
         <AdminNav/>
-      {adminPermission ? <AddProductTemplate/> : "You are not authorized! "}
+      {adminPermission ? <AddProductTemplate/> : <NotAuthorize/> }
         <Footer/>
     </div>
   )

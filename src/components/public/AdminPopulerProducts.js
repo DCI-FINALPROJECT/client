@@ -4,6 +4,7 @@ import { DataStore } from "../../DataStore";
 import AdminNav from "../public/AdminNav";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
+import NotAuthorize from "./NotAuthorize";
 
 function AdminPopulerProducts() {
   const [adminPermission, setadminPermission] = useState(null);
@@ -41,7 +42,7 @@ function AdminPopulerProducts() {
     <div>
       <Header />
       <AdminNav />
-      <div className="d-flex justify-content-center align-items-center flex-wrap">
+      <div className="d-flex justify-content-center align-items-center flex-wrap" style={{width:"100%"}}>
       {adminPermission
         ? populerProducts.map((product) => {
             return (
@@ -67,7 +68,9 @@ function AdminPopulerProducts() {
               </div>
             );
           })
-        : "You are not authorized! "}
+        : 
+           <NotAuthorize/>}
+          
         </div>
       <Footer />
     </div>

@@ -3,10 +3,12 @@ import { DataStore } from "../../DataStore";
 import AdminNav from "./AdminNav";
 import Footer from "./Footer";
 import Header from "./Header";
+import NotAuthorize from "./NotAuthorize";
 
 function AdminUserList() {
   const [adminPermission, setadminPermission] = useState(null);
   const [allUsers, setAllUsers] = useState([]);
+  const [makeAnAdmin,setMakeAnAdmin] = useState("");
 
   const { user } = useContext(DataStore);
 
@@ -35,7 +37,7 @@ function AdminUserList() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.userToken}`,
       },
-      body:JSON.stringify({ email }),
+      body: JSON.stringify({ email }),
     })
       .then((data) => data.json())
       .then((data) => setAllUsers(data));
@@ -43,28 +45,24 @@ function AdminUserList() {
 
   console.log(user);
 
-  const deleteUser = async () => {
-    if (window.confirm("Are you sure to delete this account!!!")) {
-      const response = await fetch(`http://localhost:5000/user/delete`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.userToken}`,
-        },
-        body: JSON.stringify({ email }),
-      });
-      const result = response;
-      if (result.status === 200) {
-        alert("The account is successfully deleted!");
-      }
-    } else {
-      alert("The account was not deleted...");
-    }
+  const makeAdmin = async (e) => {
+    console.log(e.target.value);
+
+    const email = e.target.value;
+
+    await fetch(`http://localhost:5000/admin/makeAdmin`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.userToken}`,
+      },
+      body: JSON.stringify({ email }),
+    }).then(data=>data.json()).then(data=>setMakeAnAdmin(data))
   };
 
   useEffect(() => {
     getAllUsers();
-  }, []);
+  }, [makeAnAdmin]);
 
   userPagePermissionControl();
 
@@ -82,37 +80,32 @@ function AdminUserList() {
               style={{ width: "50%", minWidth: "50%" }}
               className=" d-flex flex-column text-center"
             >
-              <div className="bg-dark text-light">All Users</div>
+              <div className="bg-dark text-light">All Users who are not admin</div>
               <div className="bg-light border">
                 {allUsers.map((user) => {
                   return (
-                    <div className="d-flex justify-content-around align-items-center m-2">
-                      {user.firstName + " " + user.lastName}
-                      <button
-                        onClick={() => {
-                          deleteUser(user);
-                        }}
-                        className="btn btn-danger"
+                    user.isAdmin === false && (
+                      <div
+                        tag={user.email}
+                        className="d-flex justify-content-around align-items-center m-2"
                       >
-                        Delete
-                      </button>
-                      <button
-                        onClick={() => {
-                          deleteUser(user);
-                        }}
-                        className="btn btn-info"
-                      >
-                        Make Admin
-                      </button>
-                    </div>
+                        {user.firstName + " " + user.lastName}
+
+                        <button
+                          value={user.email}
+                          onClick={makeAdmin}
+                          className="btn btn-info"
+                        >
+                          {user.isAdmin === true ? "" : "Make Admin"}
+                        </button>
+                      </div>
+                    )
                   );
                 })}
               </div>
             </div>
           </div>
-        ) : (
-          "You are not authorized! "
-        )}
+        ) : <NotAuthorize/>}
       </div>
       <Footer />
     </div>

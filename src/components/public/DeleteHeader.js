@@ -131,7 +131,7 @@ function DeleteHeader() {
                   />
                   <div class="input-group-append">
                     <Link
-                      to={`/admin/deleteproduct/${searchState}`}
+                      to={`/admin/deleteproduct/${searchState===""?"null":searchState}`}
                       className="d-flex"
                     >
                       <button class="btn btn-dark" type="submit">
