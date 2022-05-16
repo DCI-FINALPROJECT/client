@@ -61,7 +61,7 @@ function AdminNav() {
                 ? "nav-link active"
                 : "nav-link"
             } href="/admin/userlist">
-            User List
+            Make Admin
           </a>
         </nav>
       </div>
