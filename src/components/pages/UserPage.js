@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../public/Footer";
 import Header from "../public/Header";
+import NotAuthorize from "../public/NotAuthorize";
 import UserPageTemplate from "../public/UserPageTemplate";
 
 function UserPage() {
@@ -23,7 +24,7 @@ function UserPage() {
   return (
     <div>
       <Header />
-      {userPermission ? <UserPageTemplate /> : "You are not authorized! "}
+      {userPermission ? <UserPageTemplate /> : <NotAuthorize/>}
       <Footer />
     </div>
   );
