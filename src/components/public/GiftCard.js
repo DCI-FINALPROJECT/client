@@ -1,71 +1,80 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Cookies, useCookies } from 'react-cookie';
 
 function GiftCard() {
 
   const [cookies, setCookies] = useCookies(["cart"]);
 
-    const giftCard = [
-        {name:"GC20", amount:20},
-        {name:"GC25", amount:25},
-        {name:"GC50", amount:50},
-        {name:"GC100", amount:100}
-    ]
+  const [allCoupon, setAllCoupon] = useState([]) 
+
+  const getAllCoupon = async() => {
+    const response = await fetch(`http://localhost:5000/allcoupons`, {
+      method: "GET",
+      Accept: "application/json",
+      headers: {
+        Authorization: `Bearer ${localStorage.userToken}`,
+      },
+    });
+    const couponsResponse = await response.json();
+    setAllCoupon(couponsResponse);
+  }
+
+  useEffect(() => {
+    getAllCoupon()
+  }, []);
+
+
+  console.log(allCoupon);
+
+
+  const filteredCoupon = allCoupon.filter((coupon)=> {
+
+    return coupon.isUsed===false && coupon.isBuy===false
+  }
+  )
+
+  console.log(filteredCoupon);
+  
 
     const addToCart = async (e) => {
 
-      const couponName=e.target.name;
+
+      const couponId=e.target.name;
+      console.log("id", couponId);
+      const coupon = filteredCoupon.filter((coupon)=>{ return coupon._id===couponId})
       let array = (await new Cookies().get("cart")) || [];
 
-      let isProductAlreadyInCart = false;
-
+      console.log(coupon);
       
-      const couponAmount= couponName.slice(2);
      array.push({
-      id: "",
+      id: coupon[0]._id,
       quantities: 1,
       color:"",
-      capacity: couponName,
-      price: couponAmount,
+      capacity: coupon[0].giftNumber,
+      price: coupon[0].couponAmount,
       image: "https://beerginvino.com/wp-content/uploads/2021/11/giftcard-1.jpg",
     })
       setCookies("cart", array, { path: "/" }); // We can get the cookies with 3. parameter.
       
     };
 
-   /*  const addToCart = async (e) => {
-      const couponName=e.target.name;
-      let array = (await new Cookies.get("cart")) || [];
-      let isProductAlreadyInCart = false;
-      
-      array.forEach((element)=>{
-        if(element.name===couponName){
-          
-        isProductAlreadyInCart = true;
-        element.quantities += 1;
 
-        }
-      })
-      
-     
-      
-    }; */
   return (
-    <div className='d-flex flex-wrap justify-content-center align-items-center m-5 '>
+    <div className='d-flex flex-wrap justify-content-center container'>
 
-        {giftCard.map((card)=>{
+        {filteredCoupon.map((card)=>{
             return(
 
                 <div className=" card-product-grid m-3">
                 
-                    <div className="img-wrap" style={{height:"170px"}} >
-                      <img src={"https://beerginvino.com/wp-content/uploads/2021/11/giftcard-1.jpg"} style={{height:"170px"}} />
+                    <div className="img-wrap pt-2" style={{height:"170px"}} >
+                      <img src={"https://beerginvino.com/wp-content/uploads/2021/11/giftcard-1.jpg"} style={{height:"160px"}} alt="" />
                     </div>
                     <div className="info-wrap">
                         <h4 className='card-title'> Gift Card</h4>
-                        <h5 className="text-muted">{card.name}</h5>
+                        <h5 className="text-muted">{card.giftNumber}</h5>
                       <div className="price-wrap">
-                        <strong className="price text-muted">Card Amount: {card.amount} €</strong>
+                        <strong className="price text-muted">Card Amount: {card.couponAmount} €</strong>
                       </div>
                       <div className="d-flex justify-content-center mt-4">
                       <button
@@ -73,7 +82,7 @@ function GiftCard() {
                         addToCart
                     }
                     className="btn btn-yellow mx-2"
-                    name={card.name}
+                    name={card._id}
                     
                   >
                     <i className="me-2 fa fa-shopping-basket"></i> Add to cart

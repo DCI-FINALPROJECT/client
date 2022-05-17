@@ -23,7 +23,11 @@ function UserPageOrderInfos() {
     })
       .then((data) => data.json())
       .then((data) => {
-        data.forEach(element => {
+        
+        setActiveOrders(data)});
+  };
+
+  /* data.forEach(element => {
           if(element.products[0].capacity.slice(0,2)==="GC"){
             const giftNumber =element.products[0].capacity
             console.log("if calisiyor");
@@ -45,21 +49,9 @@ function UserPageOrderInfos() {
             result();
           }
           
-        });
-        setActiveOrders(data)});
-  };
+        }); */
 
-/*   const getCoupon = async() =>{
-    console.log("getCoupon calisti");
-    await fetch("http://localhost:5000/getGift", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify( {giftNumber : giftNumber} ),
-    }).then((data) => data.json())
-    .then((data)=>console.log("data",data))
-  } */
+
   useEffect(() => {
     getActiveOrders();
   }, [ready]);
