@@ -206,7 +206,7 @@ function CategoryProducts() {
             )}
 
             {page !== 1 && (
-              <div classNameName="d-flex">
+              <div className="d-flex">
                 <li className="page-item">
                   <a
                     className="page-link"
