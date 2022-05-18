@@ -187,7 +187,7 @@ function CategoryProducts() {
                   </li>
                 )}
                 {numberOfProductByCategory / limit > 2 && (
-                  <li className="page-item btn btn-light" aria-current="page">
+                  <li className="page-item" aria-current="page">
                     <a
                       className="page-link"
                       href={`?whichPage=3&choise=${choise}&brands=${query.get(
@@ -260,7 +260,7 @@ function CategoryProducts() {
 
             <li classNameName="page-item">
               <a
-                className="page-link btn btn-light text-dark"
+                className="page-link"
                 href={`?whichPage=${
                   numberOfProductByCategory / limit === 0
                     ? 1
