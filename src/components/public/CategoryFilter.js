@@ -83,7 +83,7 @@ function CategoryFilter() {
   };
 
   const getBrandsFromDatabase = () => {
-    fetch(`https://smartshopdcifinal.herokuapp.com/product/brands/filter/${params.category}`)
+    fetch(`http://localhost:5000/product/brands/filter/${params.category}`)
       .then((data) => data.json())
       .then((data) => setBrands(data));
   };
@@ -93,7 +93,7 @@ function CategoryFilter() {
   }, []);
 
   const getAllCapacities = () => {
-    fetch(`https://smartshopdcifinal.herokuapp.com/capacity/getAllCapacities`)
+    fetch(`http://localhost:5000/capacity/getAllCapacities`)
       .then((data) => data.json())
       .then((data) => setCapacities(data));
   };

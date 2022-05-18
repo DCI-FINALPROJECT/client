@@ -53,7 +53,7 @@ function App() {
   const [orderNumber, setOrderNumber] = useState("");
 
   const loadProducts = async () => {
-    const response = await fetch(`https://smartshopdcifinal.herokuapp.com/products/all`);
+    const response = await fetch(`http://localhost:5000/products/all`);
     const productsResponse = await response.json();
     setAllProducts(productsResponse);
   };
@@ -80,7 +80,7 @@ function App() {
 
   // This useEffect controls whether there are already any token (user) in browser.
   useEffect(() => {
-    fetch("https://smartshopdcifinal.herokuapp.com/finduser", {
+    fetch("http://localhost:5000/finduser", {
       method: "GET",
       Accept: "application/json",
       headers: {
@@ -95,7 +95,7 @@ function App() {
 
   useEffect(() => {
     const getUserWithPassportJs = () => {
-      fetch("https://smartshopdcifinal.herokuapp.com/auth/login/success", {
+      fetch("http://localhost:5000/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {

@@ -11,7 +11,7 @@ export default function EditPage() {
   const [adminPermission, setadminPermission] = useState(null);
 
   const userPagePermissionControl = () => {
-    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
+    fetch("http://localhost:5000/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {

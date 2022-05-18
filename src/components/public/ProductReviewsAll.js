@@ -19,7 +19,7 @@ export default function ProductReviewsAll() {
   const [rating, setRating] = useState(0);
 
   const getReviewsByProductName = async () => {
-    await fetch(`https://smartshopdcifinal.herokuapp.com/review/${productById.productName}`)
+    await fetch(`http://localhost:5000/review/${productById.productName}`)
       .then((data) => data.json())
       .then((data) => {
         let review = 0;
@@ -69,7 +69,7 @@ export default function ProductReviewsAll() {
         photo: await user.photo,
       };
 
-      await fetch("https://smartshopdcifinal.herokuapp.com/review/addReview", {
+      await fetch("http://localhost:5000/review/addReview", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

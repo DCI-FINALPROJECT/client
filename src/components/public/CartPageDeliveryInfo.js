@@ -78,7 +78,7 @@ function CartPageDeliveryInfo() {
   const createOrder = async () => {
 
 
-    await fetch("https://smartshopdcifinal.herokuapp.com/payment/createOrder", {
+    await fetch("http://localhost:5000/payment/createOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,7 @@ function CartPageDeliveryInfo() {
     e.preventDefault();
     if(couponNumber.length>=13 && couponNumber.length<=15){
 
-      const response = await fetch(`https://smartshopdcifinal.herokuapp.com/admin/getCoupon/${couponNumber}`, {
+      const response = await fetch(`http://localhost:5000/admin/getCoupon/${couponNumber}`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",

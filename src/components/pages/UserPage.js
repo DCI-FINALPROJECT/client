@@ -8,7 +8,7 @@ function UserPage() {
   const [userPermission, setUserPermission] = useState(null);
 
   const userPagePermissionControl = () => {
-    const resp = fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
+    const resp = fetch("http://localhost:5000/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {

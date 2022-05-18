@@ -11,7 +11,7 @@ function AskPassChangeOrDelete({ setIsPassChangeAktiv }) {
   const clickHandler = async () => {
     if (window.confirm("Are you sure to delete your account!!!")) {
       const email=user.email
-      const response =await fetch(`https://smartshopdcifinal.herokuapp.com/user/delete`, {
+      const response =await fetch(`http://localhost:5000/user/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -14,7 +14,7 @@ function UserPageOrderInfos() {
   console.log(activeOrders);
 
   const getActiveOrders = async () => {
-    await fetch("https://smartshopdcifinal.herokuapp.com/myactiveorders", {
+    await fetch("http://localhost:5000/myactiveorders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ function UserPageOrderInfos() {
             console.log(giftNumber);
             const result = async( )=>{
               console.log("result calisiyor");
-              await fetch("https://smartshopdcifinal.herokuapp.com/getGift", {
+              await fetch("http://localhost:5000/getGift", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -64,7 +64,7 @@ function UserPageOrderInfos() {
     for (let i = 0; i < activeOrders.length; i++) {
       for (let j = 0; j < activeOrders[i].products.length; j++) {
         await fetch(
-          `https://smartshopdcifinal.herokuapp.com/product/${activeOrders[i].products[j].id}`
+          `http://localhost:5000/product/${activeOrders[i].products[j].id}`
         )
           .then((data) => data.json())
           .then((data) => array.push(data.images[0]))

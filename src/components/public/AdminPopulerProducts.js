@@ -13,7 +13,7 @@ function AdminPopulerProducts() {
   const { user} = useContext(DataStore);
 
   const userPagePermissionControl = () => {
-    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
+    fetch("http://localhost:5000/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {
@@ -28,7 +28,7 @@ function AdminPopulerProducts() {
   };
 
   const getPopulerProducts = () => {
-    fetch(`https://smartshopdcifinal.herokuapp.com/admin/populerproducts`)
+    fetch(`http://localhost:5000/admin/populerproducts`)
       .then((data) => data.json())
       .then((data) => setPopulerProducts(data));
   };

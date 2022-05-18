@@ -11,7 +11,7 @@ function Carrousel2() {
   const getAllProducts = async ()=>{
 
 
-    fetch("https://smartshopdcifinal.herokuapp.com/products/bestSellers").then(data=>data.json()).then(data=>setAllProducts(data)) 
+    fetch("http://localhost:5000/products/bestSellers").then(data=>data.json()).then(data=>setAllProducts(data)) 
 
   }
 

@@ -10,7 +10,7 @@ function AdminUserList() {
   const [makeAnAdmin,setMakeAnAdmin] = useState("");
   const { user } = useContext(DataStore);
   const userPagePermissionControl = () => {
-    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
+    fetch("http://localhost:5000/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {
@@ -27,7 +27,7 @@ function AdminUserList() {
   };
   const email = user.email;
   const getAllUsers = () => {
-    fetch(`https://smartshopdcifinal.herokuapp.com/admin/getallusers`, {
+    fetch(`http://localhost:5000/admin/getallusers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ function AdminUserList() {
   const makeAdmin = async (e) => {
     console.log(e.target.value);
     const email = e.target.value;
-    await fetch(`https://smartshopdcifinal.herokuapp.com/admin/makeAdmin`, {
+    await fetch(`http://localhost:5000/admin/makeAdmin`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -7,7 +7,7 @@ function Login_template() {
   const [loginMessage, setLoginMessage] = useState("");
 
   const google = () => {
-    window.open("https://smartshopdcifinal.herokuapp.com/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
   const signInWithForm = async (e) => {
@@ -18,7 +18,7 @@ function Login_template() {
 
     console.log(email,password);
 
-    await fetch("https://smartshopdcifinal.herokuapp.com/userlogin", {
+    await fetch("http://localhost:5000/userlogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

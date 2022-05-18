@@ -7,7 +7,7 @@ function UserPageOrderHistory() {
   const [allOrders, setAllOrders] = useState([]);
 
   const getAllOrders = async () => {
-    await fetch("https://smartshopdcifinal.herokuapp.com/myallorders", {
+    await fetch("http://localhost:5000/myallorders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

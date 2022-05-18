@@ -41,7 +41,7 @@ function AdminTemplate() {
   console.log(dosya1);
 
   function getCategories() {
-    fetch("https://smartshopdcifinal.herokuapp.com/category/getAllCategories")
+    fetch("http://localhost:5000/category/getAllCategories")
       .then((data) => data.json())
       .then((data) => setCategories(data));
   }
@@ -84,7 +84,7 @@ function AdminTemplate() {
     }
 
     axios
-      .post("https://smartshopdcifinal.herokuapp.com/admin/addproduct", formData, {})
+      .post("http://localhost:5000/admin/addproduct", formData, {})
       .then(function (gelenVeri) {
         console.log("Kayıt Tamamdır.");
       });

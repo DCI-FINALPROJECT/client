@@ -31,7 +31,7 @@ function CartPage() {
     e.preventDefault();
     if(couponNumber.length>=13 && couponNumber.length<=15){
 
-      const response = await fetch(`https://smartshopdcifinal.herokuapp.com/admin/getCoupon/${couponNumber}`, {
+      const response = await fetch(`http://localhost:5000/admin/getCoupon/${couponNumber}`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",

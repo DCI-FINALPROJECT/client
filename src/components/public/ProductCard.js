@@ -121,7 +121,7 @@ const addToWish = async (e) => {
 
 
     const data = await fetch(
-      `https://smartshopdcifinal.herokuapp.com/product/capacity/${productById.productName}/${capacity}`
+      `http://localhost:5000/product/capacity/${productById.productName}/${capacity}`
     )
       .then((data) => data.json())
       .then((data) => navigate(`/product/${data.id}`));

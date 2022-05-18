@@ -12,7 +12,7 @@ function CategoryCard({ product }) {
   const getProductStars = () => {
     const productName = product.productName;
 
-    fetch(`https://smartshopdcifinal.herokuapp.com/review/${productName}`)
+    fetch(`http://localhost:5000/review/${productName}`)
       .then((data) => data.json())
       .then((data) => setReviews(data));
   };

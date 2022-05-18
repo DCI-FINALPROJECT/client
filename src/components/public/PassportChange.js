@@ -19,7 +19,7 @@ function PassportChange({ setIsPassChangeAktiv }) {
         newPass,
         email,
       };
-      const response = await fetch(`https://smartshopdcifinal.herokuapp.com/user/passchange`, {
+      const response = await fetch(`http://localhost:5000/user/passchange`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
