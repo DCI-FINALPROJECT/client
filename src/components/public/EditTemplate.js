@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function EditTemplate() {
   const params = useParams();
@@ -387,9 +387,12 @@ export default function EditTemplate() {
                     <button type="submit" className="btn btn-primary">
                       Update product
                     </button>
+                    <Link to={"/admin/deleteproduct/null"}>
+
                     <button type="reset" className="btn btn-outline-danger">
                       Cancel
                     </button>
+                    </Link>
                   </div>
                 </div>
               </form>

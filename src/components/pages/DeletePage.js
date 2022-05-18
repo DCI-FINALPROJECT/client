@@ -20,7 +20,6 @@ function DeletePage() {
       },
     })
       .then((data) => data.json())
-      .then((data)=>console.log(data))
       .then((data) => {
         user.isAdmin === true  ? 
         setadminPermission(true) : setadminPermission(false)});
