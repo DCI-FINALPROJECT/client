@@ -28,7 +28,7 @@ function CategoryProducts() {
 
   const getProducts = () => {
     fetch(
-      `http://localhost:5000/category/${category}/${page}?choise=${choise}&brands=${query.get(
+      `https://smartshopdcifinal.herokuapp.com/category/${category}/${page}?choise=${choise}&brands=${query.get(
         "brands"
       )}&min=${query.get("min")}&max=${query.get("max")}&capacities=${query.get(
         "capacities"
@@ -40,7 +40,7 @@ function CategoryProducts() {
 
   const getNumberOfProducts = () => {
     fetch(
-      `http://localhost:5000/category/numberOfProductByCategory/${category}?brands=${query.get(
+      `https://smartshopdcifinal.herokuapp.com/category/numberOfProductByCategory/${category}?brands=${query.get(
         "brands"
       )}&min=${query.get("min")}&max=${query.get("max")}&capacities=${query.get(
         "capacities"

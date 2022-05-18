@@ -12,7 +12,7 @@ function AdminUserList() {
   const { user } = useContext(DataStore);
 
   const userPagePermissionControl = () => {
-    fetch("http://localhost:5000/userpage", {
+    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {
@@ -30,7 +30,7 @@ function AdminUserList() {
 
   const email = user.email;
   const getAllUsers = () => {
-    fetch(`http://localhost:5000/admin/getallusers`, {
+    fetch(`https://smartshopdcifinal.herokuapp.com/admin/getallusers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function AdminUserList() {
 
   const deleteUser = async () => {
     if (window.confirm("Are you sure to delete this account!!!")) {
-      const response = await fetch(`http://localhost:5000/user/delete`, {
+      const response = await fetch(`https://smartshopdcifinal.herokuapp.com/user/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

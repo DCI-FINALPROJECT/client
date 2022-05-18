@@ -17,7 +17,7 @@ export default function ProductPage() {
  
 
   function getProductById() {
-    fetch(`http://localhost:5000/product/${id}`)
+    fetch(`https://smartshopdcifinal.herokuapp.com/product/${id}`)
       .then((data) => data.json())
       .then((data) => setProductById(data));
   }

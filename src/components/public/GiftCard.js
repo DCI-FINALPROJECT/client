@@ -8,7 +8,7 @@ function GiftCard() {
   const [allCoupon, setAllCoupon] = useState([]) 
 
   const getAllCoupon = async() => {
-    const response = await fetch(`http://localhost:5000/allcoupons`, {
+    const response = await fetch(`https://smartshopdcifinal.herokuapp.com/allcoupons`, {
       method: "GET",
       Accept: "application/json",
       headers: {

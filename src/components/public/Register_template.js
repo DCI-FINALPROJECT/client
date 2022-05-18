@@ -26,7 +26,7 @@ function Register_template() {
           password: password1Input,
         };
 
-        const response = await fetch("http://localhost:5000/newUser", {
+        const response = await fetch("https://smartshopdcifinal.herokuapp.com/newUser", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

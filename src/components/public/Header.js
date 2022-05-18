@@ -42,7 +42,7 @@ function Header() {
     useContext(DataStore);
 
   const google = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open("https://smartshopdcifinal.herokuapp.com/auth/google", "_self");
   };
 
   const signInWithForm = async (e) => {
@@ -51,7 +51,7 @@ function Header() {
     const email = document.querySelector("#emailSignIn").value;
     const password = document.querySelector("#passwordSignIn").value;
 
-    const response = await fetch("http://localhost:5000/userlogin", {
+    const response = await fetch("https://smartshopdcifinal.herokuapp.com/userlogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

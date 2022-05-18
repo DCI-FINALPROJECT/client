@@ -10,7 +10,7 @@ function CouponCreatTemplate() {
 
         if(couponAmount>0){
 
-            const response = await fetch("http://localhost:5000/admin/postCoupon", {
+            const response = await fetch("https://smartshopdcifinal.herokuapp.com/admin/postCoupon", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
