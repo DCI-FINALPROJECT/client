@@ -1,9 +1,11 @@
+
 import React, { useEffect, useState } from 'react'
 import { Cookies, useCookies } from 'react-cookie';
 
-function GiftCard() {
 
+function GiftCard() {
   const [cookies, setCookies] = useCookies(["cart"]);
+
 
   const [allCoupon, setAllCoupon] = useState([]) 
 
@@ -94,9 +96,9 @@ function GiftCard() {
             )
         })}
 
-        
+       
     </div>
-  )
+  );
 }
 
-export default GiftCard
+export default GiftCard;

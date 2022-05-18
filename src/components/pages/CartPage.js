@@ -56,7 +56,7 @@ function CartPage() {
   return (
     <div>
       <Header />
-      <div className="container my-3 shadow">
+      <div className="container my-3 py-2 shadow">
         <div class="row">
           <div class="col-lg-9">
             <div class="card">

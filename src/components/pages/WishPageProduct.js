@@ -230,6 +230,7 @@ function WishPageProduct({ product }) {
           </div>
         </div>
         <div className="col-md-4">
+          <div className="d-flex justify-content-center">
 
             <button
               disabled={inStock === false && true}
@@ -252,6 +253,7 @@ function WishPageProduct({ product }) {
                         className="far fa-trash-alt"
                       ></i>
             </button>
+            </div>
           
         </div>
       </article>

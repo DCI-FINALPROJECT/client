@@ -245,9 +245,14 @@ function CartPageProduct({ product }) {
           </div>
         </div>
         <div class="col-lg col-sm-4">
-          <div class="float-lg-end">
+          <div class="d-flex justify-content-end mr-2">
             <button onClick={removeProduct} class="btn btn-light text-danger">
-              Remove
+            <i style={{
+                          fontSize: "16px",
+                          color: "red",
+                        }}
+                        className="far fa-trash-alt"
+                      ></i>
             </button>
           </div>
         </div>
