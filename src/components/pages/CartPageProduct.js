@@ -90,7 +90,7 @@ function CartPageProduct({ product }) {
   // WE CAN GET ALL INFORMATION OF PRODUCTS FROM SERVER !!! NO COOKIE
 
   const getInformation = () => {
-    fetch(`http://localhost:5000/product/${product.id}`)
+    fetch(`https://smartshopdcifinal.herokuapp.com/product/${product.id}`)
       .then((data) => data.json())
       .then((data) => {
         if (product.quantities > getStockNumberAtFirst(data.stock)) {

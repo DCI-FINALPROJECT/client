@@ -6,7 +6,7 @@ function DeleteTemplate({ product }) {
   const { setClicked } = useContext(DataStore);
 
   const deleteProduct = async () => {
-    await fetch(`http://localhost:5000/admin/deleteproduct/${product._id}`, {
+    await fetch(`https://smartshopdcifinal.herokuapp.com/admin/deleteproduct/${product._id}`, {
       method: "DELETE",
       Accept: "application/json",
       headers: {

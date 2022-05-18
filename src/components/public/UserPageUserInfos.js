@@ -16,7 +16,7 @@ function UserPageUserInfos() {
   const updateInfos = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/updateuser", {
+    fetch("https://smartshopdcifinal.herokuapp.com/updateuser", {
       method: "PATCH",
       body: JSON.stringify({
         id: user._id,

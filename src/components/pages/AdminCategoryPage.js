@@ -14,7 +14,7 @@ function AdminCategoryPage() {
   const { user } = useContext(DataStore);
 
   const userPagePermissionControl = () => {
-    fetch("http://localhost:5000/userpage", {
+    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {
@@ -41,7 +41,7 @@ function AdminCategoryPage() {
         categoryValue.substring(1).toLowerCase()
     );
 
-    fetch("http://localhost:5000/category/createCategory", {
+    fetch("https://smartshopdcifinal.herokuapp.com/category/createCategory", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function AdminCategoryPage() {
   };
 
   const getAllCategories = () => {
-    fetch("http://localhost:5000/category/getAllCategories")
+    fetch("https://smartshopdcifinal.herokuapp.com/category/getAllCategories")
       .then((data) => data.json())
       .then((data) => setAllCategories(data));
   };
@@ -67,7 +67,7 @@ function AdminCategoryPage() {
   const deleteCategory = (category) => {
     console.log(category._id);
 
-    fetch(`http://localhost:5000/category/delete/${category._id}`,{
+    fetch(`https://smartshopdcifinal.herokuapp.com/category/delete/${category._id}`,{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

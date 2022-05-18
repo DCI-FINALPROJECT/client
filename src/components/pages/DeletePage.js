@@ -12,7 +12,7 @@ function DeletePage() {
   const { user} = useContext(DataStore);
 
   const userPagePermissionControl = () => {
-    fetch("http://localhost:5000/userpage", {
+    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {

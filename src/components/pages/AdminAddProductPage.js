@@ -12,7 +12,7 @@ function AddProductPage() {
   const [adminPermission, setadminPermission] = useState(null);
 
   const userPagePermissionControl = () => {
-    fetch("http://localhost:5000/userpage", {
+    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {

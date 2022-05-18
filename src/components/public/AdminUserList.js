@@ -13,7 +13,7 @@ function AdminUserList() {
   const { user } = useContext(DataStore);
 
   const userPagePermissionControl = () => {
-    fetch("http://localhost:5000/userpage", {
+    fetch("https://smartshopdcifinal.herokuapp.com/userpage", {
       method: "GET",
       Accept: "application/json",
       headers: {
@@ -31,7 +31,7 @@ function AdminUserList() {
 
   const email = user.email;
   const getAllUsers = () => {
-    fetch(`http://localhost:5000/admin/getallusers`, {
+    fetch(`https://smartshopdcifinal.herokuapp.com/admin/getallusers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,6 +44,24 @@ function AdminUserList() {
   };
 
   console.log(user);
+
+
+  const deleteUser = async () => {
+    if (window.confirm("Are you sure to delete this account!!!")) {
+      const response = await fetch(`https://smartshopdcifinal.herokuapp.com/user/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.userToken}`,
+        },
+        body: JSON.stringify({ email }),
+      });
+      const result = response;
+      if (result.status === 200) {
+        alert("The account is successfully deleted!");
+      }
+    } else {
+      alert("The account was not deleted...");
 
   const makeAdmin = async (e) => {
     console.log(e.target.value);
@@ -58,6 +76,7 @@ function AdminUserList() {
       },
       body: JSON.stringify({ email }),
     }).then(data=>data.json()).then(data=>setMakeAnAdmin(data))
+
   };
 
   useEffect(() => {

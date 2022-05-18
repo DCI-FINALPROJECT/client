@@ -28,7 +28,7 @@ export default function EditTemplate() {
   const [dosya4, setDosya4] = useState(productById.images[3]);
 
   const getProductById = async () => {
-    const data = await fetch(`http://localhost:5000/product/${id}`);
+    const data = await fetch(`https://smartshopdcifinal.herokuapp.com/product/${id}`);
     const response = await data.json();
     setProductById(response);
     setDosya1(response.images[0]);
@@ -61,7 +61,7 @@ export default function EditTemplate() {
   console.log(dosya1);
 
   function getCategories() {
-    fetch("http://localhost:5000/category/getAllCategories")
+    fetch("https://smartshopdcifinal.herokuapp.com/category/getAllCategories")
       .then((data) => data.json())
       .then((data) => setCategories(data));
   }
@@ -108,7 +108,7 @@ export default function EditTemplate() {
     }
 
     axios
-      .put(`http://localhost:5000/admin/updateproduct/${id}`, formData, {})
+      .put(`https://smartshopdcifinal.herokuapp.com/admin/updateproduct/${id}`, formData, {})
       .then(function (gelenVeri) {
         console.log("Kayıt Tamamdır.");
       });
