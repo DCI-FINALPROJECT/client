@@ -87,7 +87,7 @@ function AdminNewOrders() {
                         value={order.orderNumber}
                         className="btn btn-success"
                       >
-                        Send
+                        Send with DHL
                       </button>
                     </div>
                   );
