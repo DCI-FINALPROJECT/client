@@ -37,7 +37,7 @@ function UserPageOrderHistory() {
               <li>Order Number: {order.orderNumber}</li>
               <li>Date: {order.date}</li>
               <li>Amount: € {order.amount}</li>
-              <li>Status: .... </li>
+              <li>Status: <span className="text-info">{order.status[order.status.length-1]}</span>  </li>
             </ul>
           );
         })}

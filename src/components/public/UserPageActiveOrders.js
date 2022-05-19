@@ -6,7 +6,7 @@ import PaymentConfirmationTemplate from "./PaymentConfirmationTemplate";
 function UserPageOrderInfos() {
   const { user } = useContext(DataStore);
 
-  const [activeOrders, setActiveOrders] = useState([]);
+  const [activeOrders, setActiveOrders] = useState([,,,]);
   const [products, setProducts] = useState([]);
   const [ready, setReady] = useState(false);
   const [couponNumber, setCouponNumber] = useState("");
@@ -26,30 +26,6 @@ function UserPageOrderInfos() {
         
         setActiveOrders(data)});
   };
-
-  /* data.forEach(element => {
-          if(element.products[0].capacity.slice(0,2)==="GC"){
-            const giftNumber =element.products[0].capacity
-            console.log("if calisiyor");
-            console.log(giftNumber);
-            const result = async( )=>{
-              console.log("result calisiyor");
-              await fetch("http://localhost:5000/getGift", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ giftNumber}),
-              }).then((data) => data.json())
-              .then((data)=>setCouponNumber(data.couponNumber))
-            } 
-            
-            
-            
-            result();
-          }
-          
-        }); */
 
 
   useEffect(() => {
@@ -93,7 +69,7 @@ function UserPageOrderInfos() {
                 <div class="flex-grow-1">
                   <h6 class="mb-0">
                     Order ID: {order.orderNumber} <i class="dot"></i>
-                    <span class="text-danger"> Pending </span>
+                    <span class="text-danger"> {order.status[order.status.length-1]} </span>
                   </h6>
                   <span>Date: {order.date}</span>
                 </div>
@@ -188,7 +164,7 @@ function UserPageOrderInfos() {
                   })}
               </ul>
             </div>
-            <PaymentConfirmationTemplate />
+            <PaymentConfirmationTemplate status = {order.status} />
           </article>
         );
       })}

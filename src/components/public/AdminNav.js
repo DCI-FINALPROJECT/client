@@ -63,6 +63,13 @@ function AdminNav() {
             } href="/admin/userlist">
             Make Admin
           </a>
+          <a class={
+              path === `/admin/neworders` 
+                ? "nav-link active"
+                : "nav-link"
+            } href="/admin/neworders">
+            New Orders
+          </a>
         </nav>
       </div>
     </div>
