@@ -1,6 +1,8 @@
 import React from "react";
 
-function PaymentConfirmationTemplate() {
+function PaymentConfirmationTemplate({status}) {
+
+  console.log(status);
   return (
     <div className="bg">
       <div className="container pt-5 pb-5">
@@ -30,19 +32,19 @@ function PaymentConfirmationTemplate() {
                   </span>
                   <span className="text">Order received</span>
                 </div>
-                <div className="step ">
+                <div className={`step ${status.length > 1 && "active"}`}>
                   <span className="icon">
                     <i className="fa fa-user"></i>
                   </span>
                   <span className="text"> Shipped</span>
                 </div>
-                <div className="step ">
+                <div className={`step ${status.length > 2 && "active"}`}>
                   <span className="icon">
                     <i className="fa fa-truck"></i>
                   </span>
                   <span className="text">Delivery </span>
                 </div>
-                <div className="step">
+                <div className={`step ${status.length > 3 && "active"}`}>
                   <span className="icon">
                     <i className="fa fa-home"></i>
                   </span>

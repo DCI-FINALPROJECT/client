@@ -24,6 +24,7 @@ import AdminCategoryPage from "./components/pages/AdminCategoryPage";
 import GiftCardPage from "./components/pages/GiftCardPage";
 import WishPage from "./components/pages/WishPage";
 import AdminUserList from "./components/public/AdminUserList";
+import AdminNewOrders from "./components/public/AdminNewOrders";
 
 
 function App() {
@@ -157,6 +158,7 @@ function App() {
             <Route path="/admin/couponCreate" element={<CouponCreatPage />} />
             <Route path="/admin/category" element={<AdminCategoryPage />} />
             <Route path="/admin/userlist" element={<AdminUserList/>} />
+            <Route path="/admin/neworders" element={<AdminNewOrders/>} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/payment" element={<PaymentPage />} />
