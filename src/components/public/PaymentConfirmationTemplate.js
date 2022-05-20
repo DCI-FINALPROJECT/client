@@ -38,13 +38,13 @@ function PaymentConfirmationTemplate({status}) {
                   </span>
                   <span className="text"> Shipped</span>
                 </div>
-                <div className={`step ${status.length === 3 && "active"}`}>
+                <div className={`step ${status.length > 2 && "active"}`}>
                   <span className="icon">
                     <i className="fa fa-truck"></i>
                   </span>
                   <span className="text">Delivery </span>
                 </div>
-                <div className={`step ${status.length === 4 && "active"}`}>
+                <div className={`step ${status.length > 3 && "active"}`}>
                   <span className="icon">
                     <i className="fa fa-home"></i>
                   </span>
