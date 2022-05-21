@@ -7,6 +7,7 @@ import NotAuthorize from "./NotAuthorize";
 function AdminNewOrders() {
   const [adminPermission, setadminPermission] = useState(null);
   const { user } = useContext(DataStore);
+  const [sendedDHL,setSendedDHL] =useState("");
 
   const [allNewOrders, setAllNewOrders] = useState([]);
 
@@ -35,12 +36,13 @@ function AdminNewOrders() {
 
   useEffect(() => {
     getNewOrders();
-  }, []);
+  }, [sendedDHL]);
 
   console.log(allNewOrders);
 
   const shipOrderHandle = (e) => {
     const orderNumber = e.target.value;
+
 
     const result = fetch("http://localhost:5000/shiporder", {
       method: "PATCH",
@@ -50,7 +52,7 @@ function AdminNewOrders() {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
-    });
+    }).then(data=>setSendedDHL(orderNumber));
   };
 
   userPagePermissionControl();

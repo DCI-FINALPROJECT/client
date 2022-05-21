@@ -32,7 +32,7 @@ function Header() {
   console.log(cookies);
   console.log(totalProductInWish);
 
-  const choise = query.get("choise") === null ? "1" : query.get("choise");
+  const choise = query.get("choise") === null ? "3" : query.get("choise");
   const min = query.get("min") === null ? 0 : query.get("min");
   const max = query.get("max") === null ? 0 : query.get("max");
 
@@ -120,7 +120,7 @@ function Header() {
                     return (
                       <a
                         key={index}
-                        href={`/category/${category.toUpperCase()}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}&capacities=`}
+                        href={`/category/${category.toUpperCase()}?whichPage=1&choise=${choise}&brands=&min=${min}&max=${max}&capacities=64 GB`}
                       >
                         <li>
                           <div className="dropdown-item" href="#">
