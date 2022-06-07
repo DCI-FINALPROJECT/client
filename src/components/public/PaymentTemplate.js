@@ -2,7 +2,7 @@ import React from "react";
 import PaymentOverview from "./PaymentOverview";
 import ContactInfo from "./ContactInfo";
 import PaymentMethod from "./PaymentMethod";
-import ReviewCart from "./ReviewCart";
+
 
 function PaymentTemplate() {
   return (
@@ -15,7 +15,6 @@ function PaymentTemplate() {
               <PaymentMethod />
             </main>
             <aside className="col-md-4">
-              <ReviewCart />
               <PaymentOverview />
             </aside>
           </div>
