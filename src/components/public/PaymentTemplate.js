@@ -1,5 +1,4 @@
 import React from "react";
-import PaymentOverview from "./PaymentOverview";
 import ContactInfo from "./ContactInfo";
 import PaymentMethod from "./PaymentMethod";
 
@@ -15,7 +14,6 @@ function PaymentTemplate() {
               <PaymentMethod />
             </main>
             <aside className="col-md-4">
-              <PaymentOverview />
             </aside>
           </div>
         </div>
