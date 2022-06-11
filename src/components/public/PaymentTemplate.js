@@ -1,6 +1,4 @@
 import React from "react";
-import ContactInfo from "./ContactInfo";
-import PaymentMethod from "./PaymentMethod";
 
 
 function PaymentTemplate() {
@@ -10,8 +8,6 @@ function PaymentTemplate() {
         <div className="container">
           <div className="row">
             <main className="col-md-8">
-              <ContactInfo />
-              <PaymentMethod />
             </main>
             <aside className="col-md-4">
             </aside>
