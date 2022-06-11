@@ -5,7 +5,6 @@ import LoginPage from "./components/pages/LoginPage";
 import AdminPage from "./components/pages/AdminPage";
 import UserPage from "./components/pages/UserPage";
 import ProductPage from "./components/pages/ProductPage";
-import PaymentPage from "./components/pages/PaymentPage";
 import PaymentConfirmPage from "./components/pages/PaymentPageConfirmation";
 import { DataStore } from "./DataStore";
 import { Routes, Route } from "react-router-dom";
@@ -161,7 +160,6 @@ function App() {
             <Route path="/admin/neworders" element={<AdminNewOrders/>} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/payment" element={<PaymentPage />} />
             <Route path="/paymentconfirm" element={<PaymentConfirmPage />} />
             <Route path="/search/:productName" element={<SearchPage />} />
             <Route path="/category/:category" element={<CategoryPage />} />
